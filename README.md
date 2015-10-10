@@ -1,0 +1,2 @@
+# oly-geoguessr
+Olympiad GeoGuessr
