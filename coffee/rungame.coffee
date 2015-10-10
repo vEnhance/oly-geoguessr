@@ -5,12 +5,16 @@ CANVAS = null
 CONTEXT = null
 
 diagram = null
-active = []
+active_points = []
 
 # Geometry {{{
 class Point
-	constructor: (@name, @x, @y) ->
+	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
+		# The @i gives a unique ordering to each tuple
+	toString: () ->
+		@name
+		
 class Diagram
 	constructor: (json_array) ->
 		umin = json_array["min"][0]
@@ -21,15 +25,20 @@ class Diagram
 		height = json_array["height"]
 		@points = {}
 		@flat_points = []
+		i = 0
 		for point_array in json_array["points"]
 			pu = point_array[1]
 			pv = point_array[2]
 			px = width * (pu-umin)/(umax-umin)
 			py = height * (vmax-pv)/(vmax-vmin)
-			p = new Point(point_array[0], px, py)
+			p = new Point(point_array[0], px, py, i)
 			@points[point_array[0]] = p
 			@flat_points.push(p)
-		@tuples = json_array["tuples"]
+			i += 1
+		@tuples = []
+		for tuple in json_array["tuples"]
+			tuple.sort( (p,q) -> p.i - q.i )
+			@tuples.push(tuple)
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 
@@ -66,16 +75,18 @@ clearAll = () ->
 # High-level things
 markAllActive = () ->
 	clearAll()
-	for p in active
+	for p in active_points
 		fillCircle(p, color="blue", r=3)
 		drawCircle(p, color="blue", r=20)
+	console.log(active_points)
+	$("span#active_points").html(active_points.toString())
 # }}}
 # Click and game handler {{{
 toggle = (p) ->
-	if not (p in active)
-		active.push(p)
+	if not (p in active_points)
+		active_points.push(p)
 	else
-		active.splice(active.indexOf(p), 1)
+		active_points.splice(active_points.indexOf(p), 1)
 	markAllActive()
 onClick = (e) ->
 	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop) # where user clicked
@@ -88,18 +99,13 @@ onClick = (e) ->
 
 # Main function {{{
 $ ->
-	CANVAS = $("<CANVAS></CANVAS>")
+	CANVAS = $("#puru")
 	CANVAS.attr "height", CANVAS_HEIGHT
 	CANVAS.attr "width",  CANVAS_WIDTH
-	CANVAS.attr "id", "puru"
-	CANVAS.css "background-repeat", "no-repeat"
 	CONTEXT = CANVAS.get(0).getContext("2d")
-
-	CANVAS.appendTo($("#canvas_site"))
-
 	CANVAS.click onClick
 
 	loadDiagram "orthocenter"
-# }}}
 
+# }}}
 # vim: fdm=marker
