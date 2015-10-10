@@ -1,21 +1,40 @@
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH  = 700
-CURRENT_DIAGRAM = null
+SENSITIVITY = 30
+CANVAS = null
+CONTEXT = null
 
+diagram = null
+active = []
+
+# Geometry {{{
 class Point
 	constructor: (@name, @x, @y) ->
 		# no need to do anything, lol!
-
 class Diagram
 	constructor: (json_array) ->
+		umin = json_array["min"][0]
+		umax = json_array["max"][0]
+		vmin = json_array["min"][1]
+		vmax = json_array["max"][1]
+		width = json_array["width"]
+		height = json_array["height"]
 		@points = {}
+		@flat_points = []
 		for point_array in json_array["points"]
-			@points[point_array[0]] = new Point(point_array[0], point_array[1], point_array[2])
-		@min = new Point(json_array["min"][0], json_array["min"][1], json_array["min"][2])
-		@max = new Point(json_array["max"][0], json_array["max"][1], json_array["max"][2])
+			pu = point_array[1]
+			pv = point_array[2]
+			px = width * (pu-umin)/(umax-umin)
+			py = height * (vmax-pv)/(vmax-vmin)
+			p = new Point(point_array[0], px, py)
+			@points[point_array[0]] = p
+			@flat_points.push(p)
 		@tuples = json_array["tuples"]
 		@source = json_array["source"]
 		@filename = json_array["filename"]
+
+dist = (p, q) ->
+	Math.pow(Math.pow(p.x-q.x, 2) + Math.pow(p.y-q.y, 2), 0.5)
 
 toImg = (filename) ->
 	"diagrams/" + filename + ".png"
@@ -23,30 +42,64 @@ toJSON = (filename) ->
 	"diagrams/" + filename + ".json"
 
 loadDiagram = (filename) ->
-	$("#puru").css "background", "url(" + toImg(filename) + ") no-repeat"
-	$.getJSON(toJSON(filename), (data, status, xhr) ->
-		console.log "Success"
-		console.log data
-		CURRENT_DIAGRAM = new Diagram(data)
-		console.log CURRENT_DIAGRAM)
+	CANVAS.css "background", "url(" + toImg(filename) + ") no-repeat"
+	$.getJSON(toJSON(filename), (data, status, xhr) -> diagram = new Diagram(data))
 	.error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
 	)
+# }}}
+# Canvas art {{{
+# Low-level things
+drawCircle = (p, color = "blue", r = 10) ->
+	CONTEXT.beginPath()
+	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
+	CONTEXT.strokeStyle = color
+	CONTEXT.stroke()
+fillCircle = (p, color = "blue", r = 10) ->
+	CONTEXT.beginPath()
+	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
+	CONTEXT.fillStyle = color
+	CONTEXT.fill()
+clearAll = () ->
+	CONTEXT.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+# High-level things
+markAllActive = () ->
+	clearAll()
+	for p in active
+		fillCircle(p, color="blue", r=3)
+		drawCircle(p, color="blue", r=20)
+# }}}
+# Click and game handler {{{
+toggle = (p) ->
+	if not (p in active)
+		active.push(p)
+	else
+		active.splice(active.indexOf(p), 1)
+	markAllActive()
+onClick = (e) ->
+	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop) # where user clicked
+	# Now, check, to see if any point is close enough, if so circle it
+	diagram.flat_points.sort( (p,q) -> dist(o,p)-dist(o,q) )
+	p = diagram.flat_points[0]
+	if dist(o,p) < SENSITIVITY
+		toggle p
+# }}}
 
-	console.log toJSON(filename)
-
+# Main function {{{
 $ ->
-	canvas_elm = $("<canvas></canvas>")
-	canvas_elm.attr "height", CANVAS_HEIGHT
-	canvas_elm.attr "width",  CANVAS_WIDTH
-	canvas_elm.attr "id", "puru"
-	canvas_elm.css "background-repeat", "no-repeat"
-	canvas = canvas_elm.get(0).getContext("2d")
+	CANVAS = $("<CANVAS></CANVAS>")
+	CANVAS.attr "height", CANVAS_HEIGHT
+	CANVAS.attr "width",  CANVAS_WIDTH
+	CANVAS.attr "id", "puru"
+	CANVAS.css "background-repeat", "no-repeat"
+	CONTEXT = CANVAS.get(0).getContext("2d")
 
-	canvas_elm.appendTo($("#canvas_site"))
+	CANVAS.appendTo($("#canvas_site"))
 
-	canvas_elm.click (e) ->
-		console.log (e.pageX - this.offsetLeft) + " " + (e.pageY - this.offsetTop)
+	CANVAS.click onClick
 
 	loadDiagram "orthocenter"
+# }}}
+
+# vim: fdm=marker
