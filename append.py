@@ -27,8 +27,10 @@ with open(fileasy, 'r') as r:
 with open(filenewasy, 'a') as w:
 	for pt in pts_list:
 		print >>w, "write(\"Point: %s,\" + (string) %s);" %(pt, pt)
-	print >>w, "write(\"min \" + (string) min(currentpicture, user=true));"
-	print >>w, "write(\"max \" + (string) max(currentpicture, user=true));"
+	print >>w, "write(\"umin \" + (string) min(currentpicture, user=true));" # User coordinates
+	print >>w, "write(\"umax \" + (string) max(currentpicture, user=true));"
+	print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
+	print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
 command = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetxt)
 print command
 os.system(command)
@@ -42,12 +44,18 @@ for line in r:
 	if line.startswith('Point: '):
 		line = line.strip('Point: ').strip()
 		pts_coor.append(line.split(","))
-	elif line.startswith('min '):
-		line = line.strip('min ').strip()
-		min_list = line.split(",")
-	elif line.startswith('max '):
-		line = line.strip('max ').strip()
-		max_list = line.split(",")	
+	elif line.startswith('umin '):
+		min_list = line.strip('umin ').strip().split(",")
+	elif line.startswith('umax '):
+		max_list = line.strip('umax ').strip().split(",")
+	elif line.startswith('pmin '):
+		pmin_list = line.strip('pmin ').strip().split(",")
+		pxmin = float(pmin_list[0][1:])
+		pymin = float(pmin_list[1][:-1])
+	elif line.startswith('pmax '):
+		pmax_list = line.strip('pmax ').strip().split(",")
+		pxmax = float(pmax_list[0][1:])
+		pymax = float(pmax_list[1][:-1])
 
 #writing json file
 print pts_coor
@@ -65,5 +73,7 @@ print >>g, ',\n'.join([ '['+','.join(['"%s"' %p for p in ls])+']' for ls in tupl
 print >>g, '],'
 
 print >>g, '"source" : "%s",' %(source)
-print >>g, '"filename" : "%s"' %(filename)
+print >>g, '"filename" : "%s",' %(filename)
+print >>g, '"width" : "%f",' %(pxmax-pxmin)
+print >>g, '"height" : "%f"' %(pymax-pymin)
 print >>g, '}'
