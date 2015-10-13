@@ -35,10 +35,8 @@ class Diagram
 			@points[point_array[0]] = p
 			@flat_points.push(p)
 			i += 1
-		@tuples = []
-		for tuple in json_array["tuples"]
-			tuple.sort( (p,q) -> p.i - q.i )
-			@tuples.push(tuple)
+		@tuples = (tuple.sort((p,q) -> p.i - q.i) \
+			for tuple in json_array["tuples"])
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 
