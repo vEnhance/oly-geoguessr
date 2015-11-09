@@ -1,4 +1,6 @@
 size(500);
+dotfactor *= 2;
+defaultpen(fontsize(18pt));
 
 pair A = dir(60);
 pair B = dir(100);

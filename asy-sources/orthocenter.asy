@@ -1,6 +1,7 @@
 import olympiad;
-
 size(500);
+dotfactor *= 2;
+defaultpen(fontsize(18pt));
 
 pair A = dir(110);
 pair B = dir(210);
@@ -11,7 +12,7 @@ dot("$A$", A, dir(110));
 dot("$B$", B, B);
 dot("$C$", C, C);
 
-pair H = orthocenter(A, B, C);
+pair H = A+B+C;
 dot("$H$", H, dir(100));
 
 pair D = foot(A, B, C);

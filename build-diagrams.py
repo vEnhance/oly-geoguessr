@@ -6,7 +6,7 @@ def createDiagram(filename):
 	fileasy = "asy-sources/" + filename + ".asy"
 	filepng = "diagrams/" + filename + ".png"
 	filetxt = "/tmp/" + filename + ".txt"
-	filenewasy = "/tmp/" + filename + "_temp.asy"
+	filenewasy = "/tmp/" + filename + ".asy"
 	filejson = "diagrams/" + filename + ".json"
 
 	with open(fileasy, 'r') as r:
@@ -31,9 +31,9 @@ def createDiagram(filename):
 		print >>w, "write(\"umax \" + (string) max(currentpicture, user=true));"
 		print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
 		print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
-	command = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetxt)
-	print command
-	os.system(command)
+	command_asy = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetxt)
+	print command_asy
+	os.system(command_asy)
 
 	#reading txt file from asymptote
 	pts_coor = []

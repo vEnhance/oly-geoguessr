@@ -1,6 +1,6 @@
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH  = 700
-SENSITIVITY = 30
+SENSITIVITY = 50
 CANVAS = null
 CONTEXT = null
 
@@ -99,8 +99,8 @@ clearAll = () ->
 markAllActive = (c = "blue") ->
 	clearAll()
 	for p in active_points
-		fillCircle(p, color=c, r=3)
-		drawCircle(p, color=c, r=20)
+		fillCircle(p, color=c, r=5)
+		drawCircle(p, color=c, r=30)
 	$("span#active_points").html(active_points.toString())
 # }}}
 # Click and game handler {{{
