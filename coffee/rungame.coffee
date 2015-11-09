@@ -111,11 +111,17 @@ onCheckButtonClick = (e) ->
 	clone = active_points.slice(0) # I hate JS
 	stringifiedActive = JSON.stringify( (p.toString() for p in pointSort(clone)) )
 	if stringifiedActive in diagram.tuples
+		# Good job, delete it
 		$("#found").append($("<li>" + active_points.toString() + "</li>"))
 		del(diagram.tuples, stringifiedActive)
-		# Now clear diagram
-		active_points = []
-		markAllActive()
+		# Highlight green momentarily
+		markAllActive("green")
+		if diagram.tuples.length == 0 # done
+			# TODO stop game timer
+			setTimeout startNextDiagram, 400
+		else
+			active_points = []
+			setTimeout markAllActive, 400
 	else
 		markAllActive("red")
 
