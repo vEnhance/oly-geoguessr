@@ -58,7 +58,6 @@ def createDiagram(filename):
 			pymax = float(pmax_list[1][:-1])
 
 	#writing json file
-	print pts_coor
 	g = open(filejson, 'w')
 	g.write('{\n')
 	g.write('"points" : [\n')
@@ -79,7 +78,7 @@ def createDiagram(filename):
 	print >>g, '}'
 
 
-
-
 if __name__ == "__main__":
+	createDiagram("demo1")
+	createDiagram("demo2")
 	createDiagram("orthocenter")

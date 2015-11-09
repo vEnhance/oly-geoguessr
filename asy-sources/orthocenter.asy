@@ -1,6 +1,6 @@
 import olympiad;
 
-size(500, 500); // 500 px x 500 px
+size(500);
 
 pair A = dir(110);
 pair B = dir(210);
