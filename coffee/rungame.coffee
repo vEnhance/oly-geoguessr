@@ -14,6 +14,11 @@ del = (arr, x) -> # no return value
 pointSort = (arr) ->
 	arr.sort((p,q) -> p.i - q.i)
 
+tempAddClass = (elm, cls, time=1000) ->
+	$(elm).addClass(cls)
+	removeCallback = () -> $(elm).removeClass(cls)
+	setTimeout removeCallback, time
+
 
 # }}}
 
@@ -62,9 +67,13 @@ toJSON = (filename) ->
 	"diagrams/" + filename + ".json"
 
 loadDiagram = (filename) ->
+	clearAll()
 	CANVAS.css "background", "url(" + toImg(filename) + ") no-repeat"
-	$.getJSON(toJSON(filename), (data, status, xhr) -> diagram = new Diagram(data))
-	.error( # chain
+	$.getJSON(toJSON(filename),
+		(data, status, xhr) ->
+			diagram = new Diagram(data)
+			$("#head_title").html(diagram.source)
+	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
 	)
@@ -116,14 +125,20 @@ onCheckButtonClick = (e) ->
 		del(diagram.tuples, stringifiedActive)
 		# Highlight green momentarily
 		markAllActive("green")
-		if diagram.tuples.length == 0 # done
-			# TODO stop game timer
-			setTimeout startNextDiagram, 400
-		else
-			active_points = []
-			setTimeout markAllActive, 400
+		active_points = []
+		setTimeout markAllActive, 400
+		tempAddClass "#check_button", "button_green"
 	else
 		markAllActive("red")
+		tempAddClass "#check_button", "button_red"
+
+onDoneButtonClick = (e) ->
+	if diagram.tuples.length == 0
+		startNextDiagram
+		tempAddClass "#done_button", "button_green"
+	else
+		tempAddClass "#done_button", "button_red"
+
 
 startNextDiagram = () ->
 	console.log("Next diagram")
@@ -141,12 +156,16 @@ startGame = () ->
 	$("#site").append(CANVAS)
 	$("#check_button").click onCheckButtonClick
 	$("#check_button").prop('disabled', false)
+	$("#done_button").click onDoneButtonClick
+	$("#done_button").prop('disabled', false)
 
 	loadDiagram "orthocenter"
 # }}}
 
 # Main function {{{
 $ ->
+	$("#check_button").prop('disabled', true)
+	$("#done_button").prop('disabled', true)
 	$("#start_game").click startGame
 
 # }}}

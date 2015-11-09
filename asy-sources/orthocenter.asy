@@ -38,7 +38,7 @@ draw(C--F);
 //write(max(currentpicture, user=true));
 
 /*
-  Source: Orthocenter Configuration
+  Source: The Orthic Triangle
   Points: A B C D E F H
   Tuple: B C E F
   Tuple: C A F D
