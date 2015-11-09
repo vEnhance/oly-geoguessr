@@ -164,7 +164,7 @@ startGame = () ->
 	$("#done_button").click onDoneButtonClick
 	$("#done_button").prop('disabled', false)
 
-	loadDiagram "orthocenter"
+	loadDiagram "demo2"
 # }}}
 
 # Main function {{{

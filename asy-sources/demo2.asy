@@ -20,5 +20,5 @@ dot("$O$", O, dir(-B));
 /*
   Source: Thale's Theorem
   Points: A O B C
-  Tuple: A O B
+  Tuple: A O C
 */
