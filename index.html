@@ -3,6 +3,7 @@
 <head>
 <title>Evan Chen &bullet; Olympiad GeoGuessr</title>
 <link href="karl.css" type="text/css" rel="stylesheet" />
+<link href="game.css" type="text/css" rel="stylesheet" />
 <script src="jquery.min.js"></script> <!-- For online version, link to Google -->
 <!-- https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js -->
 <script src="js/rungame.js"></script>
@@ -23,13 +24,13 @@
 			<h1>Header</h1>
 			<div class="entrywrap">
 				<div id="top_bar">
-					<button id="check_button" type="button">Check</button>
+					<button id="check_button" type="button" disabled>Check</button>
 					&nbsp; &nbsp;
 					<span id="active_points"></span>
 				</div>
 				<br>
-				<div id="canvas_site" style="text-align: center">
-					<canvas id="puru"></canvas>
+				<div id="site" style="text-align: center">
+					<button id="start_game">Click here to start</button>
 				</div>
 			</div>
 		</div>

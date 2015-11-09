@@ -110,8 +110,6 @@ onDiagramClick = (e) ->
 onCheckButtonClick = (e) ->
 	clone = active_points.slice(0) # I hate JS
 	stringifiedActive = JSON.stringify( (p.toString() for p in pointSort(clone)) )
-	console.log(stringifiedActive)
-	console.log(diagram.tuples)
 	if stringifiedActive in diagram.tuples
 		$("#found").append($("<li>" + active_points.toString() + "</li>"))
 		del(diagram.tuples, stringifiedActive)
@@ -121,19 +119,29 @@ onCheckButtonClick = (e) ->
 	else
 		markAllActive("red")
 
+startNextDiagram = () ->
+	console.log("Next diagram")
+
+# }}}
+# Start Game {{{
+startGame = () ->
+	CANVAS = $("<canvas></canvas>")
+	CANVAS.attr "height", CANVAS_HEIGHT
+	CANVAS.attr "width",  CANVAS_WIDTH
+	CANVAS.click onDiagramClick
+
+	CONTEXT = CANVAS.get(0).getContext("2d")
+	$("#site").empty()
+	$("#site").append(CANVAS)
+	$("#check_button").click onCheckButtonClick
+	$("#check_button").prop('disabled', false)
+
+	loadDiagram "orthocenter"
 # }}}
 
 # Main function {{{
 $ ->
-	CANVAS = $("#puru")
-	CANVAS.attr "height", CANVAS_HEIGHT
-	CANVAS.attr "width",  CANVAS_WIDTH
-	CONTEXT = CANVAS.get(0).getContext("2d")
-	CANVAS.click onDiagramClick
-
-	$("#check_button").click onCheckButtonClick
-
-	loadDiagram "orthocenter"
+	$("#start_game").click startGame
 
 # }}}
 # vim: fdm=marker
