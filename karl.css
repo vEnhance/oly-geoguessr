@@ -1,58 +1,9 @@
-input, select, textarea {
-	border				: 1px solid #d0d0d0;
-    font-family         : Verdana,Arial,Helvetica,sans-serif;
-    font-size           : 13px;
-}
-
-button, input[type="reset"], input[type="button"], input[type="submit"] {
-	padding				: 0 6px;
-	text-align			: center;
-	white-space			: pre;
-}
-.deleted {
-	background-color: #A19CA6;
-}
-
-.foe {
-	background-color: #FF6600;
-}
-
-.num_replies {
-	float: right;
-}
-
-.no_blogs {
-	text-align: center;
-	font-size: 1.3em;
-	font-weight: bold;
-}
-
-#replies {
-	text-align: center;
-	margin-top: 15px;
-}
-
-/**
-* Left menu
-*/
-#left_menu {
-	width: 240px;
-	vertical-align: top;
-}
-
-
-#blog_searchform {
-	color: #FFFFFF;
-	margin-top: 5px;
-	white-space: nowrap;
-}
-
 /**
  * Standard CSS
  */
 
 body {
-	font-size			: 8pt;
+	font-size			: 11pt;
 	font-family			: Arial;
 	text-align			: center;
 	margin				: 0;
@@ -406,7 +357,7 @@ a:visited:hover {color: #C0F;}
 }
 #header {
   background-color: #A00;
-  background-image: url('http://i.minus.com/iFa7lbITnBHhq.png');
+  /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
   background-position: left bottom;
   background-repeat: no-repeat;
   border-width: 0px;
@@ -489,121 +440,4 @@ fieldset {
 .post-tags {
   text-align: right;
 }
-/* ...looking for something?
-   trollolololololol.
-   No, there aren't any achievements in the Cascading Style Sheets.
-   I'm not even playing word games like I was in the hide tag.
-   You might go looking for an achievement in the blog though.
-   
-   Also sorry for putting this up after the game started; I thought I did it but apparently my memory is unreliable.
-*/
-/* Empty file */
-/* Align the share to the right */
-.addthis_button {
-	float:right;
-	margin: 0 0 15px 15px;
-	}
 
-/* Hidden vs unhidden */
-.hidden { display: none; }
-.unhidden { display: block; }
-
-a.hider {
-	color: blue;
-	text-decoration: underline;
-}
-.edit_set_hidden {
-	color: darkred;
-	visibility: hidden;
-}
-
-.math_content {
-	white-space: pre-line;
-}
-
-/* For view_set.php */
-.set_author_name {
-	color: darkblue;
-	font-weight: bold;
-}
-.set_hashtag {
-	color: #900001;
-	font-weight: bold;
-}
-.set_vote_count {
-	border: 1px solid;
-	padding: 2px;
-	font-weight: bold;
-}
-.set_vote_count_positive {
-	color: green;
-}
-.set_vote_count_negative {
-	color: red;
-}
-.set_quick_comments {
-	color: #CC00CC;
-}
-
-
-/* Form input name */
-.form_input_name {
-	color: steelblue;
-}
-
-
-/* For view_problem.php */
-
-.prob_hashtag {
-	font-size: 14pt;
-	font-weight: bold;
-}
-
-/* Main content */
-div#main, #main {
-	width: 69%;
-}
-
-div#side, #side {
-	width: 25%;
-	padding: 12px;
-}
-
-
-/* Boxes */
-.info, .success, .warning, .error, .validation {
-border: 1px solid;
-margin: 10px 0px;
-padding:15px 10px 15px 50px;
-background-repeat: no-repeat;
-background-position: 10px 5px;
-}
-.info {
-color: #00529B;
-background-color: #BDE5F8;
-background-image: url('/knobs/Knob_Info.png');
-}
-.success {
-color: #4F8A10;
-background-color: #DFF2BF;
-background-image:url('/knobs/Knob_Valid_Green.png');
-}
-.warning {
-color: #9F6000;
-background-color: #FEEFB3;
-background-image: url('/knobs/Knob_Attention.png');
-}
-.error {
-color: #D8000C;
-background-color: #FFBABA;
-background-image: url('/knobs/Knob_Cancel.png');
-}
-.validation {
-color: #D63301;
-background-color: #FFCCBA;
-background-image: url('/knobs/Knob_Attention.png');
-}
-
-a:visited {
-	color: #0066FF;
-}
