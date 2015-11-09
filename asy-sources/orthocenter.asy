@@ -26,16 +26,6 @@ draw(A--D);
 draw(B--E);
 draw(C--F);
 
-//write(A);
-//write(B);
-//write(C);
-//write(D);
-//write(E);
-//write(F);
-//write(H);
-//
-//write(min(currentpicture, user=true));
-//write(max(currentpicture, user=true));
 
 /*
   Source: The Orthic Triangle
