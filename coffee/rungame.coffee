@@ -7,6 +7,16 @@ CONTEXT = null
 diagram = null
 active_points = []
 
+# Aux {{{
+del = (arr, x) -> # no return value
+	arr.splice(arr.indexOf(x), 1) # delete p
+
+pointSort = (arr) ->
+	arr.sort((p,q) -> p.i - q.i)
+
+
+# }}}
+
 # Geometry {{{
 class Point
 	constructor: (@name, @x, @y, @i) ->
@@ -35,8 +45,11 @@ class Diagram
 			@points[point_array[0]] = p
 			@flat_points.push(p)
 			i += 1
-		@tuples = (tuple.sort((p,q) -> p.i - q.i) \
-			for tuple in json_array["tuples"])
+		@tuples = []
+		for tuple in json_array["tuples"]
+			sortedPointTuple = pointSort( (@points[name] for name in tuple) )
+			nameTuple = (p.toString() for p in sortedPointTuple)
+			@tuples.push(JSON.stringify(nameTuple))
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 
@@ -71,12 +84,11 @@ fillCircle = (p, color = "blue", r = 10) ->
 clearAll = () ->
 	CONTEXT.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 # High-level things
-markAllActive = () ->
+markAllActive = (c = "blue") ->
 	clearAll()
 	for p in active_points
-		fillCircle(p, color="blue", r=3)
-		drawCircle(p, color="blue", r=20)
-	console.log(active_points)
+		fillCircle(p, color=c, r=3)
+		drawCircle(p, color=c, r=20)
 	$("span#active_points").html(active_points.toString())
 # }}}
 # Click and game handler {{{
@@ -84,15 +96,31 @@ toggle = (p) ->
 	if not (p in active_points)
 		active_points.push(p)
 	else
-		active_points.splice(active_points.indexOf(p), 1)
+		del(active_points, p)
 	markAllActive()
-onClick = (e) ->
+
+onDiagramClick = (e) ->
 	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop) # where user clicked
-	# Now, check, to see if any point is close enough, if so circle it
+	# Grab the closest point to the click
 	diagram.flat_points.sort( (p,q) -> dist(o,p)-dist(o,q) )
 	p = diagram.flat_points[0]
 	if dist(o,p) < SENSITIVITY
 		toggle p
+
+onCheckButtonClick = (e) ->
+	clone = active_points.slice(0) # I hate JS
+	stringifiedActive = JSON.stringify( (p.toString() for p in pointSort(clone)) )
+	console.log(stringifiedActive)
+	console.log(diagram.tuples)
+	if stringifiedActive in diagram.tuples
+		$("#found").append($("<li>" + active_points.toString() + "</li>"))
+		del(diagram.tuples, stringifiedActive)
+		# Now clear diagram
+		active_points = []
+		markAllActive()
+	else
+		markAllActive("red")
+
 # }}}
 
 # Main function {{{
@@ -101,7 +129,9 @@ $ ->
 	CANVAS.attr "height", CANVAS_HEIGHT
 	CANVAS.attr "width",  CANVAS_WIDTH
 	CONTEXT = CANVAS.get(0).getContext("2d")
-	CANVAS.click onClick
+	CANVAS.click onDiagramClick
+
+	$("#check_button").click onCheckButtonClick
 
 	loadDiagram "orthocenter"
 
