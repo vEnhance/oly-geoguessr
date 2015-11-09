@@ -51,12 +51,15 @@ class Diagram
 			@flat_points.push(p)
 			i += 1
 		@tuples = []
+		@unfound_tuples = [] # will be stringified
 		for tuple in json_array["tuples"]
 			sortedPointTuple = pointSort( (@points[name] for name in tuple) )
 			nameTuple = (p.toString() for p in sortedPointTuple)
-			@tuples.push(JSON.stringify(nameTuple))
+			@tuples.push(sortedPointTuple)
+			@unfound_tuples.push(JSON.stringify(nameTuple)) # Note different data type from @tuples
 		@source = json_array["source"]
 		@filename = json_array["filename"]
+		@mistakes = 0
 
 dist = (p, q) ->
 	Math.pow(Math.pow(p.x-q.x, 2) + Math.pow(p.y-q.y, 2), 0.5)
@@ -119,10 +122,10 @@ onDiagramClick = (e) ->
 onCheckButtonClick = (e) ->
 	clone = active_points.slice(0) # I hate JS
 	stringifiedActive = JSON.stringify( (p.toString() for p in pointSort(clone)) )
-	if stringifiedActive in diagram.tuples
+	if stringifiedActive in diagram.unfound_tuples
 		# Good job, delete it
 		$("#found").append($("<li>" + active_points.toString() + "</li>"))
-		del(diagram.tuples, stringifiedActive)
+		del(diagram.unfound_tuples, stringifiedActive)
 		# Highlight green momentarily
 		markAllActive("green")
 		active_points = []
@@ -131,13 +134,15 @@ onCheckButtonClick = (e) ->
 	else
 		markAllActive("red")
 		tempAddClass "#check_button", "button_red"
+		diagram.mistakes += 1
 
 onDoneButtonClick = (e) ->
-	if diagram.tuples.length == 0
+	if diagram.unfound_tuples.length == 0
 		startNextDiagram
 		tempAddClass "#done_button", "button_green"
 	else
 		tempAddClass "#done_button", "button_red"
+		diagram.mistakes += 1
 
 
 startNextDiagram = () ->
