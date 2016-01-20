@@ -81,7 +81,7 @@ loadDiagram = (filename) ->
 			alert textStatus + " : " + error
 	)
 # }}}
-# Canvas art {{{
+# Canvas art and Button UI {{{
 # Low-level things
 drawCircle = (p, color = "blue", r = 10) ->
 	CONTEXT.beginPath()
@@ -95,15 +95,27 @@ fillCircle = (p, color = "blue", r = 10) ->
 	CONTEXT.fill()
 clearAll = () ->
 	CONTEXT.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+
+# jQuery button things
+enableButtonIf = (selector, bool) ->
+	$(selector).prop('disabled', !bool)
+
 # High-level things
 markAllActive = (c = "blue") ->
 	clearAll()
+	# Mark all selected points
 	for p in active_points
 		fillCircle(p, color=c, r=5)
 		drawCircle(p, color=c, r=30)
 	$("span#active_points").html(active_points.toString())
+
+	# Decide whether "Check", Done button enabled
+	enableButtonIf("#check_button", active_points.length > 0)
+	enableButtonIf("#done_button", (active_points.length == 0) &&
+		(diagram.unfound_tuples.length != diagram.tuples.length))
+
 # }}}
-# Click and game handler {{{
+# Click handler {{{
 toggle = (p) ->
 	if not (p in active_points)
 		active_points.push(p)
@@ -112,7 +124,8 @@ toggle = (p) ->
 	markAllActive()
 
 onDiagramClick = (e) ->
-	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop) # where user clicked
+	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop)
+		# where user clicked
 	# Grab the closest point to the click
 	diagram.flat_points.sort( (p,q) -> dist(o,p)-dist(o,q) )
 	p = diagram.flat_points[0]
@@ -121,7 +134,8 @@ onDiagramClick = (e) ->
 
 onCheckButtonClick = (e) ->
 	clone = active_points.slice(0) # I hate JS
-	stringifiedActive = JSON.stringify( (p.toString() for p in pointSort(clone)) )
+	stringifiedActive = JSON.stringify(
+		(p.toString() for p in pointSort(clone)) )
 	if stringifiedActive in diagram.unfound_tuples
 		# Good job, delete it
 		$("#found").append($("<li>" + active_points.toString() + "</li>"))
@@ -136,20 +150,22 @@ onCheckButtonClick = (e) ->
 		tempAddClass "#check_button", "button_red"
 		diagram.mistakes += 1
 
+
 onDoneButtonClick = (e) ->
 	if diagram.unfound_tuples.length == 0
-		startNextDiagram
+		startNextDiagram()
 		tempAddClass "#done_button", "button_green"
 	else
 		tempAddClass "#done_button", "button_red"
 		diagram.mistakes += 1
-
-
+# }}}
+# Top-level game management {{{
 startNextDiagram = () ->
+	alert("Good job")
 	console.log("Next diagram")
-
 # }}}
 # Start Game {{{
+
 startGame = () ->
 	CANVAS = $("<canvas></canvas>")
 	CANVAS.attr "height", CANVAS_HEIGHT
@@ -169,8 +185,8 @@ startGame = () ->
 
 # Main function {{{
 $ ->
-	$("#check_button").prop('disabled', true)
-	$("#done_button").prop('disabled', true)
+	enableButtonIf("#check_button", false)
+	enableButtonIf("#done_button", false)
 	$("#start_game").click startGame
 
 # }}}
