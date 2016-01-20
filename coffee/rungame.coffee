@@ -4,8 +4,8 @@ SENSITIVITY = 50
 CANVAS = null
 CONTEXT = null
 
+game = null
 diagram = null
-active_points = []
 
 # Aux {{{
 del = (arr, x) -> # no return value
@@ -22,7 +22,7 @@ tempAddClass = (elm, cls, time=1000) ->
 
 # }}}
 
-# Geometry {{{
+# Objects {{{
 class Point
 	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
@@ -56,10 +56,26 @@ class Diagram
 			sortedPointTuple = pointSort( (@points[name] for name in tuple) )
 			nameTuple = (p.toString() for p in sortedPointTuple)
 			@tuples.push(sortedPointTuple)
-			@unfound_tuples.push(JSON.stringify(nameTuple)) # Note different data type from @tuples
+			@unfound_tuples.push(JSON.stringify(nameTuple))
+			# Note different data type from @tuples
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 		@mistakes = 0
+		@active_points = []
+
+class Game
+	constructor: (@diagram_names) ->
+		CANVAS = $("<canvas></canvas>")
+		CANVAS.attr "height", CANVAS_HEIGHT
+		CANVAS.attr "width",  CANVAS_WIDTH
+		CANVAS.click onDiagramClick
+
+		CONTEXT = CANVAS.get(0).getContext("2d")
+		$("#site").empty()
+		$("#site").append(CANVAS)
+		$("#check_button").click onCheckButtonClick
+		$("#done_button").click onDoneButtonClick
+
 
 dist = (p, q) ->
 	Math.pow(Math.pow(p.x-q.x, 2) + Math.pow(p.y-q.y, 2), 0.5)
@@ -103,24 +119,26 @@ enableButtonIf = (selector, bool) ->
 # High-level things
 markAllActive = (c = "blue") ->
 	clearAll()
+	ap = diagram.active_points
+
 	# Mark all selected points
-	for p in active_points
+	for p in ap
 		fillCircle(p, color=c, r=5)
 		drawCircle(p, color=c, r=30)
-	$("span#active_points").html(active_points.toString())
+	$("span#active_points").html(ap.toString())
 
 	# Decide whether "Check", Done button enabled
-	enableButtonIf("#check_button", active_points.length > 0)
-	enableButtonIf("#done_button", (active_points.length == 0) &&
+	enableButtonIf("#check_button", ap.length > 0)
+	enableButtonIf("#done_button", (ap.length == 0) &&
 		(diagram.unfound_tuples.length != diagram.tuples.length))
 
 # }}}
 # Click handler {{{
 toggle = (p) ->
-	if not (p in active_points)
-		active_points.push(p)
+	if not (p in diagram.active_points)
+		diagram.active_points.push(p)
 	else
-		del(active_points, p)
+		del(diagram.active_points, p)
 	markAllActive()
 
 onDiagramClick = (e) ->
@@ -133,16 +151,17 @@ onDiagramClick = (e) ->
 		toggle p
 
 onCheckButtonClick = (e) ->
-	clone = active_points.slice(0) # I hate JS
+	clone = diagram.active_points.slice(0) # I hate JS
 	stringifiedActive = JSON.stringify(
 		(p.toString() for p in pointSort(clone)) )
 	if stringifiedActive in diagram.unfound_tuples
 		# Good job, delete it
-		$("#found").append($("<li>" + active_points.toString() + "</li>"))
+		$("#found").append(
+			$("<li>" + diagram.active_points.toString() + "</li>"))
 		del(diagram.unfound_tuples, stringifiedActive)
 		# Highlight green momentarily
 		markAllActive("green")
-		active_points = []
+		diagram.active_points = []
 		setTimeout markAllActive, 400
 		tempAddClass "#check_button", "button_green"
 	else
@@ -167,20 +186,9 @@ startNextDiagram = () ->
 # Start Game {{{
 
 startGame = () ->
-	CANVAS = $("<canvas></canvas>")
-	CANVAS.attr "height", CANVAS_HEIGHT
-	CANVAS.attr "width",  CANVAS_WIDTH
-	CANVAS.click onDiagramClick
-
-	CONTEXT = CANVAS.get(0).getContext("2d")
-	$("#site").empty()
-	$("#site").append(CANVAS)
-	$("#check_button").click onCheckButtonClick
-	$("#check_button").prop('disabled', false)
-	$("#done_button").click onDoneButtonClick
-	$("#done_button").prop('disabled', false)
-
-	loadDiagram "demo2"
+	game = new Game()
+	loadDiagram "demo1"
+	markAllActive
 # }}}
 
 # Main function {{{
