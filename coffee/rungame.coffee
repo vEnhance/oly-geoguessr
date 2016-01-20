@@ -14,15 +14,10 @@ del = (arr, x) -> # no return value
 pointSort = (arr) ->
 	arr.sort((p,q) -> p.i - q.i)
 
-tempAddClass = (elm, cls, time=1000) ->
-	$(elm).addClass(cls)
-	removeCallback = () -> $(elm).removeClass(cls)
-	setTimeout removeCallback, time
-
 
 # }}}
 
-# Objects {{{
+# Model Objects {{{
 class Point
 	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
@@ -61,20 +56,43 @@ class Diagram
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 		@mistakes = 0
+		@found = 0
 		@active_points = []
+
+	processCorrectTuple: (stringifiedActive) ->
+		@active_points = []
+		@found += 1
+		del(diagram.unfound_tuples, stringifiedActive)
+
+	processIncorrectTuple: () ->
+		@mistakes += 1
+
 
 class Game
 	constructor: (@diagram_names) ->
-		CANVAS = $("<canvas></canvas>")
-		CANVAS.attr "height", CANVAS_HEIGHT
-		CANVAS.attr "width",  CANVAS_WIDTH
-		CANVAS.click onDiagramClick
+		@length = @diagram_names.length
+		@i = 0 # player's current progress
+		@score = 0
 
-		CONTEXT = CANVAS.get(0).getContext("2d")
-		$("#site").empty()
-		$("#site").append(CANVAS)
-		$("#check_button").click onCheckButtonClick
-		$("#done_button").click onDoneButtonClick
+	startGame: () ->
+		startUIGame()
+
+		@startNextDiagram()
+	endGame: () ->
+		alert("You win, lol")
+
+	startNextDiagram: () ->
+		if (@i < @length)
+			loadDiagram(@diagram_names[@i])
+			@i += 1
+		else
+			@endGame()
+	
+	processCorrectDone: () ->
+		@startNextDiagram()
+
+	processIncorrectDone: () ->
+		diagram.mistakes += 1
 
 
 dist = (p, q) ->
@@ -92,6 +110,7 @@ loadDiagram = (filename) ->
 		(data, status, xhr) ->
 			diagram = new Diagram(data)
 			$("#head_title").html(diagram.source)
+			markAllActive()
 	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
@@ -112,9 +131,20 @@ fillCircle = (p, color = "blue", r = 10) ->
 clearAll = () ->
 	CONTEXT.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
-# jQuery button things
+# jQuery abstractions
 enableButtonIf = (selector, bool) ->
 	$(selector).prop('disabled', !bool)
+
+writeSpanActivePoints = (x) ->
+	$("#active_points").html(x.join(" "))
+writeSpanAppendFoundTuple = (x) ->
+	$("#found").append($("<li>" + x.join(" ") + "</li>"))
+
+tempAddClass = (elm, cls, time=1000) ->
+	$(elm).addClass(cls)
+	removeCallback = () -> $(elm).removeClass(cls)
+	setTimeout removeCallback, time
+
 
 # High-level things
 markAllActive = (c = "blue") ->
@@ -125,12 +155,34 @@ markAllActive = (c = "blue") ->
 	for p in ap
 		fillCircle(p, color=c, r=5)
 		drawCircle(p, color=c, r=30)
-	$("span#active_points").html(ap.toString())
+	writeSpanActivePoints(ap)
 
 	# Decide whether "Check", Done button enabled
 	enableButtonIf("#check_button", ap.length > 0)
+	enableButtonIf("#clear_button", ap.length > 0)
 	enableButtonIf("#done_button", (ap.length == 0) &&
 		(diagram.unfound_tuples.length != diagram.tuples.length))
+	enableButtonIf("#stop_button", (ap.length == 0))
+
+sidebarClearForNextDiagram = () ->
+	$("#active_points").empty()
+	$("#found").empty()
+
+startUIGame = () ->
+	CANVAS = $("<canvas></canvas>")
+	CANVAS.attr "height", CANVAS_HEIGHT
+	CANVAS.attr "width",  CANVAS_WIDTH
+	CANVAS.click onDiagramClick
+
+	CONTEXT = CANVAS.get(0).getContext("2d")
+
+	console.log("Starting game")
+	$("#site").empty()
+	$("#site").append(CANVAS)
+	$("#check_button").click onCheckButtonClick
+	$("#clear_button").click onClearButtonClick
+	$("#done_button").click onDoneButtonClick
+	$("#stop_button").click onStopButtonClick
 
 # }}}
 # Click handler {{{
@@ -155,47 +207,45 @@ onCheckButtonClick = (e) ->
 	stringifiedActive = JSON.stringify(
 		(p.toString() for p in pointSort(clone)) )
 	if stringifiedActive in diagram.unfound_tuples
-		# Good job, delete it
-		$("#found").append(
-			$("<li>" + diagram.active_points.toString() + "</li>"))
-		del(diagram.unfound_tuples, stringifiedActive)
 		# Highlight green momentarily
 		markAllActive("green")
-		diagram.active_points = []
-		setTimeout markAllActive, 400
 		tempAddClass "#check_button", "button_green"
+		writeSpanAppendFoundTuple(diagram.active_points)
+		diagram.processCorrectTuple(stringifiedActive)
+		setTimeout markAllActive, 400
 	else
 		markAllActive("red")
 		tempAddClass "#check_button", "button_red"
-		diagram.mistakes += 1
+		digaram.processIncorrectTuple()
 
+onClearButtonClick = (e) ->
+	diagram.active_points = []
+	markAllActive()
 
 onDoneButtonClick = (e) ->
 	if diagram.unfound_tuples.length == 0
-		startNextDiagram()
 		tempAddClass "#done_button", "button_green"
+		game.processCorrectDone()
+		sidebarClearForNextDiagram()
 	else
 		tempAddClass "#done_button", "button_red"
-		diagram.mistakes += 1
-# }}}
-# Top-level game management {{{
-startNextDiagram = () ->
-	alert("Good job")
-	console.log("Next diagram")
-# }}}
-# Start Game {{{
+		game.processIncorrectDone()
 
-startGame = () ->
-	game = new Game()
-	loadDiagram "demo1"
-	markAllActive
+onStopButtonClick = (e) ->
+	if (confirm("Are you sure you want to give up?"))
+		game.startNextDiagram()
+
 # }}}
 
 # Main function {{{
 $ ->
-	enableButtonIf("#check_button", false)
-	enableButtonIf("#done_button", false)
-	$("#start_game").click startGame
+	game = new Game(["demo1", "demo2"])
+	console.log(game)
+	$("[type=button]").prop("disabled", true)
+	$("#start_game").prop("disabled", false)
+
+	$("#start_game").click ->
+		game.startGame()
 
 # }}}
 # vim: fdm=marker
