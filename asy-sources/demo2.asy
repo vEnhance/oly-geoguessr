@@ -2,25 +2,22 @@ size(500);
 dotfactor *= 2;
 defaultpen(fontsize(18pt));
 
-draw(unitcircle);
-pair A = dir(70);
-pair C = -A;
-pair B = conj(C);
-pair O = (0,0);
-draw(A--B--C);
-
-real r = 0.05;
-pair X = B+r*dir(0);
-pair Y = B+r*dir(270);
-draw(X--(X+Y-B)--Y);
+pair A = dir(60);
+pair B = dir(100);
+pair C = dir(190);
+pair D = dir(250);
+pair E = dir(310);
 
 dot("$A$", A, A);
 dot("$B$", B, B);
 dot("$C$", C, C);
-dot("$O$", O, dir(-B));
+dot("$D$", D, D);
+dot("$E$", E, E);
+
+draw(A--B--C--D--E--cycle);
 
 /*
-  Source: Thale's Theorem
-  Points: A O B C
-  Tuple: A O C
+  Source: Cyclic Pentagon
+  Points: A B C D E
+  Tuple: A B C D E
 */
