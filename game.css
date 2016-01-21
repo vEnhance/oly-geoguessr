@@ -9,6 +9,9 @@
 .button_red { background: red; }
 .button_green { background: green; }
 
-#progress_box h3 { display: inline; }
 #mistakes_box h3 { display: inline; }
 
+li.li-unkwown { }
+li.li-failed { color: red; }
+li.li-complete { color: green; }
+li.li-current { font-weight: bold; }

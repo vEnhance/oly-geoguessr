@@ -45,12 +45,13 @@ class Diagram
 			@flat_points.push(p)
 			i += 1
 		@tuples = []
-		@unfound_tuples = [] # will be stringified
+		@found_tuples = []
+		@unfound_str_tuples = [] # will be stringified
 		for tuple in json_array["tuples"]
 			sortedPointTuple = pointSort( (@points[name] for name in tuple) )
 			nameTuple = (p.toString() for p in sortedPointTuple)
 			@tuples.push(sortedPointTuple)
-			@unfound_tuples.push(JSON.stringify(nameTuple))
+			@unfound_str_tuples.push(JSON.stringify(nameTuple))
 			# Note different data type from @tuples
 		@source = json_array["source"]
 		@filename = json_array["filename"]
@@ -62,10 +63,11 @@ class Diagram
 	gradeTuple: (arr) ->
 		stringifiedActive = JSON.stringify(
 			(p.toString() for p in pointSort(arr)) )
-		if stringifiedActive in @unfound_tuples
+		if stringifiedActive in @unfound_str_tuples
 			# @active_points = [] # needs to run after UI
 			@found += 1
-			del(@unfound_tuples, stringifiedActive)
+			@found_tuples.push(arr)
+			del(@unfound_str_tuples, stringifiedActive)
 			return true
 		else
 			@mistakes += 1
@@ -74,12 +76,12 @@ class Diagram
 		@complete = true
 	allFound: () ->
 		@found == @max_found
-	assignScore: () ->
+	getScore: () ->
 		ess = @allFound() # essentially solved?
 		switch
-			when ess and @mistakes <= 1  then 7
-			when ess and @mistakes <= 3  then 6
-			when ess and @mistakes > 3   then 5
+			when ess and @mistakes <= 1 then 7
+			when ess and @mistakes <= 3 then 6
+			when ess and @mistakes > 3  then 5
 			when @found >= @max_found/2 then 2
 			when @found >= @max_found/3 then 1
 			else 0
@@ -89,19 +91,28 @@ class Game
 		@length = @diagram_names.length
 		@i = 0 # player's current progress
 		@score = 0
+		@completed = 0
 		@diagrams = (null for [1..@length])
 		@preloadDiagrams()
 		@alive = true
 	preloadDiagrams: () ->
 		for name, i in @diagram_names
 			ajaxPreloadDiagram name, @, i
+
 	currDiagram: () ->
 		if @i >= @length
 			null
 		@diagrams[@i]
 	setDiagram: (i) ->
 		@i = i
-		loadDiagramIntoUI(@diagrams[i])
+		triggerUIDiagramLoad()
+	prevDiagram: () ->
+		if @i != 0
+			@setDiagram(@i-1)
+	nextDiagram: () ->
+		if @i != @length - 1
+			@setDiagram(@i+1)
+
 	startGame: () ->
 		@setDiagram(0)
 	endGame: () ->
@@ -109,13 +120,14 @@ class Game
 		alert("You win, lol")
 	processCorrectDone: () ->
 		if @currDiagram().complete
-			return # wef we're done already
-		@currDiagram().complete = true
-		@score += @currDiagram().assignScore()
-		if (@i + 1 < @length)
-			@setDiagram(@i+1)
-		else
+			return # wef we're done already??
+		@currDiagram().markComplete()
+		@completed += 1
+		@score += @currDiagram().getScore()
+		if @completed == @length
 			@endGame()
+		else
+			@nextDiagram()
 	processIncorrectDone: () ->
 		@currDiagram().mistakes += 1
 
@@ -139,9 +151,12 @@ ajaxPreloadDiagram = (filename, game, i) ->
 			alert textStatus + " : " + error
 	)
 
+triggerUIDiagramLoad = () ->
+	loadDiagramIntoUI(game.currDiagram())
+
 loadDiagramIntoUI = (diagram) ->
 	clearAll()
-	updateSidebar()
+	updateSidebarHard()
 	$("#head_title").html(diagram.source)
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
 
@@ -175,36 +190,61 @@ tempAddClass = (elm, cls, time=1000) ->
 	removeCallback = () -> $(elm).removeClass(cls)
 	setTimeout removeCallback, time
 
-
 # High-level things
 markAllActive = (c = "blue") ->
 	clearAll()
 	ap = game.currDiagram().active_points
-
-	# Mark all selected points
 	for p in ap
 		fillCircle(p, color=c, r=5)
 		drawCircle(p, color=c, r=30)
 	writeSpanActivePoints(ap)
 
-	# Decide whether "Check", Done button enabled
-	enableButtonIf("#check_button", ap.length > 0)
-	enableButtonIf("#clear_button", ap.length > 0)
-	enableButtonIf("#done_button", (ap.length == 0) and
-		(game.currDiagram().found != 0))
-	enableButtonIf("#stop_button", (ap.length == 0))
+updateProgressBullets = () ->
+	$("#progress").empty()
+	for diagram,i in game.diagrams
+		li = $("<li>");
+		s = "Diagram " + (i+1)
+		if diagram.complete or not game.alive
+			li.html(s + " [" + diagram.getScore() + "]")
+			if diagram.complete
+				li.addClass("li-complete")
+			else
+				li.addClass("li-failed")
+		else
+			li.html(s + " [?]")
+			li.addClass("li-unknown")
+		if i == game.i
+			li.addClass("li-current")
+		$("#progress").append(li)
 
-updateSidebar = (c = "blue") ->
-	$("#score").html(game.score)
-	$("#progress").html((game.i+1) + " / "  +game.length)
-	if not game.alive
-		return
+enableButtons = () ->
+	diagram = game.currDiagram()
+	ap = diagram.active_points
+	enableButtonIf("#check_button", ap.length > 0 and !diagram.complete)
+	enableButtonIf("#clear_button", ap.length > 0 and !diagram.complete)
+	enableButtonIf("#done_button", (ap.length == 0) and
+		(game.currDiagram().found != 0) and !diagram.complete)
+	enableButtonIf("#next_button", game.i != game.length-1)
+	enableButtonIf("#prev_button", game.i != 0)
+
+updateSidebarSoft = (c = "blue") ->
+	# Updates for clicking on points
 	diagram = game.currDiagram()
 	markAllActive(c)
 	writeSpanActivePoints(diagram.active_points)
 	$("#mistakes").html(diagram.mistakes)
+	enableButtons()
 
-sidebarClearForNextDiagram = () ->
+updateSidebarHard = (c = "blue") ->
+	# Updates for clicking prev, next, or correct done
+	updateProgressBullets()
+	$("#score").html(game.score)
+	$("#found").empty() # kinda wasteful, but w/e
+	for tuple in game.currDiagram().found_tuples
+		writeSpanAppendFoundTuple(tuple)
+	updateSidebarSoft(c)
+
+sidebarClear = () ->
 	$("#active_points").empty()
 	$("#found").empty()
 
@@ -221,7 +261,8 @@ startGameUI = () ->
 	$("#check_button").click onCheckButtonClick
 	$("#clear_button").click onClearButtonClick
 	$("#done_button").click onDoneButtonClick
-	$("#stop_button").click onStopButtonClick
+	$("#prev_button").click onPrevButtonClick
+	$("#next_button").click onNextButtonClick
 
 # }}}
 # Click handler {{{
@@ -242,6 +283,7 @@ onDiagramClick = (e) ->
 	p = diagram.flat_points[0]
 	if dist(o,p) < SENSITIVITY
 		toggle p
+		enableButtons()
 
 onCheckButtonClick = (e) ->
 	diagram = game.currDiagram()
@@ -252,31 +294,34 @@ onCheckButtonClick = (e) ->
 		tempAddClass "#check_button", "button_green"
 		writeSpanAppendFoundTuple(diagram.active_points)
 		diagram.active_points = []
-		setTimeout updateSidebar, 400
+		setTimeout updateSidebarSoft, 400
 	else
 		tempAddClass "#check_button", "button_red"
-		updateSidebar("red")
+		updateSidebarSoft("red")
 
 onClearButtonClick = (e) ->
 	diagram = game.currDiagram()
 	diagram.active_points = []
-	updateSidebar()
+	updateSidebarSoft()
 
 onDoneButtonClick = (e) ->
 	diagram = game.currDiagram()
 	if diagram.allFound()
 		tempAddClass "#done_button", "button_green"
 		game.processCorrectDone()
-		if game.alive # still alive ~
-			sidebarClearForNextDiagram()
+		updateSidebarHard()
 	else
 		tempAddClass "#done_button", "button_red"
 		game.processIncorrectDone()
-	updateSidebar()
+		updateSidebarSoft()
 
-onStopButtonClick = (e) ->
-	if (confirm("Are you sure you want to give up?"))
-		game.startNextDiagram()
+onPrevButtonClick = (e) ->
+	game.prevDiagram()
+	updateSidebarHard()
+
+onNextButtonClick = (e) ->
+	game.nextDiagram()
+	updateSidebarHard()
 
 # }}}
 
