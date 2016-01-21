@@ -75,20 +75,14 @@ class Diagram
 	allFound: () ->
 		@found == @max_found
 	assignScore: () ->
-		if @allFound()
-			if @mistakes <= 1
-				7
-			else if @mistakes <= 3
-				6
-			else
-				5
-		else
-			if @found >= @max_found/2
-				2
-			else if @found >= @max_found/3
-				1
-			else
-				0
+		ess = @allFound() # essentially solved?
+		switch
+			when ess and @mistakes <= 1  then 7
+			when ess and @mistakes <= 3  then 6
+			when ess and @mistakes > 3   then 5
+			when @found >= @max_found/2 then 2
+			when @found >= @max_found/3 then 1
+			else 0
 
 class Game
 	constructor: (@diagram_names) ->
@@ -107,14 +101,17 @@ class Game
 		@diagrams[@i]
 	setDiagram: (i) ->
 		@i = i
-		loadDiagram(@diagrams[i])
+		loadDiagramIntoUI(@diagrams[i])
 	startGame: () ->
 		@setDiagram(0)
 	endGame: () ->
 		@alive = false
 		alert("You win, lol")
 	processCorrectDone: () ->
+		if @currDiagram().complete
+			return # wef we're done already
 		@currDiagram().complete = true
+		@score += @currDiagram().assignScore()
 		if (@i + 1 < @length)
 			@setDiagram(@i+1)
 		else
@@ -142,9 +139,7 @@ ajaxPreloadDiagram = (filename, game, i) ->
 			alert textStatus + " : " + error
 	)
 
-loadDiagram = (diagram) ->
-	console.log("Loading")
-	console.log(diagram)
+loadDiagramIntoUI = (diagram) ->
 	clearAll()
 	updateSidebar()
 	$("#head_title").html(diagram.source)
@@ -195,18 +190,19 @@ markAllActive = (c = "blue") ->
 	# Decide whether "Check", Done button enabled
 	enableButtonIf("#check_button", ap.length > 0)
 	enableButtonIf("#clear_button", ap.length > 0)
-	enableButtonIf("#done_button", (ap.length == 0) &&
+	enableButtonIf("#done_button", (ap.length == 0) and
 		(game.currDiagram().found != 0))
 	enableButtonIf("#stop_button", (ap.length == 0))
 
 updateSidebar = (c = "blue") ->
+	$("#score").html(game.score)
+	$("#progress").html((game.i+1) + " / "  +game.length)
 	if not game.alive
 		return
 	diagram = game.currDiagram()
 	markAllActive(c)
-	writeSpanActivePoints(game.currDiagram().active_points)
-	$("#mistakes").html(game.currDiagram().mistakes)
-	$("#progress").html((game.i+1) + " / "  +game.length)
+	writeSpanActivePoints(diagram.active_points)
+	$("#mistakes").html(diagram.mistakes)
 
 sidebarClearForNextDiagram = () ->
 	$("#active_points").empty()
@@ -220,7 +216,6 @@ startGameUI = () ->
 
 	CONTEXT = CANVAS.get(0).getContext("2d")
 
-	console.log("Starting game")
 	$("#site").empty()
 	$("#site").append(CANVAS)
 	$("#check_button").click onCheckButtonClick
@@ -274,11 +269,10 @@ onDoneButtonClick = (e) ->
 		game.processCorrectDone()
 		if game.alive # still alive ~
 			sidebarClearForNextDiagram()
-			updateSidebar()
 	else
 		tempAddClass "#done_button", "button_red"
 		game.processIncorrectDone()
-		updateSidebar()
+	updateSidebar()
 
 onStopButtonClick = (e) ->
 	if (confirm("Are you sure you want to give up?"))
@@ -288,8 +282,7 @@ onStopButtonClick = (e) ->
 
 # Main function {{{
 $ ->
-	game = new Game(["demo1"])
-	console.log(game)
+	game = new Game(["demo1", "demo2"])
 	$("[type=button]").prop("disabled", true)
 	$("#start_game").prop("disabled", false)
 
