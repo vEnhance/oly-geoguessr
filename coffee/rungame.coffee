@@ -5,7 +5,6 @@ CANVAS = null
 CONTEXT = null
 
 game = null
-diagram = null
 
 # Aux {{{
 del = (arr, x) -> # no return value
@@ -78,40 +77,50 @@ class Diagram
 	assignScore: () ->
 		if @allFound()
 			if @mistakes <= 1
-				return 7
+				7
 			else if @mistakes <= 3
-				return 6
+				6
 			else
-				return 5
+				5
 		else
 			if @found >= @max_found/2
-				return 2
+				2
 			else if @found >= @max_found/3
-				return 1
+				1
 			else
-				return 0
+				0
 
 class Game
 	constructor: (@diagram_names) ->
 		@length = @diagram_names.length
 		@i = 0 # player's current progress
 		@score = 0
+		@diagrams = (null for [1..@length])
+		@preloadDiagrams()
+		@alive = true
+	preloadDiagrams: () ->
+		for name, i in @diagram_names
+			ajaxPreloadDiagram name, @, i
+	currDiagram: () ->
+		if @i >= @length
+			null
+		@diagrams[@i]
+	setDiagram: (i) ->
+		@i = i
+		loadDiagram(@diagrams[i])
 	startGame: () ->
-		startUIGame()
-		@startNextDiagram()
+		@setDiagram(0)
 	endGame: () ->
+		@alive = false
 		alert("You win, lol")
-	startNextDiagram: () ->
-		if (@i < @length)
-			loadDiagram(@diagram_names[@i])
-			@i += 1
+	processCorrectDone: () ->
+		@currDiagram().complete = true
+		if (@i + 1 < @length)
+			@setDiagram(@i+1)
 		else
 			@endGame()
-	processCorrectDone: () ->
-		diagram.complete = true
-		@startNextDiagram()
 	processIncorrectDone: () ->
-		diagram.mistakes += 1
+		@currDiagram().mistakes += 1
 
 
 
@@ -123,18 +132,24 @@ toImg = (filename) ->
 toJSON = (filename) ->
 	"diagrams/" + filename + ".json"
 
-loadDiagram = (filename) ->
-	clearAll()
-	CANVAS.css "background", "url(" + toImg(filename) + ") no-repeat"
+ajaxPreloadDiagram = (filename, game, i) ->
 	$.getJSON(toJSON(filename),
 		(data, status, xhr) ->
 			diagram = new Diagram(data)
-			$("#head_title").html(diagram.source)
-			updateSidebar()
+			game.diagrams[i] = diagram
 	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
 	)
+
+loadDiagram = (diagram) ->
+	console.log("Loading")
+	console.log(diagram)
+	clearAll()
+	updateSidebar()
+	$("#head_title").html(diagram.source)
+	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
+
 # }}}
 # Canvas art and Button UI {{{
 # Low-level things
@@ -169,7 +184,7 @@ tempAddClass = (elm, cls, time=1000) ->
 # High-level things
 markAllActive = (c = "blue") ->
 	clearAll()
-	ap = diagram.active_points
+	ap = game.currDiagram().active_points
 
 	# Mark all selected points
 	for p in ap
@@ -181,20 +196,23 @@ markAllActive = (c = "blue") ->
 	enableButtonIf("#check_button", ap.length > 0)
 	enableButtonIf("#clear_button", ap.length > 0)
 	enableButtonIf("#done_button", (ap.length == 0) &&
-		(diagram.found != 0))
+		(game.currDiagram().found != 0))
 	enableButtonIf("#stop_button", (ap.length == 0))
 
 updateSidebar = (c = "blue") ->
+	if not game.alive
+		return
+	diagram = game.currDiagram()
 	markAllActive(c)
-	writeSpanActivePoints(diagram.active_points)
-	$("#mistakes").html(diagram.mistakes)
-	$("#progress").html(game.i + " / "  +game.length)
+	writeSpanActivePoints(game.currDiagram().active_points)
+	$("#mistakes").html(game.currDiagram().mistakes)
+	$("#progress").html((game.i+1) + " / "  +game.length)
 
 sidebarClearForNextDiagram = () ->
 	$("#active_points").empty()
 	$("#found").empty()
 
-startUIGame = () ->
+startGameUI = () ->
 	CANVAS = $("<canvas></canvas>")
 	CANVAS.attr "height", CANVAS_HEIGHT
 	CANVAS.attr "width",  CANVAS_WIDTH
@@ -213,6 +231,7 @@ startUIGame = () ->
 # }}}
 # Click handler {{{
 toggle = (p) ->
+	diagram = game.currDiagram()
 	if not (p in diagram.active_points)
 		diagram.active_points.push(p)
 	else
@@ -220,6 +239,7 @@ toggle = (p) ->
 	markAllActive()
 
 onDiagramClick = (e) ->
+	diagram = game.currDiagram()
 	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop)
 		# where user clicked
 	# Grab the closest point to the click
@@ -229,6 +249,7 @@ onDiagramClick = (e) ->
 		toggle p
 
 onCheckButtonClick = (e) ->
+	diagram = game.currDiagram()
 	clone = diagram.active_points.slice(0) # I hate JS
 	if diagram.gradeTuple(clone)
 		# Highlight green momentarily
@@ -238,23 +259,26 @@ onCheckButtonClick = (e) ->
 		diagram.active_points = []
 		setTimeout updateSidebar, 400
 	else
-		markAllActive("red")
 		tempAddClass "#check_button", "button_red"
-		updateSidebar()
+		updateSidebar("red")
 
 onClearButtonClick = (e) ->
+	diagram = game.currDiagram()
 	diagram.active_points = []
 	updateSidebar()
 
 onDoneButtonClick = (e) ->
+	diagram = game.currDiagram()
 	if diagram.allFound()
 		tempAddClass "#done_button", "button_green"
 		game.processCorrectDone()
-		sidebarClearForNextDiagram()
+		if game.alive # still alive ~
+			sidebarClearForNextDiagram()
+			updateSidebar()
 	else
 		tempAddClass "#done_button", "button_red"
 		game.processIncorrectDone()
-	updateSidebar()
+		updateSidebar()
 
 onStopButtonClick = (e) ->
 	if (confirm("Are you sure you want to give up?"))
@@ -264,12 +288,13 @@ onStopButtonClick = (e) ->
 
 # Main function {{{
 $ ->
-	game = new Game(["demo1", "demo2"])
+	game = new Game(["demo1"])
 	console.log(game)
 	$("[type=button]").prop("disabled", true)
 	$("#start_game").prop("disabled", false)
 
 	$("#start_game").click ->
+		startGameUI()
 		game.startGame()
 
 # }}}
