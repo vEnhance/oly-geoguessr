@@ -2,38 +2,20 @@
  * Standard CSS
  */
 
+
 body {
-	font-size			: 11pt;
-	font-family			: Arial;
-	text-align			: center;
-	margin				: 0;
-	padding				: 0;
-	display				: block;
+  background-color: #FEE;
+  font-family: Verdana;
+  font-size			: 11pt;
+  margin				: 0;
+  padding				: 0;
+  display				: block;
 }
 
-textarea {
-    padding             : 5px;
-    line-height         : 1.4em;
-}
-
-.inputbox {
-	width				: 100%;
-}
-
-a:hover {
-	color				: #ff6600;
-	text-decoration		: underline;
-}
-
-a:visited {
-	color				: #0066cc;
-	text-decoration		: none;
-}
-
-a:link {
-	color				: #2188e0;
-	text-decoration		: none;
-}
+a:link {color: #06F;}
+a:visited {color: #90C;}
+a:hover {color: #0CF;}
+a:visited:hover {color: #C0F;}
 
 h1 {
 	display				: block;
@@ -42,6 +24,11 @@ h1 {
 	margin				: 0;
 	font-size			: 16pt;
 }
+
+h1 a:link {color: #A00;}
+h1 a:visited {color: #700;}
+h1 a:hover {color: #F00;}
+h1 a:visited:hover {color: #CCC;}
 
 h2 {
 	color				: #0066cc;
@@ -52,19 +39,6 @@ h2 {
 
 img {
 	border				: 0 none;
-}
-
-
-#wrapper {
-	background			: white url(/Forum/blog/styles/hyperion/images/bg.png) repeat-y scroll right center;
-	border-bottom		: 1px solid #bcbcbc;
-	border-left			: 1px solid #bcbcbc;
-	border-right		: 1px solid #bcbcbc;
-	margin-left			: auto;
-	margin-right	    : auto;
-	padding				: 0 2px 2px;
-	text-align			: center;
-	width				: 800px;
 }
 
 #header {
@@ -78,12 +52,29 @@ img {
 	white-space			: nowrap;
 	border-top			: 5px solid #cccccc;
 	border-bottom		: 5px solid #cccccc;
+  background-color: #A00;
+  /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  border-width: 0px;
+  -moz-border-radius: 60px 60px 0 0;
+  -webkit-border-radius: 60px 60px 0 0;
+  border-radius: 60px 60px 0 0;
+}
+#header h1 {
+  font-family: Courier New;
+  color: #ccc;
+  font-size: 24pt;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px #006;
 }
 
 #main {
 	width				: 530px;
 	padding				: 5px;
 	float				: left;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 div#header h1 {
@@ -107,8 +98,8 @@ div.entry h1 {
 }
 
 div .entrywrap, div .entrywrap-hover {
-	background-color	: #dedede;
-	border				: 1px solid black;
+  background-color: #EDD;
+	/* border				: 1px solid black; */
 	margin				: 0.5em;
 	overflow			: auto;
 	padding				: 0.5em;
@@ -116,13 +107,22 @@ div .entrywrap, div .entrywrap-hover {
 }
 
 #navigation_box {
-	background-color	: #006699;
 	border-bottom		: 1px dashed #fff;
-	padding				: 2px 2px 3px;
+  background-color: transparent;
+  color: #000;
+  width: 670px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
 
 #navigation_box a {
-	color				: #fff;
+  color: #009;
+  font-weight: bold;
+  text-decoration: underline overline;
 }
 
 #left_navigation_box {
@@ -137,307 +137,12 @@ div .entrywrap, div .entrywrap-hover {
 	width				: auto;
 }
 
-div.comment {
-	clear				: both;
-}
-
-div.actions {
-	float				: left;
-	font-size			: 10px;
-	padding				: .5em;
-	text-align			: left;
-}
-
-div.modactions {
-	float				: right;
-	font-size			: 10px;
-	padding				: 0.5em 0 0;
-	text-align			: right;
-}
-
-div.cfooter div.actions {
-	padding				: 0;
-}
-
-div.modactions ul,
-div.actions ul {
-	border				: medium none;
-	display				: inline;
-	list-style-image	: none;
-	list-style-position	: outside;
-	list-style-type		: square;
-	margin-left			: 0;
-	padding-left		: 0;
-}
-
-div.modactions ul li,
-div.actions ul li {
-	border				: medium none;
-	display				: inline;
-	margin-left			: 0;
-	margin-top			: 0.2em;
-	padding				: 0.2em 0.5em 0;
-}
-
-div.modactions ul li a,
-div.actions ul li a {
-	display				: inline;
-	text-decoration		: underline;
-}
-
-div.comment {
-	border-bottom		: 1px solid #ccc;
-	margin-top			: 1em;
-	overflow			: auto;
-	padding-bottom		: 1em;
-}
-
-div.commentwrap {
-	height				: auto;
-	overflow			: auto;
-	padding				: 0.5em;
-	width				: 97%;
-	margin				: 0 auto 10px auto;
-}
-
-input.helpline {
-	display				: none;
-}
-
-.clear {
-	clear				: both;
-}
-
-fieldset.admin dt {
-	border-right		: 1px solid #ccc;
-	float				: left;
-	padding-top			: 3px;
-	text-align			: left;
-	width				: 45%;
-
-}
-
-fieldset.admin dd {
-	border				: none;
-	margin				: 0 0 0 45%;
-	padding				: 0 0 0 5px;
-	vertical-align		: top;
-}
-
 #side {
 	float				: right;
 	line-height			: 1.4em;
 	margin				: 0;
 	padding				: 5px;
-	width				: 250px;
-}
-
-#side .block {
-	clear				: both;
-	padding				: 1em 0;
-}
-
-#side .widget {
-	margin-bottom		: 2em;
-}
-
-.widget-title {
-	font-size			: 13px;
-	font-weight			: bold;
-	padding-bottom		: 2px;
-}
-
-fieldset {
-	border				: 2px groove threedface;
-	display				: block;
-	margin				: 0 2px;
-	padding				: 0.35em 0.625em 0.75em;
-}
-
-fieldset ul {
-	list-style-image	: none;
-	list-style-position	: outside;
-	list-style-type		: none;
-	margin				: 0;
-	padding				: 0;
-}
-
-.row1 {
-	background-color	: #f9f9f9;
-}
-
-.row2 {
-	background-color	: #f0f0f0;
-}
-
-fieldset.submit-buttons {
-	text-align			: center;
-}
-
-div.quotetitle, div.quotecontent {
-	background-color	: #ebeadd;
-	border-right 		: 1px solid #dbdbce;
-	border-left  		: 1px solid #dbdbce;
-}
-
-div.quotecontent {
-	border-bottom		: 1px solid #dbdbce;
-}
-
-div.quotetitle {
-	border-top			: 1px solid #dbdbce;
-	font-weight			: bold;
-}
-
-ul.cats li {
-	font-size			: 8pt;
-	line-height			: 24px;
-}
-
-.archive-row {
-    padding-left        : 15px;
-    padding-bottom      : 2px;
-}
-img.latexcenter {
-	display				: block;
-	margin				: auto;
-	text-align			: center;
-}
-.hidden-label {
-    color               : blue;
-    text-decoration     : underline;
-    cursor              : pointer;
-}
-#blog-errors {
-	margin : 1em;
-	border: 2px solid #800;
-	background-color: #eee;
-	font-size			: 16px;
-
-}
-
-div.post-tags {
-	margin: 5px 0;
-	font-weight: bold;
-}
-
-a:link.post-tag, a:visited.post-tag {
-	font-weight: normal;
-}
-
-body {
-  background-color: #FEE;
-  font-family: Verdana;
-}
-a:link {color: #06F;}
-a:visited {color: #90C;}
-a:hover {color: #0CF;}
-a:visited:hover {color: #C0F;}
-#wrapper {
-  background: transparent;
-  border-left-width: 0;
-  border-right-width: 0;
-  padding: 0;
-}
-#navigation_box {
-  background-color: transparent;
-  color: #000;
-  width: 670px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-width: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-}
-#navigation_box a {
-  color: #009;
-  font-weight: bold;
-  text-decoration: underline overline;
-}
-#header {
-  background-color: #A00;
-  /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  border-width: 0px;
-  -moz-border-radius: 60px 60px 0 0;
-  -webkit-border-radius: 60px 60px 0 0;
-  border-radius: 60px 60px 0 0;
-}
-#header h1 {
-  font-family: Courier New;
-  color: #ccc;
-  font-size: 24pt;
-  font-weight: bold;
-  text-shadow: 5px 5px 5px #006;
-}
-h1 a:link {color: #A00;}
-h1 a:visited {color: #700;}
-h1 a:hover {color: #F00;}
-h1 a:visited:hover {color: #CCC;}
-div .entrywrap {
-  background-color: #EDD;
-  border-width: 0;
-}
-div.codecontent {
-  font-family: Courier New;
-}
-#main {
-  background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.4);
-}
-#side {
   background-color: #ECD;
-  padding: 0;
   width: 260px;
-}
-.widget-header {
-  text-shadow: 0 0 4px #F00;
-  background-color: #A00;
-  background-image: url('http://i.minus.com/iFa7lbITnBHhq.png');
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  color: #ddd;
-  text-align: right;
-  padding-right: 5px;
-  border-right: 16px solid #600;
-}
-.widget-content, .widget-conent {
-}
-.row1 {
-  background-color: #DBC;
-  padding: 3px;
-}
-.row2 {
-  background-color: #FDE;
-  padding: 3px;
-}
-.message {
-  font-size: 10.5pt; 
-}
-fieldset {
-  border-width: 0;
-  padding: 0;
-}
-#shoutbox_submit {
-  border: 2px outset #0c0;
-  background-color: #060;
-  color: #fff;
-  font-weight: bold;
-}
-#shoutbox_reset {
-  border: 2px outset #c00;
-  background-color: #600;
-  color: #fff;
-  font-weight: bold;
-}
-#message {
-  border: 2px inset #00c;
-  background-color: #def;
-  background-image: url('http://i.minus.com/iWv7IAbNatv2v.png');
-}
-.post-tags {
-  text-align: right;
 }
 
