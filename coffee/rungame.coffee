@@ -57,42 +57,62 @@ class Diagram
 		@filename = json_array["filename"]
 		@mistakes = 0
 		@found = 0
+		@max_found = @tuples.length
+		@complete = false
 		@active_points = []
-
-	processCorrectTuple: (stringifiedActive) ->
-		@active_points = []
-		@found += 1
-		del(diagram.unfound_tuples, stringifiedActive)
-
-	processIncorrectTuple: () ->
-		@mistakes += 1
-
+	gradeTuple: (arr) ->
+		stringifiedActive = JSON.stringify(
+			(p.toString() for p in pointSort(arr)) )
+		if stringifiedActive in @unfound_tuples
+			# @active_points = [] # needs to run after UI
+			@found += 1
+			del(@unfound_tuples, stringifiedActive)
+			return true
+		else
+			@mistakes += 1
+			return false
+	markComplete: () ->
+		@complete = true
+	allFound: () ->
+		@found == @max_found
+	assignScore: () ->
+		if @allFound()
+			if @mistakes <= 1
+				return 7
+			else if @mistakes <= 3
+				return 6
+			else
+				return 5
+		else
+			if @found >= @max_found/2
+				return 2
+			else if @found >= @max_found/3
+				return 1
+			else
+				return 0
 
 class Game
 	constructor: (@diagram_names) ->
 		@length = @diagram_names.length
 		@i = 0 # player's current progress
 		@score = 0
-
 	startGame: () ->
 		startUIGame()
-
 		@startNextDiagram()
 	endGame: () ->
 		alert("You win, lol")
-
 	startNextDiagram: () ->
 		if (@i < @length)
 			loadDiagram(@diagram_names[@i])
 			@i += 1
 		else
 			@endGame()
-	
 	processCorrectDone: () ->
+		diagram.complete = true
 		@startNextDiagram()
-
 	processIncorrectDone: () ->
 		diagram.mistakes += 1
+
 
 
 dist = (p, q) ->
@@ -204,26 +224,23 @@ onDiagramClick = (e) ->
 
 onCheckButtonClick = (e) ->
 	clone = diagram.active_points.slice(0) # I hate JS
-	stringifiedActive = JSON.stringify(
-		(p.toString() for p in pointSort(clone)) )
-	if stringifiedActive in diagram.unfound_tuples
+	if diagram.gradeTuple(clone)
 		# Highlight green momentarily
 		markAllActive("green")
 		tempAddClass "#check_button", "button_green"
 		writeSpanAppendFoundTuple(diagram.active_points)
-		diagram.processCorrectTuple(stringifiedActive)
+		diagram.active_points = []
 		setTimeout markAllActive, 400
 	else
 		markAllActive("red")
 		tempAddClass "#check_button", "button_red"
-		digaram.processIncorrectTuple()
 
 onClearButtonClick = (e) ->
 	diagram.active_points = []
 	markAllActive()
 
 onDoneButtonClick = (e) ->
-	if diagram.unfound_tuples.length == 0
+	if diagram.allFound()
 		tempAddClass "#done_button", "button_green"
 		game.processCorrectDone()
 		sidebarClearForNextDiagram()
