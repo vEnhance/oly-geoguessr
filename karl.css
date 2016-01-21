@@ -1,148 +1,143 @@
-/**
- * Standard CSS
- */
-
-
 body {
-  background-color: #FEE;
-  font-family: Verdana;
-  font-size			: 11pt;
-  margin				: 0;
-  padding				: 0;
-  display				: block;
+    background-color: #FEE;
+    font-family: Verdana;
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
-
-a:link {color: #06F;}
-a:visited {color: #90C;}
-a:hover {color: #0CF;}
-a:visited:hover {color: #C0F;}
-
+a:link {
+    color: #06F;
+}
+a:visited {
+    color: #90C;
+}
+a:hover {
+    color: #0CF;
+}
+a:visited:hover {
+    color: #C0F;
+}
 h1 {
-	display				: block;
-	font-weight			: normal;
-	letter-spacing		: 1px;
-	margin				: 0;
-	font-size			: 16pt;
+    display: block;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 16pt;
 }
-
-h1 a:link {color: #A00;}
-h1 a:visited {color: #700;}
-h1 a:hover {color: #F00;}
-h1 a:visited:hover {color: #CCC;}
-
+h1 a:link {
+    color: #A00;
+}
+h1 a:visited {
+    color: #700;
+}
+h1 a:hover {
+    color: #F00;
+}
+h1 a:visited:hover {
+    color: #CCC;
+}
 h2 {
-	color				: #0066cc;
-	font-size			: 10pt;
-	font-weight			: normal;
-	margin				: 0;
+    color: #0066cc;
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 0;
 }
-
 img {
-	border				: 0 none;
+    border: 0 none;
 }
-
 #header {
-	background			: #efefef none repeat scroll 0 0;
-	clear				: both;
-	font-family			: Tahoma;
-	font-size			: 5em;
-	line-height			: 1.5em;
-	overflow			: auto;
-	vertical-align		: middle;
-	white-space			: nowrap;
-	border-top			: 5px solid #cccccc;
-	border-bottom		: 5px solid #cccccc;
-  background-color: #A00;
-  /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  border-width: 0px;
-  -moz-border-radius: 60px 60px 0 0;
-  -webkit-border-radius: 60px 60px 0 0;
-  border-radius: 60px 60px 0 0;
+    background: #efefef none repeat scroll 0 0;
+    clear: both;
+    font-family: Tahoma;
+    font-size: 5em;
+    line-height: 1.5em;
+    overflow: auto;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-top: 5px solid #cccccc;
+    border-bottom: 5px solid #cccccc;
+    background-color: #A00;
+    /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
+    
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    border-width: 0px;
+    -moz-border-radius: 60px 60px 0 0;
+    -webkit-border-radius: 60px 60px 0 0;
+    border-radius: 60px 60px 0 0;
 }
 #header h1 {
-  font-family: Courier New;
-  color: #ccc;
-  font-size: 24pt;
-  font-weight: bold;
-  text-shadow: 5px 5px 5px #006;
+    font-family: Courier New;
+    color: #ccc;
+    font-size: 24pt;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px #006;
 }
-
 #main {
-	width				: 530px;
-	padding				: 5px;
-	float				: left;
-  background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.4);
+    width: 530px;
+    padding: 5px;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.4);
 }
-
 div#header h1 {
-	text-align			: center;
+    text-align: center;
 }
-
 #content {
-	text-align			: left;
+    text-align: left;
 }
-
-
 div.entry {
-	border-bottom		: 1px dashed #cccccc;
-	margin-top			: 1em;
-	overflow			: hidden;
-	padding-bottom		: 1em;
+    border-bottom: 1px dashed #cccccc;
+    margin-top: 1em;
+    overflow: hidden;
+    padding-bottom: 1em;
 }
-
 div.entry h1 {
-	padding				: 0.1em;
+    padding: 0.1em;
 }
-
-div .entrywrap, div .entrywrap-hover {
-  background-color: #EDD;
-	/* border				: 1px solid black; */
-	margin				: 0.5em;
-	overflow			: auto;
-	padding				: 0.5em;
-	*height				: 99%;
+div .entrywrap,
+div .entrywrap-hover {
+    background-color: #EDD;
+    /* border				: 1px solid black; */
+    
+    margin: 0.5em;
+    overflow: auto;
+    padding: 0.5em;
+    *height: 99%;
 }
-
 #navigation_box {
-	border-bottom		: 1px dashed #fff;
-  background-color: transparent;
-  color: #000;
-  width: 670px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-width: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+    border-bottom: 1px dashed #fff;
+    background-color: transparent;
+    color: #000;
+    width: 670px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }
-
 #navigation_box a {
-  color: #009;
-  font-weight: bold;
-  text-decoration: underline overline;
+    color: #009;
+    font-weight: bold;
+    text-decoration: underline overline;
 }
-
 #left_navigation_box {
-	float				: left;
-	text-align			: left;
-	width				: auto;
+    float: left;
+    text-align: left;
+    width: auto;
 }
-
 #right_navigation_box {
-	float				: right;
-	text-align			: right;
-	width				: auto;
+    float: right;
+    text-align: right;
+    width: auto;
 }
-
 #side {
-	float				: right;
-	line-height			: 1.4em;
-	margin				: 0;
-	padding				: 5px;
-  background-color: #ECD;
-  width: 260px;
+    float: right;
+    line-height: 1.4em;
+    margin: 0;
+    padding: 5px;
+    background-color: #ECD;
+    width: 260px;
 }
-
