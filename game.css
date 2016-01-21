@@ -9,9 +9,19 @@
 .button_red { background: red; }
 .button_green { background: green; }
 
-#mistakes_box h3 { display: inline; }
+#score {
+	font-weight: bold;
+}
 
-li.li-unkwown { }
-li.li-failed { color: red; }
-li.li-complete { color: green; }
-li.li-current { font-weight: bold; }
+.score_unkwown { }
+.score_failed { color: red; }
+.score_complete { color: green; }
+.current { font-weight: bold; }
+
+#curr_score_box {
+	float: right; 
+	font-size: 140%;
+	font-weight: bold;
+}
+span.curr-score-unknown {
+}

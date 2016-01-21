@@ -126,8 +126,6 @@ class Game
 		@score += @currDiagram().getScore()
 		if @completed == @length
 			@endGame()
-		else
-			@nextDiagram()
 	processIncorrectDone: () ->
 		@currDiagram().mistakes += 1
 
@@ -198,24 +196,10 @@ markAllActive = (c = "blue") ->
 		fillCircle(p, color=c, r=5)
 		drawCircle(p, color=c, r=30)
 	writeSpanActivePoints(ap)
-
-updateProgressBullets = () ->
-	$("#progress").empty()
-	for diagram,i in game.diagrams
-		li = $("<li>");
-		s = "Diagram " + (i+1)
-		if diagram.complete or not game.alive
-			li.html(s + " [" + diagram.getScore() + "]")
-			if diagram.complete
-				li.addClass("li-complete")
-			else
-				li.addClass("li-failed")
-		else
-			li.html(s + " [?]")
-			li.addClass("li-unknown")
-		if i == game.i
-			li.addClass("li-current")
-		$("#progress").append(li)
+updateActivePoints = () ->
+	writeSpanActivePoints(game.currDiagram().active_points)
+updateMistakes = () ->
+	$("#mistakes").html(game.currDiagram().mistakes)
 
 enableButtons = () ->
 	diagram = game.currDiagram()
@@ -229,24 +213,53 @@ enableButtons = () ->
 
 updateSidebarSoft = (c = "blue") ->
 	# Updates for clicking on points
-	diagram = game.currDiagram()
 	markAllActive(c)
-	writeSpanActivePoints(diagram.active_points)
-	$("#mistakes").html(diagram.mistakes)
+	updateActivePoints()
+	updateMistakes()
 	enableButtons()
+
+updateProgressBullets = () ->
+	$("#progress").empty()
+	for diagram,i in game.diagrams
+		li = $("<li>")
+		s = "Diagram " + (i+1) + "\t"
+		if diagram.complete
+			li.html(s + "[" + diagram.getScore() + "]")
+			li.addClass("score_complete")
+		else if not game.alive
+			li.html(s + "[" + diagram.getScore() + "]")
+			li.addClass("score_failed")
+		else
+			li.html(s + "[?]")
+			li.addClass("score_unknown")
+		if i == game.i
+			li.addClass("current")
+		$("#progress").append(li)
+updateFoundTuples = () ->
+	$("#found").empty()
+	for tuple in game.currDiagram().found_tuples
+		writeSpanAppendFoundTuple(tuple)
+updateScores = () ->
+	diagram = game.currDiagram()
+	$("#score").html(game.score)
+	$("#curr_score_box").empty()
+	elm = $("<span></span>")
+	if diagram.complete
+		elm.html("[" + diagram.getScore() + "]")
+		elm.addClass("score_complete")
+	else if not game.alive
+		elm.html("[" + diagram.getScore() + "]")
+		elm.addClass("score_failed")
+	else
+		elm.html("[?]")
+		elm.addClass("score_unknown")
+	$("#curr_score_box").append(elm)
 
 updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
-	$("#score").html(game.score)
-	$("#found").empty() # kinda wasteful, but w/e
-	for tuple in game.currDiagram().found_tuples
-		writeSpanAppendFoundTuple(tuple)
+	updateScores()
 	updateSidebarSoft(c)
-
-sidebarClear = () ->
-	$("#active_points").empty()
-	$("#found").empty()
 
 startGameUI = () ->
 	CANVAS = $("<canvas></canvas>")
