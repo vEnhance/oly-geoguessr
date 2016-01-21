@@ -8,3 +8,7 @@
 
 .button_red { background: red; }
 .button_green { background: green; }
+
+#progress_box h3 { display: inline; }
+#mistakes_box h3 { display: inline; }
+

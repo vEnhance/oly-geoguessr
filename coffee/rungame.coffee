@@ -130,7 +130,7 @@ loadDiagram = (filename) ->
 		(data, status, xhr) ->
 			diagram = new Diagram(data)
 			$("#head_title").html(diagram.source)
-			markAllActive()
+			updateSidebar()
 	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
@@ -181,8 +181,14 @@ markAllActive = (c = "blue") ->
 	enableButtonIf("#check_button", ap.length > 0)
 	enableButtonIf("#clear_button", ap.length > 0)
 	enableButtonIf("#done_button", (ap.length == 0) &&
-		(diagram.unfound_tuples.length != diagram.tuples.length))
+		(diagram.found != 0))
 	enableButtonIf("#stop_button", (ap.length == 0))
+
+updateSidebar = (c = "blue") ->
+	markAllActive(c)
+	writeSpanActivePoints(diagram.active_points)
+	$("#mistakes").html(diagram.mistakes)
+	$("#progress").html(game.i + " / "  +game.length)
 
 sidebarClearForNextDiagram = () ->
 	$("#active_points").empty()
@@ -230,14 +236,15 @@ onCheckButtonClick = (e) ->
 		tempAddClass "#check_button", "button_green"
 		writeSpanAppendFoundTuple(diagram.active_points)
 		diagram.active_points = []
-		setTimeout markAllActive, 400
+		setTimeout updateSidebar, 400
 	else
 		markAllActive("red")
 		tempAddClass "#check_button", "button_red"
+		updateSidebar()
 
 onClearButtonClick = (e) ->
 	diagram.active_points = []
-	markAllActive()
+	updateSidebar()
 
 onDoneButtonClick = (e) ->
 	if diagram.allFound()
@@ -247,6 +254,7 @@ onDoneButtonClick = (e) ->
 	else
 		tempAddClass "#done_button", "button_red"
 		game.processIncorrectDone()
+	updateSidebar()
 
 onStopButtonClick = (e) ->
 	if (confirm("Are you sure you want to give up?"))
