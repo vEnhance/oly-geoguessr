@@ -2,8 +2,7 @@
 # From http://superuser.com/a/970780/440809
 
 function execute() {
-	echo "coffee -c -o js coffee/rungame.coffee";
-	coffee -c -o js coffee/rungame.coffee;
+	make js/rungame.js
 }
 
 execute;

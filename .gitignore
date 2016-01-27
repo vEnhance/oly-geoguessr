@@ -1,2 +1,4 @@
+diagrams
 diagrams/*
-js/*
+js/jquery.min.js
+js/rungame.js
