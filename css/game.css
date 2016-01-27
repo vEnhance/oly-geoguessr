@@ -25,3 +25,7 @@
 }
 span.curr-score-unknown {
 }
+
+.sweet-alert strong {
+    font-weight: 600;
+}

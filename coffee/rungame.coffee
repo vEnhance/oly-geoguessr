@@ -117,7 +117,6 @@ class Game
 		@setDiagram(0)
 	endGame: () ->
 		@alive = false
-		alert("You win, lol")
 	processCorrectDone: () ->
 		if @currDiagram().complete
 			return # wef we're done already??
@@ -198,8 +197,6 @@ markAllActive = (c = "blue") ->
 	writeSpanActivePoints(ap)
 updateActivePoints = () ->
 	writeSpanActivePoints(game.currDiagram().active_points)
-updateMistakes = () ->
-	$("#mistakes").html(game.currDiagram().mistakes)
 
 enableButtons = () ->
 	diagram = game.currDiagram()
@@ -211,13 +208,10 @@ enableButtons = () ->
 	enableButtonIf("#next_button", game.i != game.length-1)
 	enableButtonIf("#prev_button", game.i != 0)
 
-updateSidebarSoft = (c = "blue") ->
-	# Updates for clicking on points
-	markAllActive(c)
-	updateActivePoints()
-	updateMistakes()
-	enableButtons()
-
+# }}}
+# UI Updater {{{
+updateMistakes = () ->
+	$("#mistakes").html(game.currDiagram().mistakes)
 updateProgressBullets = () ->
 	$("#progress").empty()
 	for diagram,i in game.diagrams
@@ -255,6 +249,12 @@ updateScores = () ->
 		elm.addClass("score_unknown")
 	$("#curr_score_box").append(elm)
 
+updateSidebarSoft = (c = "blue") ->
+	# Updates for clicking on points
+	markAllActive(c)
+	updateActivePoints()
+	updateMistakes()
+	enableButtons()
 updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
@@ -277,6 +277,19 @@ startGameUI = () ->
 	$("#done_button").click onDoneButtonClick
 	$("#prev_button").click onPrevButtonClick
 	$("#next_button").click onNextButtonClick
+
+# }}}
+# Alerts {{{
+fastCongratsAlert = (text, title, time=3000) ->
+	swal({
+		title: "Diagram Complete",
+		text: text,
+		showConfirmButton: false,
+		timer: time,
+		type: "success",
+		html: true,
+		allowOutsideClick: true,
+	})
 
 # }}}
 # Click handler {{{
@@ -322,6 +335,10 @@ onDoneButtonClick = (e) ->
 	diagram = game.currDiagram()
 	if diagram.allFound()
 		tempAddClass "#done_button", "button_green"
+		fastCongratsAlert("You earned <strong>" +
+			game.currDiagram().getScore() +
+			" points</strong> for this diagram.",
+			"Diagram complete!")
 		game.processCorrectDone()
 		updateSidebarHard()
 	else
