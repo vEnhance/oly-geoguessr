@@ -28,4 +28,5 @@ span.curr-score-unknown {
 
 .sweet-alert strong {
     font-weight: 600;
+    color: blue;
 }

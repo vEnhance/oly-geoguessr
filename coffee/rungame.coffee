@@ -4,6 +4,8 @@ SENSITIVITY = 50
 CANVAS = null
 CONTEXT = null
 
+GAME_TOTAL_TIME = 1000 * 60 * 15
+
 game = null
 
 # Aux {{{
@@ -13,6 +15,8 @@ del = (arr, x) -> # no return value
 pointSort = (arr) ->
 	arr.sort((p,q) -> p.i - q.i)
 
+setJSTimeout = (ms, func) -> setTimeout func, ms
+setJSInterval = (ms, func) -> setInterval func, ms
 
 # }}}
 
@@ -60,7 +64,10 @@ class Diagram
 		@max_found = @tuples.length
 		@complete = false
 		@active_points = []
+		@score = 0
 	gradeTuple: (arr) ->
+		if not @game.isAlive()
+			return false # wef the game ended
 		stringifiedActive = JSON.stringify(
 			(p.toString() for p in pointSort(arr)) )
 		if stringifiedActive in @unfound_str_tuples
@@ -72,19 +79,30 @@ class Diagram
 		else
 			@mistakes += 1
 			return false
-	markComplete: () ->
-		@complete = true
 	allFound: () ->
 		@found == @max_found
-	getScore: () ->
-		ess = @allFound() # essentially solved?
+	computeScore: () ->
 		switch
-			when ess and @mistakes <= 1 then 7
-			when ess and @mistakes <= 3 then 6
-			when ess and @mistakes > 3  then 5
+			when @complete and @mistakes <= 2 then 7
+			when @complete and @mistakes <= 5 then 6
+			when @complete and @mistakes >  5 then 5
+			when @found >= @max_found   then 4
 			when @found >= @max_found/2 then 2
 			when @found >= @max_found/3 then 1
 			else 0
+	getScore: () ->
+		@score
+	gradeDone: () ->
+		if @complete or not @game.isAlive()
+			return # What's going on
+		if @allFound()
+			@complete = true
+			@score = @computeScore()
+			@game.onDiagramComplete()
+		else
+			@mistakes += 1
+	gradePartial: () ->
+		@score = @computeScore()
 
 class Game
 	constructor: (@diagram_names) ->
@@ -95,6 +113,7 @@ class Game
 		@diagrams = (null for [1..@length])
 		@preloadDiagrams()
 		@alive = true
+		@total_time = GAME_TOTAL_TIME
 	preloadDiagrams: () ->
 		for name, i in @diagram_names
 			ajaxPreloadDiagram name, @, i
@@ -105,7 +124,7 @@ class Game
 		@diagrams[@i]
 	setDiagram: (i) ->
 		@i = i
-		triggerUIDiagramLoad()
+		triggerUISetDiagram()
 	prevDiagram: () ->
 		if @i != 0
 			@setDiagram(@i-1)
@@ -114,21 +133,40 @@ class Game
 			@setDiagram(@i+1)
 
 	startGame: () ->
+		@start_time = performance.now()
+		triggerUIStartGame()
 		@setDiagram(0)
+		@timeout_object = setJSInterval 1000, $.proxy(@checkTime, @) # JS :(
 	endGame: () ->
+		@end_time = performance.now()
+		clearTimeout @timeout_object
 		@alive = false
-	processCorrectDone: () ->
-		if @currDiagram().complete
-			return # wef we're done already??
-		@currDiagram().markComplete()
+		# Give partial credit
+		for diagram in @diagrams
+			if not diagram.complete
+				diagram.gradePartial()
+				@score += diagram.getScore()
+		triggerUIEndGame()
+	isAlive: () ->
+		@alive
+	checkTime: () ->
+		if performance.now() > @total_time + @start_time
+			@endGame()
+	getTimeLeft: () ->
+		if @alive
+			Math.max(0, @total_time - (performance.now() - @start_time))
+		else
+			Math.max(0, @total_time - (@end_time - @start_time))
+	allDone: () ->
+		@completed == @length
+	getScore: () ->
+		@score
+
+	onDiagramComplete: () ->
 		@completed += 1
 		@score += @currDiagram().getScore()
-		if @completed == @length
+		if @allDone()
 			@endGame()
-	processIncorrectDone: () ->
-		@currDiagram().mistakes += 1
-
-
 
 dist = (p, q) ->
 	Math.pow(Math.pow(p.x-q.x, 2) + Math.pow(p.y-q.y, 2), 0.5)
@@ -143,19 +181,49 @@ ajaxPreloadDiagram = (filename, game, i) ->
 		(data, status, xhr) ->
 			diagram = new Diagram(data)
 			game.diagrams[i] = diagram
+			diagram.game = game
 	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
 	)
 
-triggerUIDiagramLoad = () ->
-	loadDiagramIntoUI(game.currDiagram())
 
 loadDiagramIntoUI = (diagram) ->
 	clearAll()
 	updateSidebarHard()
 	$("#head_title").html(diagram.source)
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
+
+# }}}
+# UI Triggers {{{
+# Signals sent by model to UI, otherwise meow
+triggerUISetDiagram = () ->
+	loadDiagramIntoUI(game.currDiagram())
+
+triggerUIStartGame = () ->
+	CANVAS = $("<canvas></canvas>")
+	CANVAS.attr "height", CANVAS_HEIGHT
+	CANVAS.attr "width",  CANVAS_WIDTH
+	CANVAS.click onDiagramClick
+	CONTEXT = CANVAS.get(0).getContext("2d")
+
+	$("#site").empty()
+	$("#site").append(CANVAS)
+	$("#check_button").click onCheckButtonClick
+	$("#clear_button").click onClearButtonClick
+	$("#done_button").click onDoneButtonClick
+	$("#prev_button").click onPrevButtonClick
+	$("#next_button").click onNextButtonClick
+	updateTimeLeftForever()
+
+triggerUIEndGame = () ->
+	if !game.allDone() # user ran out of time
+		slowWarningAlert("Game Over!",
+			"Your game has ended.<br>" +
+			"Your score was <strong>" + game.getScore() +
+			" points</strong>." +
+			"<br><br>Thanks for playing! Answers will now be displayed.")
+	updateSidebarHard()
 
 # }}}
 # Canvas art and Button UI {{{
@@ -184,8 +252,7 @@ writeSpanAppendFoundTuple = (x) ->
 
 tempAddClass = (elm, cls, time=1000) ->
 	$(elm).addClass(cls)
-	removeCallback = () -> $(elm).removeClass(cls)
-	setTimeout removeCallback, time
+	setJSTimeout time, () -> $(elm).removeClass(cls)
 
 # High-level things
 markAllActive = (c = "blue") ->
@@ -201,10 +268,12 @@ updateActivePoints = () ->
 enableButtons = () ->
 	diagram = game.currDiagram()
 	ap = diagram.active_points
-	enableButtonIf("#check_button", ap.length > 0 and !diagram.complete)
+	enableButtonIf("#check_button", ap.length > 0 and
+		!diagram.complete and game.isAlive())
 	enableButtonIf("#clear_button", ap.length > 0)
 	enableButtonIf("#done_button", (ap.length == 0) and
-		(game.currDiagram().found != 0) and !diagram.complete)
+		(game.currDiagram().found != 0) and !diagram.complete and
+		game.isAlive())
 	enableButtonIf("#next_button", game.i != game.length-1)
 	enableButtonIf("#prev_button", game.i != 0)
 
@@ -220,7 +289,7 @@ updateProgressBullets = () ->
 		if diagram.complete
 			li.html(s + "[" + diagram.getScore() + "]")
 			li.addClass("score_complete")
-		else if not game.alive
+		else if not game.isAlive()
 			li.html(s + "[" + diagram.getScore() + "]")
 			li.addClass("score_failed")
 		else
@@ -235,13 +304,13 @@ updateFoundTuples = () ->
 		writeSpanAppendFoundTuple(tuple)
 updateScores = () ->
 	diagram = game.currDiagram()
-	$("#score").html(game.score)
+	$("#score").html(game.getScore())
 	$("#curr_score_box").empty()
 	elm = $("<span></span>")
 	if diagram.complete
 		elm.html("[" + diagram.getScore() + "]")
 		elm.addClass("score_complete")
-	else if not game.alive
+	else if not game.isAlive()
 		elm.html("[" + diagram.getScore() + "]")
 		elm.addClass("score_failed")
 	else
@@ -255,6 +324,8 @@ updateSidebarSoft = (c = "blue") ->
 	updateActivePoints()
 	updateMistakes()
 	enableButtons()
+	updateTimeLeftOnce()
+	
 updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
@@ -262,33 +333,60 @@ updateSidebarHard = (c = "blue") ->
 	updateFoundTuples()
 	updateSidebarSoft(c)
 
-startGameUI = () ->
-	CANVAS = $("<canvas></canvas>")
-	CANVAS.attr "height", CANVAS_HEIGHT
-	CANVAS.attr "width",  CANVAS_WIDTH
-	CANVAS.click onDiagramClick
+getTimeString = (t) ->
+	secs_left = Math.round(t / 1000)
+	mins = Math.floor(secs_left / 60)
+	secs = secs_left % 60
+	s = "" + mins + ":"
+	s += "0" if secs < 10
+	s += secs
 
-	CONTEXT = CANVAS.get(0).getContext("2d")
-
-	$("#site").empty()
-	$("#site").append(CANVAS)
-	$("#check_button").click onCheckButtonClick
-	$("#clear_button").click onClearButtonClick
-	$("#done_button").click onDoneButtonClick
-	$("#prev_button").click onPrevButtonClick
-	$("#next_button").click onNextButtonClick
+updateTimeLeftForever = () ->
+	updateTimeLeftOnce()
+	if game.isAlive()
+		setJSTimeout 1000, updateTimeLeftForever
+updateTimeLeftOnce = () ->
+	$("#time").html(getTimeString(game.getTimeLeft()))
 
 # }}}
 # Alerts {{{
-fastCongratsAlert = (text, title, time=3000) ->
+fastSuccessAlert = (title, text, time=3000) ->
+	if time < game.getTimeLeft()
+		swal({
+			title: title,
+			text: text,
+			type: "success",
+			html: true,
+			timer: time,
+			showConfirmButton: false,
+			allowOutsideClick: true,
+		})
+	else
+		swal({
+			title: title,
+			text: text,
+			type: "success",
+			html: true,
+			showConfirmButton: false,
+			allowOutsideClick: true,
+		})
+
+slowSuccessAlert = (title, text) ->
 	swal({
-		title: "Diagram Complete",
+		title: title,
 		text: text,
-		showConfirmButton: false,
-		timer: time,
 		type: "success",
 		html: true,
-		allowOutsideClick: true,
+		allowOutsideClick: false,
+	})
+
+slowWarningAlert = (title, text) ->
+	swal({
+		title: title,
+		text: text,
+		type: "warning",
+		html: true,
+		allowOutsideClick: false,
 	})
 
 # }}}
@@ -333,17 +431,24 @@ onClearButtonClick = (e) ->
 
 onDoneButtonClick = (e) ->
 	diagram = game.currDiagram()
-	if diagram.allFound()
+	diagram.gradeDone()
+	if diagram.complete
 		tempAddClass "#done_button", "button_green"
-		fastCongratsAlert("You earned <strong>" +
-			game.currDiagram().getScore() +
-			" points</strong> for this diagram.",
-			"Diagram complete!")
-		game.processCorrectDone()
+		if game.allDone()
+			slowSuccessAlert("You win!", "You earned " +
+				game.currDiagram().getScore() +
+				" points for this last diagram.<br>" +
+				"Your total score was <strong>" +
+				game.getScore() + " points</strong>." +
+				"Thanks for playing!")
+		else
+			fastSuccessAlert("Diagram complete!",
+				"You earned <strong>" +
+				game.currDiagram().getScore() +
+				" points</strong> for this diagram.")
 		updateSidebarHard()
 	else
 		tempAddClass "#done_button", "button_red"
-		game.processIncorrectDone()
 		updateSidebarSoft()
 
 onPrevButtonClick = (e) ->
@@ -363,7 +468,6 @@ $ ->
 	$("#start_game").prop("disabled", false)
 
 	$("#start_game").click ->
-		startGameUI()
 		game.startGame()
 
 # }}}
