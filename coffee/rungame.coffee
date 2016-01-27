@@ -205,7 +205,7 @@ enableButtons = () ->
 	diagram = game.currDiagram()
 	ap = diagram.active_points
 	enableButtonIf("#check_button", ap.length > 0 and !diagram.complete)
-	enableButtonIf("#clear_button", ap.length > 0 and !diagram.complete)
+	enableButtonIf("#clear_button", ap.length > 0)
 	enableButtonIf("#done_button", (ap.length == 0) and
 		(game.currDiagram().found != 0) and !diagram.complete)
 	enableButtonIf("#next_button", game.i != game.length-1)
@@ -259,6 +259,7 @@ updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
 	updateScores()
+	updateFoundTuples()
 	updateSidebarSoft(c)
 
 startGameUI = () ->
