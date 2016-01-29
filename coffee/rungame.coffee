@@ -1,7 +1,7 @@
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH  = 700
 SENSITIVITY = 50
-GAME_TOTAL_TIME = 1000 * 1
+GAME_TOTAL_TIME = 1000 * 60 * 15
 POINT_RADIUS = 5
 RING_RADIUS  = 24
 
@@ -39,26 +39,19 @@ class Diagram
 		width = json_array["width"]
 		height = json_array["height"]
 		@points = {}
-		@flat_points = []
-		i = 0
-		for point_array in json_array["points"]
+		@flat_points = for point_array, i in json_array["points"]
 			pu = point_array[1]
 			pv = point_array[2]
 			px = width * (pu-umin)/(umax-umin)
 			py = height * (vmax-pv)/(vmax-vmin)
 			p = new Point(point_array[0], px, py, i)
 			@points[point_array[0]] = p
-			@flat_points.push(p)
-			i += 1
 		@tuples = []
 		@found_tuples = []
-		@unfound_str_tuples = [] # will be stringified
-		for tuple in json_array["tuples"]
-			sortedPointTuple = pointSort( (@points[name] for name in tuple) )
-			nameTuple = (p.toString() for p in sortedPointTuple)
-			@tuples.push(sortedPointTuple)
-			@unfound_str_tuples.push(JSON.stringify(nameTuple))
-			# Note different data type from @tuples
+		@tuples = for tuple in json_array["tuples"]
+			 pointSort((@points[name] for name in tuple))
+		@unfound_str_tuples = for sortedPointTuple in @tuples
+			 JSON.stringify((p.toString() for p in sortedPointTuple))
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 		@mistakes = 0
@@ -465,12 +458,10 @@ onDoneButtonClick = (e) ->
 	if diagram.complete
 		tempAddClass "#done_button", "button_green"
 		if game.allDone()
-			slowSuccessAlert("You win!", "You earned " +
-				game.currDiagram().getScore() +
-				" points for this last diagram.<br>" +
-				"Your total score was <strong>" +
-				game.getScore() + " points</strong>." +
-				"Thanks for playing!")
+			slowSuccessAlert("You win! Congratulations!", "You earned " +
+				game.currDiagram().getScore() + " points "+ 
+				"for this last diagram.<br>Your total score was <strong>" +
+				game.getScore() + " points</strong>. Thanks for playing!")
 		else
 			fastSuccessAlert("Diagram complete!",
 				"You earned <strong>" +
