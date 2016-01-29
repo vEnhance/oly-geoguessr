@@ -9,9 +9,7 @@
 .button_red { background: red; }
 .button_green { background: green; }
 
-#score {
-	font-weight: bold;
-}
+#score { font-weight: bold; }
 
 .score_unkwown { }
 .score_failed { color: red; }
@@ -23,10 +21,19 @@
 	font-size: 140%;
 	font-weight: bold;
 }
-span.curr-score-unknown {
-}
+span.curr-score-unknown { }
 
 .sweet-alert strong {
     font-weight: 600;
     color: blue;
+}
+
+li.answer { color: blue; }
+li.answer:hover {
+	color: lightblue;
+	cursor: pointer;
+}
+
+#answers_heading {
+	display: none;
 }

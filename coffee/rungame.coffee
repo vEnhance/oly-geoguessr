@@ -1,10 +1,12 @@
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH  = 700
 SENSITIVITY = 50
+GAME_TOTAL_TIME = 1000 * 1
+POINT_RADIUS = 5
+RING_RADIUS  = 24
+
 CANVAS = null
 CONTEXT = null
-
-GAME_TOTAL_TIME = 1000 * 60 * 15
 
 game = null
 
@@ -61,34 +63,34 @@ class Diagram
 		@filename = json_array["filename"]
 		@mistakes = 0
 		@found = 0
-		@max_found = @tuples.length
+		@length = @tuples.length
 		@complete = false
 		@active_points = []
 		@score = 0
-	gradeTuple: (arr) ->
+	gradeTuple: (tuple) ->
 		if not @game.isAlive()
 			return false # wef the game ended
 		stringifiedActive = JSON.stringify(
-			(p.toString() for p in pointSort(arr)) )
+			(p.toString() for p in pointSort(tuple)) )
 		if stringifiedActive in @unfound_str_tuples
 			# @active_points = [] # needs to run after UI
 			@found += 1
-			@found_tuples.push(arr)
+			@found_tuples.push(tuple)
 			del(@unfound_str_tuples, stringifiedActive)
 			return true
 		else
 			@mistakes += 1
 			return false
 	allFound: () ->
-		@found == @max_found
+		@found == @length
 	computeScore: () ->
 		switch
 			when @complete and @mistakes <= 2 then 7
 			when @complete and @mistakes <= 5 then 6
 			when @complete and @mistakes >  5 then 5
-			when @found >= @max_found   then 4
-			when @found >= @max_found/2 then 2
-			when @found >= @max_found/3 then 1
+			when @found >= @length            then 4
+			when @found >= @length/2          then 2
+			when @found >= @length/3          then 1
 			else 0
 	getScore: () ->
 		@score
@@ -103,6 +105,15 @@ class Diagram
 			@mistakes += 1
 	gradePartial: () ->
 		@score = @computeScore()
+
+	getAnswer: (i) ->
+		if @game.alive
+			return # wef?
+		@tuples[i].slice(0) # array copy
+	markAnswer: (i) ->
+		if @game.alive
+			return # wef?
+		@active_points = @tuples[i].slice(0) # array copy
 
 class Game
 	constructor: (@diagram_names) ->
@@ -193,6 +204,22 @@ loadDiagramIntoUI = (diagram) ->
 	updateSidebarHard()
 	$("#head_title").html(diagram.source)
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
+	if not diagram.game.isAlive() # game ended
+		loadAnswersIntoUI(diagram)
+
+loadAnswersIntoUI = (diagram) ->
+	$("#answers").empty()
+	for i in [0...diagram.length]
+		li = $("<li></li>")
+		li.addClass("answer")
+		li.attr("data-index", i)
+		li.html(diagram.getAnswer(i).join(" "))
+		$("#answers").append(li)
+		li.click () ->
+			diagram.markAnswer(li.attr("data-index"))
+			enableButtons()
+			markAllActive()
+			updateSidebarSoft()
 
 # }}}
 # UI Triggers {{{
@@ -201,6 +228,7 @@ triggerUISetDiagram = () ->
 	loadDiagramIntoUI(game.currDiagram())
 
 triggerUIStartGame = () ->
+	$("#answers_heading").css("display", "none") # but prly already hidden
 	CANVAS = $("<canvas></canvas>")
 	CANVAS.attr "height", CANVAS_HEIGHT
 	CANVAS.attr "width",  CANVAS_WIDTH
@@ -217,6 +245,7 @@ triggerUIStartGame = () ->
 	updateTimeLeftForever()
 
 triggerUIEndGame = () ->
+	$("#answers_heading").css("display", "block")
 	if !game.allDone() # user ran out of time
 		slowWarningAlert("Game Over!",
 			"Your game has ended.<br>" +
@@ -224,16 +253,17 @@ triggerUIEndGame = () ->
 			" points</strong>." +
 			"<br><br>Thanks for playing! Answers will now be displayed.")
 	updateSidebarHard()
+	loadDiagramIntoUI(game.currDiagram())
 
 # }}}
 # Canvas art and Button UI {{{
 # Low-level things
-drawCircle = (p, color = "blue", r = 10) ->
+drawCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
 	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
 	CONTEXT.strokeStyle = color
 	CONTEXT.stroke()
-fillCircle = (p, color = "blue", r = 10) ->
+fillCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
 	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
 	CONTEXT.fillStyle = color
@@ -259,8 +289,8 @@ markAllActive = (c = "blue") ->
 	clearAll()
 	ap = game.currDiagram().active_points
 	for p in ap
-		fillCircle(p, color=c, r=5)
-		drawCircle(p, color=c, r=30)
+		fillCircle(p, color=c, r=POINT_RADIUS)
+		drawCircle(p, color=c, r=RING_RADIUS)
 	writeSpanActivePoints(ap)
 updateActivePoints = () ->
 	writeSpanActivePoints(game.currDiagram().active_points)
@@ -284,7 +314,7 @@ updateMistakes = () ->
 updateProgressBullets = () ->
 	$("#progress").empty()
 	for diagram,i in game.diagrams
-		li = $("<li>")
+		li = $("<li></li>")
 		s = "Diagram " + (i+1) + "\t"
 		if diagram.complete
 			li.html(s + "[" + diagram.getScore() + "]")
