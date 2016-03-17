@@ -12,7 +12,7 @@ def createDiagram(filename):
 
 	with open(fileasy, 'r') as r:
 		pts_list = []
-		tuple_list = []
+		item_list = []
 		shutil.copyfile(fileasy, filenewasy);
 		for line in r:
 			line = line.strip()
@@ -21,9 +21,9 @@ def createDiagram(filename):
 			elif line.startswith('Points:'):
 				line = line.strip('Points: ')
 				pts_list = line.split()
-			elif line.startswith('Tuple:'):
-				line = line.strip('Tuple: ').strip()
-				tuple_list.append(line.split())
+			elif line.startswith('Item:'):
+				line = line.strip('Item: ').strip()
+				item_list.append(line.split())
 
 	with open(filenewasy, 'a') as w:
 		for pt in pts_list:
@@ -68,8 +68,8 @@ def createDiagram(filename):
 	print >>g, '"min" : [%s,%s],' %(min_list[0][1:], min_list[1][:-1])
 	print >>g, '"max" : [%s,%s],' %(max_list[0][1:], max_list[1][:-1])
 
-	print >>g, '"tuples" : ['
-	print >>g, ',\n'.join([ '['+','.join(['"%s"' %p for p in ls])+']' for ls in tuple_list ])
+	print >>g, '"items" : ['
+	print >>g, ',\n'.join([ '['+','.join(['"%s"' %p for p in ls])+']' for ls in item_list ])
 	print >>g, '],'
 
 	print >>g, '"source" : "%s",' %(source)

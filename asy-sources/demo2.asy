@@ -19,5 +19,5 @@ draw(A--B--C--D--E--cycle);
 /*
   Source: Cyclic Pentagon
   Points: A B C D E
-  Tuple: A B C D E
+  Item: A B C D E
 */

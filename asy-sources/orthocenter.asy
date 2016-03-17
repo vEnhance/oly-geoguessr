@@ -31,10 +31,10 @@ draw(C--F);
 /*
   Source: The Orthic Triangle
   Points: A B C D E F H
-  Tuple: B C E F
-  Tuple: C A F D
-  Tuple: A B D E
-  Tuple: A H E F
-  Tuple: B H F D
-  Tuple: C H D E
+  Item: B C E F
+  Item: C A F D
+  Item: A B D E
+  Item: A H E F
+  Item: B H F D
+  Item: C H D E
 */

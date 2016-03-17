@@ -34,7 +34,7 @@ setJSInterval = (ms, func) -> setInterval func, ms
 class Point
 	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
-		# The @i gives a unique ordering to each tuple
+		# The @i gives a unique ordering to each item
 	toString: () ->
 		@name
 		
@@ -54,30 +54,30 @@ class Diagram
 			py = height * (vmax-pv)/(vmax-vmin)
 			p = new Point(point_array[0], px, py, i)
 			@points[point_array[0]] = p
-		@tuples = []
-		@found_tuples = []
-		@tuples = for tuple in json_array["tuples"]
-			 pointSort((@points[name] for name in tuple))
-		@unfound_str_tuples = for sortedPointTuple in @tuples
-			 JSON.stringify((p.toString() for p in sortedPointTuple))
+		@items = []
+		@found_items = []
+		@items = for item in json_array["items"]
+			 pointSort((@points[name] for name in item))
+		@unfound_str_items = for sortedPointItem in @items
+			 JSON.stringify((p.toString() for p in sortedPointItem))
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 		@mistakes = 0
 		@found = 0
-		@length = @tuples.length
+		@length = @items.length
 		@complete = false
 		@active_points = []
 		@score = 0
-	gradeTuple: (tuple) ->
+	gradeItem: (item) ->
 		if not @game.isAlive()
 			return false # wef the game ended
 		stringifiedActive = JSON.stringify(
-			(p.toString() for p in pointSort(tuple)) )
-		if stringifiedActive in @unfound_str_tuples
+			(p.toString() for p in pointSort(item)) )
+		if stringifiedActive in @unfound_str_items
 			# @active_points = [] # needs to run after UI
 			@found += 1
-			@found_tuples.push(tuple)
-			del(@unfound_str_tuples, stringifiedActive)
+			@found_items.push(item)
+			del(@unfound_str_items, stringifiedActive)
 			return true
 		else
 			@mistakes += 1
@@ -110,11 +110,11 @@ class Diagram
 	getAnswer: (i) ->
 		if @game.alive
 			return # wef?
-		@tuples[i].slice(0) # array copy
+		@items[i].slice(0) # array copy
 	markAnswer: (i) ->
 		if @game.alive
 			return # wef?
-		@active_points = @tuples[i].slice(0) # array copy
+		@active_points = @items[i].slice(0) # array copy
 
 class Game
 	constructor: (@diagram_names) ->
@@ -281,7 +281,7 @@ enableButtonIf = (selector, bool) ->
 
 writeSpanActivePoints = (x) ->
 	$("#active_points").html(x.join(" "))
-writeSpanAppendFoundTuple = (x) ->
+writeSpanAppendFoundItem = (x) ->
 	$("#found").append($("<li>" + x.join(" ") + "</li>"))
 
 tempAddClass = (elm, cls, time=1000) ->
@@ -332,10 +332,10 @@ updateProgressBullets = () ->
 		if i == game.i
 			li.addClass("current")
 		$("#progress").append(li)
-updateFoundTuples = () ->
+updateFoundItems = () ->
 	$("#found").empty()
-	for tuple in game.currDiagram().found_tuples
-		writeSpanAppendFoundTuple(tuple)
+	for item in game.currDiagram().found_items
+		writeSpanAppendFoundItem(item)
 updateScores = () ->
 	diagram = game.currDiagram()
 	$("#score").html(game.getScore())
@@ -364,7 +364,7 @@ updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
 	updateScores()
-	updateFoundTuples()
+	updateFoundItems()
 	updateSidebarSoft(c)
 
 getTimeString = (t) ->
@@ -473,11 +473,11 @@ onDiagramClick = (e) ->
 onCheckButtonClick = (e) ->
 	diagram = game.currDiagram()
 	clone = diagram.active_points.slice(0) # I hate JS
-	if diagram.gradeTuple(clone)
+	if diagram.gradeItem(clone)
 		# Highlight green momentarily
 		markAllActive("green")
 		tempAddClass "#check_button", "button_green"
-		writeSpanAppendFoundTuple(diagram.active_points)
+		writeSpanAppendFoundItem(diagram.active_points)
 		diagram.active_points = []
 		setTimeout updateSidebarSoft, 400
 	else
