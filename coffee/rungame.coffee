@@ -203,7 +203,11 @@ ajaxPreloadDiagram = (filename, game, i) ->
 				game.doneLoadingDiagram(i)
 	).error( # chain
 		(jqXhr, textStatus, error) ->
-			alert textStatus + " : " + error
+			swal({
+				title: textStatus,
+				text: error,
+				type: 'error'
+			})
 	)
 
 
