@@ -548,7 +548,7 @@ $ ->
 
 	$("#start_game").click ->
 		if (game != null)
-			if game.ajax_deferred.isResolved()
+			if game.ajax_deferred.state() == "resolved"
 				game.startGame()
 			else
 				# This should never be called, the button shouldn't be enabled
