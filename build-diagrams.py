@@ -1,6 +1,7 @@
 #!/usr/bin/python2
 import re
 import os
+import glob
 import shutil
 
 def createDiagram(filename):
@@ -80,6 +81,6 @@ def createDiagram(filename):
 
 
 if __name__ == "__main__":
-	createDiagram("demo1")
-	createDiagram("demo2")
-	createDiagram("orthocenter")
+	for s in glob.iglob("asy-sources/*.asy"):
+		name = s[s.index("/")+1 : s.index(".asy")]
+		createDiagram(name)
