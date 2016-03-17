@@ -240,11 +240,7 @@ triggerUIStartGame = () ->
 triggerUIEndGame = () ->
 	$("#answers_heading").css("display", "block")
 	if !game.allDone() # user ran out of time
-		slowWarningAlert("Game Over!",
-			"Your game has ended.<br>" +
-			"Your score was <strong>" + game.getScore() +
-			" points</strong>." +
-			"<br><br>Thanks for playing! Answers will now be displayed.")
+		alertGameLost()
 	updateSidebarHard()
 	loadDiagramIntoUI(game.currDiagram())
 
@@ -373,12 +369,19 @@ updateTimeLeftOnce = () ->
 
 # }}}
 # Alerts {{{
-fastSuccessAlert = (title, text, time=3000) ->
+
+
+alertDiagramDone = () ->
+	title = "Diagram complete!"
+	text = "You earned <strong>" +
+		game.currDiagram().getScore() +
+		" points</strong> for this diagram."
+	time = 3000
 	if time < game.getTimeLeft()
 		swal({
 			title: title,
 			text: text,
-			type: "success",
+			type: "info",
 			html: true,
 			timer: time,
 			showConfirmButton: false,
@@ -388,13 +391,18 @@ fastSuccessAlert = (title, text, time=3000) ->
 		swal({
 			title: title,
 			text: text,
-			type: "success",
+			type: "info",
 			html: true,
 			showConfirmButton: false,
 			allowOutsideClick: true,
 		})
 
-slowSuccessAlert = (title, text) ->
+alertGameWon = () ->
+	title = "You won! Congratulations!"
+	text = "You earned " +
+			game.currDiagram().getScore() + " points " +
+			"for this last diagram.<br>Your total score was <strong>" +
+			game.getScore() + " points</strong>. Thanks for playing!"
 	swal({
 		title: title,
 		text: text,
@@ -403,7 +411,13 @@ slowSuccessAlert = (title, text) ->
 		allowOutsideClick: false,
 	})
 
-slowWarningAlert = (title, text) ->
+
+alertGameLost = () ->
+	title = "Game Over!"
+	text = "Your game has ended.<br>" +
+			"Your score was <strong>" + game.getScore() +
+			" points</strong>." +
+			"<br><br>Thanks for playing! Answers will now be displayed."
 	swal({
 		title: title,
 		text: text,
@@ -458,15 +472,9 @@ onDoneButtonClick = (e) ->
 	if diagram.complete
 		tempAddClass "#done_button", "button_green"
 		if game.allDone()
-			slowSuccessAlert("You win! Congratulations!", "You earned " +
-				game.currDiagram().getScore() + " points "+ 
-				"for this last diagram.<br>Your total score was <strong>" +
-				game.getScore() + " points</strong>. Thanks for playing!")
+			alertGameWon()
 		else
-			fastSuccessAlert("Diagram complete!",
-				"You earned <strong>" +
-				game.currDiagram().getScore() +
-				" points</strong> for this diagram.")
+			alertDiagramDone()
 		updateSidebarHard()
 	else
 		tempAddClass "#done_button", "button_red"
