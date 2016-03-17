@@ -37,3 +37,14 @@ li.answer:hover {
 #answers_heading {
 	display: none;
 }
+
+body { background-color: #fff0e5; }
+/* #header { background-color: #ffccb3; } */
+#header { background-color: #ff5555; }
+#main { background-color: #fff0aa; }
+#side { background-color: #99ccff; }
+div.entrywrap { background-color: #ffffff; }
+#navigation_box { background-color: #ccccff; }
+h1 { color: #000055; }
+#header h1 { color: #ffffff; font-weight: bold; }
+
