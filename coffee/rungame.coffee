@@ -1,3 +1,4 @@
+# Constants {{{
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH  = 700
 SENSITIVITY = 50
@@ -7,8 +8,15 @@ RING_RADIUS  = 24
 
 CANVAS = null
 CONTEXT = null
-
 game = null
+# }}}
+# List of Episodes {{{
+EPISODES = {
+	'Demo' : ['demo1', 'demo2'],
+	'One' : ['demo1'],
+	'Two' : ['demo2'],
+}
+# }}}
 
 # Aux {{{
 del = (arr, x) -> # no return value
@@ -110,17 +118,23 @@ class Diagram
 
 class Game
 	constructor: (@diagram_names) ->
+		# Preload diagrams ASAP
 		@length = @diagram_names.length
+		@diagrams = (null for [1..@length])
+		for name, i in @diagram_names
+			ajaxPreloadDiagram name, @, i
+		@ajax_deferred = $.Deferred() # resolve once all diagrams loaded
+
+		# Set variables
 		@i = 0 # player's current progress
 		@score = 0
 		@completed = 0
-		@diagrams = (null for [1..@length])
-		@preloadDiagrams()
 		@alive = true
 		@total_time = GAME_TOTAL_TIME
-	preloadDiagrams: () ->
-		for name, i in @diagram_names
-			ajaxPreloadDiagram name, @, i
+	doneLoadingDiagram: (i) ->
+		@diagrams[i].game = game
+		if not (null in @diagrams)
+			@ajax_deferred.resolve()
 
 	currDiagram: () ->
 		if @i >= @length
@@ -183,9 +197,10 @@ toJSON = (filename) ->
 ajaxPreloadDiagram = (filename, game, i) ->
 	$.getJSON(toJSON(filename),
 		(data, status, xhr) ->
-			diagram = new Diagram(data)
-			game.diagrams[i] = diagram
-			diagram.game = game
+			setJSTimeout 300, -> # for testing: add 300ms latency for no reason
+				diagram = new Diagram(data)
+				game.diagrams[i] = diagram
+				game.doneLoadingDiagram(i)
 	).error( # chain
 		(jqXhr, textStatus, error) ->
 			alert textStatus + " : " + error
@@ -370,7 +385,6 @@ updateTimeLeftOnce = () ->
 # }}}
 # Alerts {{{
 
-
 alertDiagramDone = () ->
 	title = "Diagram complete!"
 	text = "You earned <strong>" +
@@ -424,6 +438,15 @@ alertGameLost = () ->
 		type: "warning",
 		html: true,
 		allowOutsideClick: false,
+	})
+
+alertError = (title, text) ->
+	swal({
+		title: title,
+		text: text,
+		type: "error",
+		html: true,
+		allowOutsideClick: true,
 	})
 
 # }}}
@@ -489,15 +512,53 @@ onNextButtonClick = (e) ->
 	updateSidebarHard()
 
 # }}}
+# Game initialization {{{
+
+initEpisodeSelect = () ->
+	selector = $("#episode_select")
+	i = 0
+	for name, arr of EPISODES
+		ep = $("<option>")
+		ep.html("Episode " + i + ": " + name)
+		ep.attr("value", name)
+		selector.append(ep)
+		i++
+	selector.change ->
+		v = selector.val()
+		enableButtonIf("#start_game", false)
+		if v != ""
+			game = new Game(EPISODES[v])
+			$("#start_game").html("Loading..")
+			$.when(game.ajax_deferred).then ->
+				if selector.val() == v # hasn't changed game
+					enableButtonIf("#start_game", true)
+					$("#start_game").html("Start!")
+		else
+			$("#start_game").html("...")
+
+
+# }}}
 
 # Main function {{{
 $ ->
-	game = new Game(["demo1", "demo2"])
 	$("[type=button]").prop("disabled", true)
-	$("#start_game").prop("disabled", false)
+	enableButtonIf("#start_game", false) # why isn't this already done!?
+	$("#start_game").html("...")
+	initEpisodeSelect()
 
 	$("#start_game").click ->
-		game.startGame()
+		if (game != null)
+			if game.ajax_deferred.isResolved()
+				game.startGame()
+			else
+				# This should never be called, the button shouldn't be enabled
+				alertError("Still Loading...",
+					"Something's wrong.  Try pressing the Start button again in a few seconds,
+					or longer if your Internet connection is poor.<br>
+					If that doesn't work out, you might be out of luck;
+					I never figured out this AJAX thingy.")
+		else
+			alertError("Select a episode", "You need to select an episode to begin")
 
 # }}}
 # vim: fdm=marker
