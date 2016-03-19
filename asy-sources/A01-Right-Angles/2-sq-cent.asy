@@ -4,7 +4,7 @@ pair C = dir(225);
 pair D = dir(315);
 pair O = origin;
 
-draw(A--B--C--D--cycle);
+filldraw(A--B--C--D--cycle, opacity(0.1)+lightblue, blue);
 
 dot("$A$", A, A);
 dot("$B$", B, B);

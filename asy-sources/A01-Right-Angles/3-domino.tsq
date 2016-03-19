@@ -5,6 +5,9 @@ D = (-1,-0.5)
 E = (0,-0.5)
 F = (1,-0.5)
 
+A--B--E--D--cycle 0.2 lightblue / black+1
+B--C--F--E--cycle 0.2 lightgreen / black+1
+
 /*
   Source: Domino
   Points: A B C D E F

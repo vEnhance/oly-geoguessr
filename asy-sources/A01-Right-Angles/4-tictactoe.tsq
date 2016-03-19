@@ -2,15 +2,17 @@ A = (-1,1)
 B = (0,1)
 C = (1,1)
 D = (-1,0)
-E = (0,0) R45
+E = origin R45
 F = (1,0)
 G = (-1,-1)
 H = (0,-1)
 I = (1,-1)
 
-A--C--I--G--cycle
-B--H
-D--F
+A--B--E--D--cycle 0.2 lightred / black+1
+B--C--F--E--cycle 0.2 lightgreen / black+1
+D--E--H--G--cycle 0.2 lightblue / black+1
+E--F--I--H--cycle 0.2 grey / black+1
+
 
 
 /*
