@@ -32,4 +32,6 @@ E--F--I--H--cycle 0.2 grey / black+1
   Item: F H C G
   Item: B F A I
   Item: D H A I
+  Item: A E I
+  Item: C E G
 */
