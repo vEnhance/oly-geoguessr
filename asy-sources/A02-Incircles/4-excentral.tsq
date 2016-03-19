@@ -1,0 +1,38 @@
+A = dir 110
+B = dir 210
+C = dir 330
+I = incenter A B C
+M_A := dir 270
+M_B := dir 40
+M_C := dir 160
+
+incircle A B C dotted blue
+X = 2*M_A-I
+Y = 2*M_B-I
+Z = 2*M_C-I
+A--B--C--cycle 0.2 lightblue / blue
+
+CP X foot X B C 0.2 lightred / red
+CP Y foot Y C A 0.2 lightred / red
+CP Z foot Z A B 0.2 lightred / red
+
+A--foot(Z,A,C)
+B--foot(Z,B,C)
+B--foot(X,B,A)
+C--foot(X,C,A)
+C--foot(Y,C,B)
+A--foot(Y,A,B)
+
+/*
+Source: Triple Excenters
+Points: A B C I X Y Z
+Item: X C Y
+Item: Y A Z
+Item: Z B X
+Item: X B C I
+Item: Y C A I
+Item: Z A B I
+Item: Z B C Y
+Item: Z A C X
+Item: X A B Y
+*/

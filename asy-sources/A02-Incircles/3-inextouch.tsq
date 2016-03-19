@@ -1,0 +1,26 @@
+A = dir 110
+B = dir 210
+C = dir 330
+I = incenter A B C R-90
+E = foot I C A
+F = foot I A B
+
+A--B--C--cycle 0.2 lightblue / blue
+incircle A B C dashed blue
+circumcircle A E F 0.2 lightgreen / dotted heavygreen
+
+L := dir 270
+J = 2*L-I
+P = foot J A C
+Q = foot J A B
+!draw(arc(J,abs(P-J), 10, 170), lightred);
+B--Q
+C--P
+
+/*
+Source: Incircle and Excircle
+Points: A B C E F I P Q
+Item: A Q P J
+Item: I B C J
+Item: F E P Q
+*/

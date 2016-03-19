@@ -1,0 +1,19 @@
+A = dir 110
+B = dir 210
+C = dir 330
+I = incenter A B C R90
+E = foot I C A
+F = foot I A B
+
+A--B--C--cycle 0.2 lightblue / blue
+circumcircle A E F 0.2 lightgreen / heavygreen dotted
+incircle A B C dashed blue
+L = circumcenter B I C
+CP L I 0.2 lightred / red
+
+/*
+Source: Fact 5
+Points: A B C I E F L
+Item: A I L
+Item: A B C L
+*/

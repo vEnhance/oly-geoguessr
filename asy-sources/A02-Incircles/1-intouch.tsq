@@ -6,8 +6,8 @@ D = foot I B C
 E = foot I C A
 F = foot I A B
 
-A--B--C--cycle
-incircle A B C dashed
+A--B--C--cycle 0.2 lightcyan / blue
+incircle A B C blue dashed
 
 /*
 Source: Intouch Triangle
