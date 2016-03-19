@@ -6,7 +6,7 @@ js/rungame.js : coffee/rungame.coffee
 js/jquery.min.js : 
 	wget https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -O js/jquery.min.js
 
-diagrams : asy-sources/*
+diagrams : asy-sources/* build/build-diagrams.py
 	mkdir -p diagrams
 	./build/build-diagrams.py
 

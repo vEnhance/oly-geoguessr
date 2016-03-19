@@ -1,6 +1,6 @@
 #!/usr/bin/python2
+import sys, os
 import re
-import os
 import glob
 import shutil
 
@@ -16,7 +16,8 @@ defaultpen(fontsize(18pt));
 
 def createDiagram(dir_name, file_name, ext):
 	filesrc = "asy-sources/" + dir_name + '/' + file_name + "." + ext
-	filepng = "diagrams/" + file_name + ".png"
+	filepdf = "diagrams/" + file_name + ".pdf"
+	filesvg = "diagrams/" + file_name + ".svg"
 	filetmp = "/tmp/" + file_name + ".tmp"
 	filetmpasy = "/tmp/" + file_name + ".tmpasy"
 	filenewasy = "/tmp/" + file_name + ".asy"
@@ -24,7 +25,8 @@ def createDiagram(dir_name, file_name, ext):
 
 	# If already created and older, skip it
 	if os.path.isfile(filejson):
-		if os.path.getmtime(filejson) > os.path.getmtime(filesrc):
+		if os.path.getmtime(filejson) > os.path.getmtime(filesrc) \
+				and os.path.getmtime(filejson) > os.path.getmtime(sys.argv[0]):
 			return 0
 
 	if ext == "asy":
@@ -62,9 +64,10 @@ def createDiagram(dir_name, file_name, ext):
 		print >>w, "write(\"umax \" + (string) max(currentpicture, user=true));"
 		print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
 		print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
-	command_asy = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetmp)
-	print command_asy
-	os.system(command_asy)
+	command = "asy -f pdf -o %s %s > %s;\nconvert %s %s" \
+			%(filepdf, filenewasy, filetmp, filepdf, filesvg)
+	print command
+	os.system(command)
 
 	#reading tmp file from asymptote
 	pts_coor = []
