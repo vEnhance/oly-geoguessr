@@ -11,6 +11,11 @@ def createDiagram(dir_name, file_name):
 	filenewasy = "/tmp/" + file_name + ".asy"
 	filejson = "diagrams/" + file_name + ".json"
 
+	# If already created and older, skip it
+	if os.path.isfile(filejson):
+		if os.path.getmtime(filejson) > os.path.getmtime(fileasy):
+			return 0
+
 	with open(fileasy, 'r') as r:
 		pts_list = []
 		item_list = []
@@ -79,6 +84,7 @@ def createDiagram(dir_name, file_name):
 	print >>g, '"width" : "%f",' %(pxmax-pxmin)
 	print >>g, '"height" : "%f"' %(pymax-pymin)
 	print >>g, '}'
+	return 1
 
 
 if __name__ == "__main__":
