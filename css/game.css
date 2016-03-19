@@ -48,3 +48,12 @@ div.entrywrap { background-color: #ffffff; }
 h1 { color: #000055; }
 #header h1 { color: #ffffff; font-weight: bold; }
 
+/* Reduce opacity effect */
+#side {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+#side:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
