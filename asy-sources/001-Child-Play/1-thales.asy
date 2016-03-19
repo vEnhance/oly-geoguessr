@@ -1,7 +1,3 @@
-size(500);
-dotfactor *= 2;
-defaultpen(fontsize(18pt));
-
 draw(unitcircle);
 pair A = dir(70);
 pair C = -A;
