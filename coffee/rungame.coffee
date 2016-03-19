@@ -514,24 +514,25 @@ onNextButtonClick = (e) ->
 # Game initialization {{{
 
 initEpisodeSelect = () ->
-	selector = $("#episode_select")
+	epselector = $("#episode_select")
 	for name, arr of EPISODES
 		ep = $("<option>")
 		ep.html("Episode " + name) # name of form "001: Child Play"
 		ep.attr("value", name)
-		selector.append(ep)
-	selector.change ->
-		v = selector.val()
+		epselector.append(ep)
+	epselector.change ->
+		v = epselector.val()
 		enableButtonIf("#start_game", false)
 		if v != ""
 			game = new Game(EPISODES[v])
 			$("#start_game").html("Loading..")
 			$.when(game.ajax_deferred).then ->
-				if selector.val() == v # hasn't changed game
+				if epselector.val() == v # hasn't changed game
 					enableButtonIf("#start_game", true)
 					$("#start_game").html("Start!")
 		else
 			$("#start_game").html("...")
+	epselector.trigger("change")
 
 
 # }}}
