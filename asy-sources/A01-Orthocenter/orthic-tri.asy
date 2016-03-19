@@ -1,8 +1,3 @@
-import olympiad;
-size(500);
-dotfactor *= 2;
-defaultpen(fontsize(18pt));
-
 pair A = dir(110);
 pair B = dir(210);
 pair C = dir(330);
