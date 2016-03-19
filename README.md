@@ -61,9 +61,9 @@ your score for the game is the sum of the scores for all diagrams.
 
 Your score for a diagram is computed as follows.
 
-+ **7 marks** if the diagram was completed with at most two errors.
-+ **6 marks** if the diagram was completed with at most five errors.
-+ **5 marks** if the diagram was completed with more than five errors.
++ **7 marks** if the diagram was completed with at most one errors.
++ **6 marks** if the diagram was completed with at most four errors.
++ **5 marks** if the diagram was completed with more than four errors.
 + **4 marks** if all items were found,
   but the "Finish" button was not pressed.
 + **2 marks** if at least 1/2 of the possible items were found.

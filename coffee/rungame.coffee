@@ -82,9 +82,9 @@ class Diagram
 		@found == @length
 	computeScore: () ->
 		switch
-			when @complete and @mistakes <= 2 then 7
-			when @complete and @mistakes <= 5 then 6
-			when @complete and @mistakes >  5 then 5
+			when @complete and @mistakes <= 1 then 7
+			when @complete and @mistakes <= 4 then 6
+			when @complete and @mistakes >  4 then 5
 			when @found >= @length            then 4
 			when @found >= @length/2          then 2
 			when @found >= @length/3          then 1
