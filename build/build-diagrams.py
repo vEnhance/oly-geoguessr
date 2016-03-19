@@ -4,12 +4,12 @@ import os
 import glob
 import shutil
 
-def createDiagram(filename):
-	fileasy = "asy-sources/" + filename + ".asy"
-	filepng = "diagrams/" + filename + ".png"
-	filetxt = "/tmp/" + filename + ".txt"
-	filenewasy = "/tmp/" + filename + ".asy"
-	filejson = "diagrams/" + filename + ".json"
+def createDiagram(dir_name, file_name):
+	fileasy = "asy-sources/" + dir_name + '/' + file_name + ".asy"
+	filepng = "diagrams/" + file_name + ".png"
+	filetxt = "/tmp/" + file_name + ".txt"
+	filenewasy = "/tmp/" + file_name + ".asy"
+	filejson = "diagrams/" + file_name + ".json"
 
 	with open(fileasy, 'r') as r:
 		pts_list = []
@@ -74,13 +74,31 @@ def createDiagram(filename):
 	print >>g, '],'
 
 	print >>g, '"source" : "%s",' %(source)
-	print >>g, '"filename" : "%s",' %(filename)
+	print >>g, '"filename" : "%s",' %(file_name)
 	print >>g, '"width" : "%f",' %(pxmax-pxmin)
 	print >>g, '"height" : "%f"' %(pymax-pymin)
 	print >>g, '}'
 
 
 if __name__ == "__main__":
-	for s in glob.iglob("asy-sources/*.asy"):
-		name = s[s.index("/")+1 : s.index(".asy")]
-		createDiagram(name)
+	diagram_index = {}
+
+	for s in glob.iglob("asy-sources/*/*.asy"):
+		junk, dir_name, file_name = s.split('/') #e.g. dir_name = 001-Demo, file_name = 1-Thale
+		file_name = file_name[:-4] # remove .asy extension
+		createDiagram(dir_name, file_name)
+
+		if not diagram_index.has_key(dir_name):
+			diagram_index[dir_name] = []
+		diagram_index[dir_name].append(file_name)
+
+	episodes = []
+	for dir_name, filenames in sorted(diagram_index.iteritems()):
+		# strip leading number, convert dashes to spaces
+		ep_name = dir_name.replace("-", ": ",1).replace("-", " ")
+		episodes.append("'"+ep_name+"': " + str(sorted(filenames)))
+	
+	with open("js/episode-index.js", "w") as f:
+		print >>f, "EPISODES = {"
+		print >>f, '\t' + '\n\t'.join(episodes)
+		print >>f, "\t};"

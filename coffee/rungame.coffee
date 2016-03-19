@@ -6,18 +6,12 @@ GAME_TOTAL_TIME = 1000 * 60 * 10
 POINT_RADIUS = 5
 RING_RADIUS  = 24
 
+# EPISODES provided by outer JS file
+
 CANVAS = null
 CONTEXT = null
 game = null
 # }}}
-# List of Episodes {{{
-EPISODES = {
-	'Demo' : ['demo1', 'demo2'],
-	'One' : ['demo1'],
-	'Two' : ['demo2'],
-}
-# }}}
-
 # Aux {{{
 del = (arr, x) -> # no return value
 	arr.splice(arr.indexOf(x), 1) # delete p
@@ -520,13 +514,11 @@ onNextButtonClick = (e) ->
 
 initEpisodeSelect = () ->
 	selector = $("#episode_select")
-	i = 0
 	for name, arr of EPISODES
 		ep = $("<option>")
-		ep.html("Episode " + i + ": " + name)
+		ep.html("Episode " + name) # name of form "001: Child Play"
 		ep.attr("value", name)
 		selector.append(ep)
-		i++
 	selector.change ->
 		v = selector.val()
 		enableButtonIf("#start_game", false)

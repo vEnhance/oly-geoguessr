@@ -12,6 +12,7 @@ diagrams : asy-sources/*
 
 clean:
 	rm -f js/rungame.js
+	rm -f js/episode-index.js
 	rm -f diagrams/*
 	rm -fd diagrams
 	rm -f js/jquery.min.js
