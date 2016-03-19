@@ -18,12 +18,13 @@ def createDiagram(dir_name, file_name):
 		for line in r:
 			line = line.strip()
 			if line.startswith('Source:'):
-				source = line.strip('Source: ')
+				source = line[7:].strip()
+				print source
 			elif line.startswith('Points:'):
-				line = line.strip('Points: ')
+				line = line[7:].strip()
 				pts_list = line.split()
 			elif line.startswith('Item:'):
-				line = line.strip('Item: ').strip()
+				line = line[5:].strip()
 				item_list.append(line.split())
 
 	with open(filenewasy, 'a') as w:
