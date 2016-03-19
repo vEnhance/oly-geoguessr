@@ -217,15 +217,16 @@ loadAnswersIntoUI = (diagram) ->
 	$("#answers").empty()
 	for i in [0...diagram.length]
 		li = $("<li></li>")
+		console.log(li)
+		do (i, li) -> # wef JS scoping can go die
+			li.click () ->
+				diagram.markAnswer(i)
+				enableButtons()
+				markAllActive()
+				updateSidebarSoft()
 		li.addClass("answer")
-		li.attr("data-index", i)
 		li.html(diagram.getAnswer(i).join(" "))
 		$("#answers").append(li)
-		li.click () ->
-			diagram.markAnswer(li.attr("data-index"))
-			enableButtons()
-			markAllActive()
-			updateSidebarSoft()
 
 # }}}
 # UI Triggers {{{
