@@ -1,16 +1,16 @@
-pair A = (-1, 1);
-pair B = ( 0, 1);
-pair C = ( 1, 1);
-pair D = (-1, 0);
-pair E = ( 0, 0);
-pair F = ( 1, 0);
-pair G = (-1,-1);
-pair H = ( 0,-1);
-pair I = ( 1,-1);
+A = (-1,1)
+B = (0,1)
+C = (1,1)
+D = (-1,0)
+E = (0,0)
+F = (1,0)
+G = (-1,-1)
+H = (0,-1)
+I = (1,-1)
 
-draw(A--C--I--G--cycle);
-draw(B--H);
-draw(D--I);
+A--C--I--G--cycle
+B--H
+D--F
 
 
 /*

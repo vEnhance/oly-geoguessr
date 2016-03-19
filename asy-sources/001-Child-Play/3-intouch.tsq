@@ -1,0 +1,18 @@
+A = dir 110
+B = dir 210
+C = dir 330
+I = incenter A B C
+D = foot I B C
+E = foot I C A
+F = foot I A B
+
+A--B--C--cycle
+incircle A B C dashed
+
+/*
+Source: Intouch Triangle
+Points: A B C D E F I
+Item: A E F I
+Item: B F D I
+Item: C D E I
+*/

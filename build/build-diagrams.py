@@ -4,27 +4,48 @@ import os
 import glob
 import shutil
 
-def createDiagram(dir_name, file_name):
-	fileasy = "asy-sources/" + dir_name + '/' + file_name + ".asy"
+PREAMBLE = """/* MEOW */
+import olympiad;
+import cse5;
+
+size(500);
+dotfactor *= 2;
+defaultpen(fontsize(18pt));
+
+"""
+
+def createDiagram(dir_name, file_name, ext):
+	filesrc = "asy-sources/" + dir_name + '/' + file_name + "." + ext
 	filepng = "diagrams/" + file_name + ".png"
-	filetxt = "/tmp/" + file_name + ".txt"
+	filetmp = "/tmp/" + file_name + ".tmp"
+	filetmpasy = "/tmp/" + file_name + ".tmpasy"
 	filenewasy = "/tmp/" + file_name + ".asy"
 	filejson = "diagrams/" + file_name + ".json"
 
 	# If already created and older, skip it
 	if os.path.isfile(filejson):
-		if os.path.getmtime(filejson) > os.path.getmtime(fileasy):
+		if os.path.getmtime(filejson) > os.path.getmtime(filesrc):
 			return 0
 
-	with open(fileasy, 'r') as r:
+	if ext == "asy":
+		fileoldasy = filesrc
+	elif ext == "tsq":
+		# I'm sorry! Evan's dotfiles are on Github, so...
+		os.system("cat %s | python2 ~/dotfiles/py-scripts/tsq.py > %s" %(filesrc, filetmpasy))
+		fileoldasy = filetmpasy
+	else:
+		print "WARNING: ignoring unknown %s" %filesrc
+		return -1 # I don't know how to deal with this!
+
+	orig_asy_content = ""
+	with open(fileoldasy, "r") as r:
 		pts_list = []
 		item_list = []
-		shutil.copyfile(fileasy, filenewasy);
 		for line in r:
+			orig_asy_content += line
 			line = line.strip()
 			if line.startswith('Source:'):
 				source = line[7:].strip()
-				print source
 			elif line.startswith('Points:'):
 				line = line[7:].strip()
 				pts_list = line.split()
@@ -32,38 +53,40 @@ def createDiagram(dir_name, file_name):
 				line = line[5:].strip()
 				item_list.append(line.split())
 
-	with open(filenewasy, 'a') as w:
+	with open(filenewasy, 'w') as w:
+		print >>w, PREAMBLE
+		print >>w, orig_asy_content
 		for pt in pts_list:
 			print >>w, "write(\"Point: %s,\" + (string) %s);" %(pt, pt)
 		print >>w, "write(\"umin \" + (string) min(currentpicture, user=true));" # User coordinates
 		print >>w, "write(\"umax \" + (string) max(currentpicture, user=true));"
 		print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
 		print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
-	command_asy = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetxt)
+	command_asy = "asy -f png -o %s %s > %s" %(filepng, filenewasy, filetmp)
 	print command_asy
 	os.system(command_asy)
 
-	#reading txt file from asymptote
+	#reading tmp file from asymptote
 	pts_coor = []
 	min_list = []
 	max_list = []
-	r = open(filetxt, "r")
-	for line in r:
-		if line.startswith('Point: '):
-			line = line.strip('Point: ').strip()
-			pts_coor.append(line.split(","))
-		elif line.startswith('umin '):
-			min_list = line.strip('umin ').strip().split(",")
-		elif line.startswith('umax '):
-			max_list = line.strip('umax ').strip().split(",")
-		elif line.startswith('pmin '):
-			pmin_list = line.strip('pmin ').strip().split(",")
-			pxmin = float(pmin_list[0][1:])
-			pymin = float(pmin_list[1][:-1])
-		elif line.startswith('pmax '):
-			pmax_list = line.strip('pmax ').strip().split(",")
-			pxmax = float(pmax_list[0][1:])
-			pymax = float(pmax_list[1][:-1])
+	with open(filetmp, "r") as r:
+		for line in r:
+			if line.startswith('Point: '):
+				line = line.strip('Point: ').strip()
+				pts_coor.append(line.split(","))
+			elif line.startswith('umin '):
+				min_list = line.strip('umin ').strip().split(",")
+			elif line.startswith('umax '):
+				max_list = line.strip('umax ').strip().split(",")
+			elif line.startswith('pmin '):
+				pmin_list = line.strip('pmin ').strip().split(",")
+				pxmin = float(pmin_list[0][1:])
+				pymin = float(pmin_list[1][:-1])
+			elif line.startswith('pmax '):
+				pmax_list = line.strip('pmax ').strip().split(",")
+				pxmax = float(pmax_list[0][1:])
+				pymax = float(pmax_list[1][:-1])
 
 	#writing json file
 	g = open(filejson, 'w')
@@ -90,10 +113,12 @@ def createDiagram(dir_name, file_name):
 if __name__ == "__main__":
 	diagram_index = {}
 
-	for s in glob.iglob("asy-sources/*/*.asy"):
-		junk, dir_name, file_name = s.split('/') #e.g. dir_name = 001-Demo, file_name = 1-Thale
-		file_name = file_name[:-4] # remove .asy extension
-		createDiagram(dir_name, file_name)
+	for s in glob.iglob("asy-sources/*/*"):
+		junk, dir_name, file_name_full = s.split('/') #e.g. dir_name = 001-Demo, file_name = 1-Thale
+		i = file_name_full.rfind('.')
+		file_name = file_name_full[:i] # remove .asy extension
+		extension = file_name_full[i+1:]
+		createDiagram(dir_name, file_name, extension)
 
 		if not diagram_index.has_key(dir_name):
 			diagram_index[dir_name] = []
