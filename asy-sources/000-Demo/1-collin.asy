@@ -10,8 +10,6 @@ dot("$A$", A, dir(90));
 dot("$B$", B, dir(90));
 dot("$C$", C, dir(90));
 
-draw(A--B--C--cycle);
-
 /*
   Source: Three Collinear Points
   Points: A B C

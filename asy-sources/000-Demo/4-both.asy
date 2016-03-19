@@ -7,9 +7,9 @@ pair B = dir(100);
 pair C = dir(190);
 pair D = dir(250);
 
-pair E = (3,1);
-pair F = (3,0);
-pair G = (3,-1);
+pair E = (2,1);
+pair F = (2,0.5);
+pair G = (2,0);
 
 dot("$A$", A, A);
 dot("$B$", B, B);
@@ -23,7 +23,7 @@ dot("$G$", G, dir(0));
 draw(A--B--C--D--cycle);
 
 /*
-  Source: Cyclic Quad and a Line
+  Source: Two items
   Points: A B C D E F G
   Item: A B C D
   Item: E F G
