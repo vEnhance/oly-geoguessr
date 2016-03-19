@@ -95,7 +95,7 @@ if __name__ == "__main__":
 	episodes = []
 	for dir_name, filenames in sorted(diagram_index.iteritems()):
 		# strip leading number, convert dashes to spaces
-		ep_name = dir_name.replace("-", ": ",1).replace("-", " ")
+		ep_name = dir_name.replace("-",": ",1).replace("-", " ")
 		episodes.append("'"+ep_name+"': " + str(sorted(filenames)))
 	
 	with open("js/episode-index.js", "w") as f:

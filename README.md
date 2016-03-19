@@ -41,8 +41,8 @@ Doing so incorrectly will again cause a small penalty, see below.
 
 ### Game Format
 
-Each "episode" consists of a set of six diagrams, worth 7 marks each.
-You are given 10 minutes to try and identify as many items as you can.
+Each "episode" consists of a set of four diagrams, worth 7 marks each.
+You are given six minutes to try and identify as many items as you can.
 The "Previous" and "Next" buttons in the lower-right let you move
 freely between the diagrams, so e.g. if you are stuck on one diagram,
 you can move on to a different one and come back later.
@@ -52,7 +52,7 @@ back and forth throughout the system.
 The episode ends when either one of the following conditions is met:
 
 + Time has expired, or
-+ You have completed all six diagrams.
++ You have completed all four diagrams.
 
 ### Scoring
 
