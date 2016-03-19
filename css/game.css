@@ -57,3 +57,8 @@ h1 { color: #000055; }
     opacity: 1.0;
     filter: alpha(opacity=100);
 }
+
+button.ui_button {
+	width: 8em;
+	height: 2.4em;
+}

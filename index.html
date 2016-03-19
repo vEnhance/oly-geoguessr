@@ -42,8 +42,8 @@
 	<div id="progress_box">
 		<h3>Progress</h3>
 		<ul id="progress"></ul>
-		<button id="prev_button" type="button" disabled>Previous</button>
-		<button id="next_button" type="button" disabled>Next</button>
+		<button id="prev_button" class="ui_button" type="button" disabled>Previous</button>
+		<button id="next_button" class="ui_button" type="button" disabled>Next</button>
 	</div>
 </div>
 <div id="main">
@@ -51,9 +51,9 @@
 	<h1 id="head_title">Welcome to Olympiad GeoGuessr</h1>
 	<div class="entrywrap">
 	<div id="top_bar">
-		<button id="check_button" type="button" disabled>Check</button>
-		<button id="done_button" type="button" disabled>Finish</button>
-		<button id="clear_button" type="button" disabled>Clear</button>
+		<button id="check_button" class="ui_button" type="button" disabled>Check</button>
+		<button id="done_button"  class="ui_button" type="button" disabled>Finish</button>
+		<button id="clear_button" class="ui_button" type="button" disabled>Clear</button>
 		<span id="curr_score_box"></span>
 	</div>
 	<div id="answer_box">
@@ -62,8 +62,9 @@
 	</div>
 	<br>
 	<div id="site" style="text-align: center">
+		<h2>Select an Episode:</h2>
 		<select id="episode_select">
-			<option value="">-- Select an Episode --</option>
+			<option value="">------</option>
 		</select>
 		<button id="start_game" disabled></button>
 	</div>
