@@ -5,6 +5,8 @@ SENSITIVITY = 50
 GAME_TOTAL_TIME = 1000 * 60 * 8 # in ms
 POINT_RADIUS = 5
 RING_RADIUS  = 24
+X_OFFSET = 10 # background pixel offset from top
+Y_OFFSET = 10 # background pixel offset from left
 
 # EPISODES provided by outer JS file
 
@@ -210,6 +212,7 @@ loadDiagramIntoUI = (diagram) ->
 	updateSidebarHard()
 	$("#head_title").html(diagram.source)
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
+	CANVAS.css "background-position", X_OFFSET + "px " + Y_OFFSET + "px"
 	if not diagram.game.isAlive() # game ended
 		loadAnswersIntoUI(diagram)
 
@@ -263,16 +266,17 @@ triggerUIEndGame = () ->
 # Low-level things
 drawCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
-	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
+	CONTEXT.arc p.x+X_OFFSET, p.y+Y_OFFSET, r, 0, 2 * Math.PI
 	CONTEXT.strokeStyle = color
 	CONTEXT.stroke()
 fillCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
-	CONTEXT.arc p.x, p.y, r, 0, 2 * Math.PI
+	CONTEXT.arc p.x+X_OFFSET, p.y+Y_OFFSET, r, 0, 2 * Math.PI
 	CONTEXT.fillStyle = color
 	CONTEXT.fill()
 clearAll = () ->
 	CONTEXT.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+
 
 # jQuery abstractions
 enableButtonIf = (selector, bool) ->
@@ -460,8 +464,10 @@ toggle = (p) ->
 
 onDiagramClick = (e) ->
 	diagram = game.currDiagram()
-	o = new Point("", e.pageX-this.offsetLeft, e.pageY-this.offsetTop)
-		# where user clicked
+	o = new Point("",
+		e.pageX-this.offsetLeft-X_OFFSET,
+		e.pageY-this.offsetTop-Y_OFFSET) # where user clicked
+
 	# Grab the closest point to the click
 	diagram.flat_points.sort( (p,q) -> dist(o,p)-dist(o,q) )
 	p = diagram.flat_points[0]
