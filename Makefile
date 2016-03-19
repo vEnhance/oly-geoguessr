@@ -8,7 +8,7 @@ js/jquery.min.js :
 
 diagrams : asy-sources/*
 	mkdir -p diagrams
-	./build-diagrams.py
+	./build/build-diagrams.py
 
 clean:
 	rm -f js/rungame.js
