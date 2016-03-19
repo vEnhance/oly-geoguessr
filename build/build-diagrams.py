@@ -100,5 +100,5 @@ if __name__ == "__main__":
 	
 	with open("js/episode-index.js", "w") as f:
 		print >>f, "EPISODES = {"
-		print >>f, '\t' + '\n\t'.join(episodes)
+		print >>f, '\t' + ',\n\t'.join(episodes)
 		print >>f, "\t};"
