@@ -31,7 +31,7 @@ def createDiagram(dir_name, file_name, ext):
 
 	if ext == "asy":
 		fileoldasy = filesrc
-	elif ext == "tsq":
+	elif ext == "txt":
 		# I'm sorry! Evan's dotfiles are on Github, so...
 		os.system("cat %s | python2 ~/dotfiles/py-scripts/tsq.py > %s" %(filesrc, filetmpasy))
 		fileoldasy = filetmpasy
