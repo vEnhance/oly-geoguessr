@@ -70,7 +70,7 @@ class Diagram
 		@score = 0
 	gradeItem: (item) ->
 		if not @game.isAlive()
-			throw Error("gradeItem called after game has ended")
+			throw Error("@gradeItem() called after game has ended")
 		i = @getPossibleItemIndex(item)
 		if i == -1 # wrong
 			@mistakes += 1
@@ -105,7 +105,7 @@ class Diagram
 		@score
 	gradeDone: () ->
 		if @complete or not @game.isAlive()
-			throw Error("Call to gradeDone now does not make sense.")
+			throw Error("Call of @gradeDone() does not make sense.")
 		if @allFound()
 			@complete = true
 			@score = @computeScore()
@@ -116,14 +116,14 @@ class Diagram
 		@score = @computeScore()
 
 	playerKnowsAnswer: (i) ->
-		(@game.alive) and (not i in @found_item_indices)
+		(not @game.alive) or (i in @found_item_indices)
 	getAnswer: (i) ->
-		if @playerKnowsAnswer(i)
-			throw Error("getAnswer called as if trying to cheat")
+		if not @playerKnowsAnswer(i)
+			throw Error("@getAnswer() called before item found")
 		@items[i].slice(0) # array copy
 	markAnswer: (i) ->
-		if @playerKnowsAnswer(i)
-			throw Error("getAnswer called as if trying to cheat")
+		if not @playerKnowsAnswer(i)
+			throw Error("@markAnswer() called before item found")
 		@active_points = @items[i].slice(0) # array copy
 	clearMarked: () ->
 		@active_points = []
@@ -163,11 +163,15 @@ class Game
 			@setDiagram(@i+1)
 
 	startGame: () ->
+		if @isAlive()
+			throw Error("@startGame() called while game already alive")
 		@start_time = performance.now()
 		triggerUIStartGame()
 		@setDiagram(0)
 		@timeout_object = setJSInterval 1000, $.proxy(@checkTime, @) # JS :(
 	endGame: () ->
+		if not @isAlive()
+			throw Error("@endGame() called while game already dead")
 		@end_time = performance.now()
 		clearTimeout @timeout_object
 		@alive = false
