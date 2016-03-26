@@ -9,7 +9,8 @@
 .button_red { background: red; }
 .button_green { background: green; }
 
-#score { font-weight: bold; }
+#score { font-size: 150%;  }
+#score_box h1 { font-weight: bold; }
 
 .score_unkwown { }
 .score_failed { color: red; }
@@ -18,19 +19,23 @@
 
 #curr_score_box {
 	float: right; 
-	font-size: 140%;
-	font-weight: bold;
+	font-size: 250%;
 }
 span.curr-score-unknown { }
+#time {
+	color: #ff0000;
+}
 
 .sweet-alert strong {
     font-weight: 600;
     color: blue;
 }
 
-li.answer { color: blue; }
+li.answer {
+	color: #cc0000;
+}
 li.answer:hover {
-	color: lightblue;
+	color: #ee8888;
 	cursor: pointer;
 }
 
@@ -38,15 +43,23 @@ li.answer:hover {
 	display: none;
 }
 
-body { background-color: #fff0e5; }
+body {
+	background-color: #fff0e5;
+	font-size: 12pt;
+}
 /* #header { background-color: #ffccb3; } */
 #header { background-color: #ff5555; }
 #main { background-color: #fff0aa; }
-#side { background-color: #99ccff; }
+#side { background-color: #aaddff; }
 div.entrywrap { background-color: #ffffff; }
 #navigation_box { background-color: #ccccff; }
 h1 { color: #000055; }
 #header h1 { color: #ffffff; font-weight: bold; }
+
+h3 {
+	font-weight: normal;
+	font-family: "Trebuchet MS", sans-serif;
+}
 
 /* Reduce opacity effect */
 #side {
