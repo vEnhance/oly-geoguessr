@@ -306,9 +306,6 @@ clearAll = () ->
 enableButtonIf = (selector, bool) ->
 	$(selector).prop('disabled', !bool)
 
-writeSpanActivePoints = (x) ->
-	$("#active_points").html(x.join(" "))
-
 tempAddClass = (elm, cls, time=1000) ->
 	$(elm).addClass(cls)
 	setJSTimeout time, () -> $(elm).removeClass(cls)
@@ -320,9 +317,6 @@ markAllActive = (c = "blue") ->
 	for p in ap
 		fillCircle(p, color=c, r=POINT_RADIUS)
 		drawCircle(p, color=c, r=RING_RADIUS)
-	writeSpanActivePoints(ap)
-updateActivePoints = () ->
-	writeSpanActivePoints(game.currDiagram().active_points)
 
 enableButtons = () ->
 	diagram = game.currDiagram()
@@ -381,7 +375,6 @@ updateScores = () ->
 updateSidebarSoft = (c = "blue") ->
 	# Updates for clicking on points
 	markAllActive(c)
-	updateActivePoints()
 	updateMistakes()
 	enableButtons()
 	updateTimeLeftOnce()
