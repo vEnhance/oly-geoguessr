@@ -70,7 +70,7 @@ class Diagram
 		@score = 0
 	gradeItem: (item) ->
 		if not @game.isAlive()
-			return false # wef the game ended
+			throw Error("gradeItem called after game has ended")
 		i = @getPossibleItemIndex(item)
 		if i == -1 # wrong
 			@mistakes += 1
@@ -105,7 +105,7 @@ class Diagram
 		@score
 	gradeDone: () ->
 		if @complete or not @game.isAlive()
-			return # What's going on
+			throw Error("Call to gradeDone now does not make sense.")
 		if @allFound()
 			@complete = true
 			@score = @computeScore()
@@ -119,11 +119,11 @@ class Diagram
 		(@game.alive) and (not i in @found_item_indices)
 	getAnswer: (i) ->
 		if @playerKnowsAnswer(i)
-			return # wef?
+			throw Error("getAnswer called as if trying to cheat")
 		@items[i].slice(0) # array copy
 	markAnswer: (i) ->
 		if @playerKnowsAnswer(i)
-			return # wef?
+			throw Error("getAnswer called as if trying to cheat")
 		@active_points = @items[i].slice(0) # array copy
 	clearMarked: () ->
 		@active_points = []
@@ -581,7 +581,7 @@ $ ->
 					"Something's wrong.  Try pressing the Start button again in a few seconds,
 					or longer if your Internet connection is poor.<br>
 					If that doesn't work out, you might be out of luck;
-					I never figured out this AJAX thingy.")
+					I never figured out this AJAX thing.")
 		else
 			alertError("Select a episode", "You need to select an episode to begin")
 
