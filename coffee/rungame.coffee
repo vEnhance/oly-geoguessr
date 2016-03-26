@@ -414,62 +414,60 @@ alertDiagramDone = () ->
 		" points</strong> for this diagram."
 	time = 3000
 	if time < game.getTimeLeft()
-		swal({
+		swal
 			title: title,
 			text: text,
 			type: "info",
 			html: true,
 			timer: time,
 			showConfirmButton: false,
-			allowOutsideClick: true,
-		})
+			allowOutsideClick: true
 	else
-		swal({
+		swal
 			title: title,
 			text: text,
 			type: "info",
 			html: true,
 			showConfirmButton: false,
-			allowOutsideClick: true,
-		})
+			allowOutsideClick: true
 
 alertGameWon = () ->
-	title = "You won! Congratulations!"
-	text = "You earned " +
+	alertGeneral
+		title: "You won! Congratulations!"
+		text: "You earned " +
 			game.currDiagram().getScore() + " points " +
 			"for this last diagram.<br>Your total score was <strong>" +
 			game.getScore() + " points</strong>. Thanks for playing!"
-	swal({
-		title: title,
-		text: text,
-		type: "success",
-		html: true,
-		allowOutsideClick: false,
-	})
-
+		type: "success"
 
 alertGameLost = () ->
-	title = "Game Over!"
-	text = "Your game has ended.<br>" +
+	alertGeneral
+		title: "Game Over!"
+		text: "Your game has ended.<br>" +
 			"Your score was <strong>" + game.getScore() +
 			" points</strong>." +
 			"<br><br>Thanks for playing! Answers will now be displayed."
+		type: "warning"
+
+alertGeneral = ({title, text, type} = {}) ->
+	type ?= null
 	swal({
 		title: title,
 		text: text,
-		type: "warning",
+		type: type,
 		html: true,
 		allowOutsideClick: false,
 	})
 
-alertError = (title, text) ->
+alertConfirm = ({title, text, type, callback} = {}) ->
+	type ?= null
 	swal({
 		title: title,
 		text: text,
-		type: "error",
+		type: type,
 		html: true,
-		allowOutsideClick: true,
-	})
+		showCancelButton: true
+	}, callback)
 
 # }}}
 # Click handler {{{
@@ -540,7 +538,12 @@ onNextButtonClick = (e) ->
 	updateSidebarHard()
 
 onQuitButtonClick = (e) ->
-	game.endGame() # self-destruct
+	alertConfirm
+		title: "Surrender?",
+		text: "Press OK to end the game immediately.
+		Press Cancel to return",
+		type: "warning",
+		callback: () -> setJSTimeout(500, () -> game.endGame())
 
 # }}}
 # Game initialization {{{
@@ -582,13 +585,18 @@ $ ->
 				game.startGame()
 			else
 				# This should never be called, the button shouldn't be enabled
-				alertError("Still Loading...",
-					"Something's wrong.  Try pressing the Start button again in a few seconds,
+				alertGeneral
+					title: "Still Loading...",
+					text: "Something's wrong.  Try pressing the Start button again in a few seconds,
 					or longer if your Internet connection is poor.<br>
 					If that doesn't work out, you might be out of luck;
-					I never figured out this AJAX thing.")
+					I never figured out this AJAX thing."
+					type: "error"
 		else
-			alertError("Select a episode", "You need to select an episode to begin")
+			alertGeneral
+				title: "Select a episode",
+				text: "You need to select an episode to begin"
+				type: "error"
 
 # }}}
 # vim: fdm=marker
