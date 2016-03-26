@@ -271,6 +271,7 @@ triggerUIStartGame = () ->
 	$("#done_button").click onDoneButtonClick
 	$("#prev_button").click onPrevButtonClick
 	$("#next_button").click onNextButtonClick
+	$("#quit_button").click onQuitButtonClick
 	updateTimeLeftForever()
 
 triggerUIEndGame = () ->
@@ -330,6 +331,7 @@ enableButtons = () ->
 		game.isAlive())
 	enableButtonIf("#next_button", game.i != game.length-1)
 	enableButtonIf("#prev_button", game.i != 0)
+	enableButtonIf("#quit_button", game.isAlive())
 
 # }}}
 # UI Updater {{{
@@ -536,6 +538,9 @@ onPrevButtonClick = (e) ->
 onNextButtonClick = (e) ->
 	game.nextDiagram()
 	updateSidebarHard()
+
+onQuitButtonClick = (e) ->
+	game.endGame() # self-destruct
 
 # }}}
 # Game initialization {{{
