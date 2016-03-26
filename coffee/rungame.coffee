@@ -247,8 +247,12 @@ addClickableItemBullet = (diagram, i, parent) ->
 
 loadAnswersIntoUI = (diagram) ->
 	$("#answers").empty()
-	for i in [0...diagram.length]
-		addClickableItemBullet(diagram, i, "#answers")
+	if diagram.unfound_item_indices.length == 0
+		$("#answers_heading").css("display", "none")
+	else
+		$("#answers_heading").css("display", "block")
+		for i in diagram.unfound_item_indices
+			addClickableItemBullet(diagram, i, "#answers")
 		
 # }}}
 # UI Triggers {{{
@@ -257,7 +261,7 @@ triggerUISetDiagram = () ->
 	loadDiagramIntoUI(game.currDiagram())
 
 triggerUIStartGame = () ->
-	$("#answers_heading").css("display", "none") # but prly already hidden
+	$("#answer_box").css("display", "none")
 	CANVAS = $("<canvas></canvas>")
 	CANVAS.attr "height", CANVAS_HEIGHT
 	CANVAS.attr "width",  CANVAS_WIDTH
@@ -275,7 +279,7 @@ triggerUIStartGame = () ->
 	updateTimeLeftForever()
 
 triggerUIEndGame = () ->
-	$("#answers_heading").css("display", "block")
+	$("#answer_box").css("display", "block")
 	if !game.allDone() # user ran out of time
 		alertGameLost()
 	updateSidebarHard()
