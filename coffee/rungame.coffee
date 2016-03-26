@@ -538,7 +538,7 @@ onNextButtonClick = (e) ->
 
 onQuitButtonClick = (e) ->
 	alertConfirm
-		title: "Surrender?",
+		title: "ragequit?",
 		text: "Press OK to end the game immediately.
 		Press Cancel to return",
 		type: "warning",
