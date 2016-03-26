@@ -18,11 +18,14 @@ game = null
 del = (arr, x) -> # no return value
 	arr.splice(arr.indexOf(x), 1) # delete p
 
-pointSort = (arr) ->
-	arr.sort((p,q) -> p.i - q.i)
 
 setJSTimeout = (ms, func) -> setTimeout func, ms
 setJSInterval = (ms, func) -> setInterval func, ms
+
+sortItem = (arr) ->
+	arr.sort((p,q) -> p.i - q.i)
+hashItem = (item) ->
+	JSON.stringify( (p.toString() for p in sortItem(item)) )
 
 # }}}
 
@@ -42,6 +45,7 @@ class Diagram
 		vmax = json_array["max"][1]
 		width = json_array["width"]
 		height = json_array["height"]
+
 		@points = {}
 		@flat_points = for point_array, i in json_array["points"]
 			pu = point_array[1]
@@ -50,12 +54,12 @@ class Diagram
 			py = height * (vmax-pv)/(vmax-vmin)
 			p = new Point(point_array[0], px, py, i)
 			@points[point_array[0]] = p
-		@items = []
-		@found_items = []
 		@items = for item in json_array["items"]
-			 pointSort((@points[name] for name in item))
-		@unfound_str_items = for sortedPointItem in @items
-			 JSON.stringify((p.toString() for p in sortedPointItem))
+			 sortItem((@points[name] for name in item))
+		@item_hashes = (hashItem(item) for item in @items)
+		@found_item_indices = []
+		@unfound_item_indices = [0...@items.length]
+
 		@source = json_array["source"]
 		@filename = json_array["filename"]
 		@mistakes = 0
@@ -67,17 +71,25 @@ class Diagram
 	gradeItem: (item) ->
 		if not @game.isAlive()
 			return false # wef the game ended
-		stringifiedActive = JSON.stringify(
-			(p.toString() for p in pointSort(item)) )
-		if stringifiedActive in @unfound_str_items
+		i = @getPossibleItemIndex(item)
+		if i == -1 # wrong
+			@mistakes += 1
+			return -1 # incorrect, return code -1
+		else if i in @found_item_indices
+			return -2 # already found, return code -2
+		else
 			# @active_points = [] # needs to run after UI
 			@found += 1
-			@found_items.push(item)
-			del(@unfound_str_items, stringifiedActive)
-			return true
-		else
-			@mistakes += 1
-			return false
+			@found_item_indices.push(i)
+			del(@unfound_item_indices, i)
+			return i
+	getPossibleItemIndex: (item) ->
+		hash = hashItem(item)
+		for i in [0...@items.length]
+			if hash == @item_hashes[i]
+				return i
+		return -1
+
 	allFound: () ->
 		@found == @length
 	computeScore: () ->
@@ -103,14 +115,18 @@ class Diagram
 	gradePartial: () ->
 		@score = @computeScore()
 
+	playerKnowsAnswer: (i) ->
+		(@game.alive) and (not i in @found_item_indices)
 	getAnswer: (i) ->
-		if @game.alive
+		if @playerKnowsAnswer(i)
 			return # wef?
 		@items[i].slice(0) # array copy
 	markAnswer: (i) ->
-		if @game.alive
+		if @playerKnowsAnswer(i)
 			return # wef?
 		@active_points = @items[i].slice(0) # array copy
+	clearMarked: () ->
+		@active_points = []
 
 class Game
 	constructor: (@diagram_names) ->
@@ -216,21 +232,24 @@ loadDiagramIntoUI = (diagram) ->
 	if not diagram.game.isAlive() # game ended
 		loadAnswersIntoUI(diagram)
 
+addClickableItemBullet = (diagram, i, parent) ->
+	target = $(parent)
+	li = $("<li></li>")
+	do (i, li) -> # wef JS scoping can go die
+		li.click () ->
+			diagram.markAnswer(i)
+			enableButtons()
+			markAllActive()
+			updateSidebarSoft()
+	li.addClass("answer")
+	li.html(diagram.getAnswer(i).join(" "))
+	target.append(li)
+
 loadAnswersIntoUI = (diagram) ->
 	$("#answers").empty()
 	for i in [0...diagram.length]
-		li = $("<li></li>")
-		console.log(li)
-		do (i, li) -> # wef JS scoping can go die
-			li.click () ->
-				diagram.markAnswer(i)
-				enableButtons()
-				markAllActive()
-				updateSidebarSoft()
-		li.addClass("answer")
-		li.html(diagram.getAnswer(i).join(" "))
-		$("#answers").append(li)
-
+		addClickableItemBullet(diagram, i, "#answers")
+		
 # }}}
 # UI Triggers {{{
 # Signals sent by model to UI, otherwise meow
@@ -284,8 +303,6 @@ enableButtonIf = (selector, bool) ->
 
 writeSpanActivePoints = (x) ->
 	$("#active_points").html(x.join(" "))
-writeSpanAppendFoundItem = (x) ->
-	$("#found").append($("<li>" + x.join(" ") + "</li>"))
 
 tempAddClass = (elm, cls, time=1000) ->
 	$(elm).addClass(cls)
@@ -337,8 +354,8 @@ updateProgressBullets = () ->
 		$("#progress").append(li)
 updateFoundItems = () ->
 	$("#found").empty()
-	for item in game.currDiagram().found_items
-		writeSpanAppendFoundItem(item)
+	for i in game.currDiagram().found_item_indices
+		addClickableItemBullet(game.currDiagram(), i, "#found")
 updateScores = () ->
 	diagram = game.currDiagram()
 	$("#score").html(game.getScore())
@@ -478,16 +495,20 @@ onDiagramClick = (e) ->
 onCheckButtonClick = (e) ->
 	diagram = game.currDiagram()
 	clone = diagram.active_points.slice(0) # I hate JS
-	if diagram.gradeItem(clone)
+	i = diagram.gradeItem(clone)
+	if i >= 0 # correct item
 		# Highlight green momentarily
 		markAllActive("green")
 		tempAddClass "#check_button", "button_green"
-		writeSpanAppendFoundItem(diagram.active_points)
-		diagram.active_points = []
+		diagram.clearMarked()
+		addClickableItemBullet(diagram, i, "#found")
 		setTimeout updateSidebarSoft, 400
-	else
+	else if i == -1 # incorrect item
 		tempAddClass "#check_button", "button_red"
 		updateSidebarSoft("red")
+	else if i == -2 # item found already
+		tempAddClass "#check_button", "button_red"
+		updateSidebarSoft("orange")
 
 onClearButtonClick = (e) ->
 	diagram = game.currDiagram()

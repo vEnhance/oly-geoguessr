@@ -27,12 +27,9 @@ If you are correct, then all points will flash green momentarily,
 and the found item which you clicked will be added to a
 running list on the right.  Otherwise, all points will flash red,
 and you will receive a slight penalty, see below.
-
+If you try to input an item more than once,
+the points will flash orange but there is no penalty.
 The order in which the points are highlighted is irrelevant.
-Note that if you try to select a item which
-you have already correctly identified,
-then the system will grade your response as incorrect;
-thus, keep track of what you've selected and haven't selected!
 
 Once you have found all the items in a diagram,
 **you must press the "Finish" button**.
