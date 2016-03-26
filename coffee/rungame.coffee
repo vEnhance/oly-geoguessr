@@ -431,19 +431,21 @@ alertDiagramDone = () ->
 alertGameWon = () ->
 	alertGeneral
 		title: "You won! Congratulations!"
-		text: "You earned " +
+		text: "<p>You earned " +
 			game.currDiagram().getScore() + " points " +
-			"for this last diagram.<br>Your total score was <strong>" +
-			game.getScore() + " points</strong>. Thanks for playing!"
+			"for this last diagram.</p><p>Your total score was <strong>" +
+			game.getScore() + " points</strong>. Thanks for playing!</p>" +
+			"<p>Reload the page to play again.</p>"
 		type: "success"
 
 alertGameLost = () ->
 	alertGeneral
 		title: "Game Over!"
-		text: "Your game has ended.<br>" +
-			"Your score was <strong>" + game.getScore() +
-			" points</strong>." +
-			"<br><br>Thanks for playing! Answers will now be displayed."
+		text: "<p>Your game has ended.</p>" +
+			"<p>Your score was <strong>" + game.getScore() +
+			" points</strong>.</p>" +
+			"<p>Thanks for playing! Answers will now be displayed.</p>" +
+			"<p>Reload the page to play again.</p>"
 		type: "warning"
 
 alertGeneral = ({title, text, type} = {}) ->
