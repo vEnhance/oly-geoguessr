@@ -76,18 +76,18 @@ def createDiagram(dir_name, file_name, ext):
 	with open(filetmp, "r") as r:
 		for line in r:
 			if line.startswith('Point: '):
-				line = line.strip('Point: ').strip()
+				line = line[7:].strip()
 				pts_coor.append(line.split(","))
 			elif line.startswith('umin '):
-				min_list = line.strip('umin ').strip().split(",")
+				min_list = line[4:].strip().split(",")
 			elif line.startswith('umax '):
-				max_list = line.strip('umax ').strip().split(",")
+				max_list = line[4:].strip().split(",")
 			elif line.startswith('pmin '):
-				pmin_list = line.strip('pmin ').strip().split(",")
+				pmin_list = line[4:].strip().split(",")
 				pxmin = float(pmin_list[0][1:])
 				pymin = float(pmin_list[1][:-1])
 			elif line.startswith('pmax '):
-				pmax_list = line.strip('pmax ').strip().split(",")
+				pmax_list = line[4:].strip().split(",")
 				pxmax = float(pmax_list[0][1:])
 				pymax = float(pmax_list[1][:-1])
 
