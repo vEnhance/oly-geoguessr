@@ -141,7 +141,7 @@ class Game
 		@i = 0 # player's current progress
 		@score = 0
 		@completed = 0
-		@alive = true
+		@alive = false
 		@total_time = GAME_TOTAL_TIME
 	doneLoadingDiagram: (i) ->
 		@diagrams[i].game = game
@@ -165,6 +165,7 @@ class Game
 	startGame: () ->
 		if @isAlive()
 			throw Error("@startGame() called while game already alive")
+		@alive = true
 		@start_time = performance.now()
 		triggerUIStartGame()
 		@setDiagram(0)
