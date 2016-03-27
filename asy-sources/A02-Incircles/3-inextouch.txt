@@ -19,7 +19,7 @@ C--P
 
 /*
 Source: Incircle and Excircle
-Points: A B C E F I P Q
+Points: P Q A B C E F I J
 Item: A Q P J
 Item: I B C J
 Item: F E P Q
