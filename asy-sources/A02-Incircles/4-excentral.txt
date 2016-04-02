@@ -35,5 +35,8 @@ Item: Z A B I
 Item: Z B C Y
 Item: Z A C X
 Item: X A B Y
+Item: A I X
+Item: B I Y
+Item: C I Z
 Text: The excentral triangle $XYZ$ is drawn.
 */

@@ -23,5 +23,6 @@ Points: P Q A B C E F I J
 Item: A Q P J
 Item: I B C J
 Item: F E P Q
+Item: A I J
 Text: The incircle and excircle are drawn.
 */
