@@ -15,13 +15,15 @@ defaultpen(fontsize(18pt));
 
 """
 
+TMP = "/tmp/guessr/"
+
 def createDiagram(dir_name, file_name, ext):
 	filesrc = "asy-sources/" + dir_name + '/' + file_name + "." + ext
 	filepdf = "diagrams/" + file_name + ".pdf"
 	filesvg = "diagrams/" + file_name + ".svg"
-	filetmp = "/tmp/" + file_name + ".tmp"
-	filetmpasy = "/tmp/" + file_name + ".tmpasy"
-	filenewasy = "/tmp/" + file_name + ".asy"
+	filetmp = TMP + file_name + ".tmp"
+	filetmpasy = TMP + file_name + ".tmpasy"
+	filenewasy = TMP + file_name + ".asy"
 	filejson = "diagrams/" + file_name + ".json"
 
 	# If already created and older, skip it
@@ -127,6 +129,7 @@ def createDiagram(dir_name, file_name, ext):
 
 if __name__ == "__main__":
 	diagram_index = {}
+	os.system("mkdir -p " + TMP)
 
 	for s in glob.iglob("asy-sources/*/*"):
 		junk, dir_name, file_name_full = s.split('/') #e.g. dir_name = 001-Demo, file_name = 1-Thale
