@@ -43,6 +43,12 @@ li.answer:hover {
 	display: none;
 }
 
+#description {
+	padding: 4px 4px 4px 4px;
+	color: #444444;
+	font-style: italic;
+}
+
 body {
 	background-color: #fff0e5;
 	font-size: 12pt;

@@ -3,6 +3,7 @@ import sys, os
 import re
 import glob
 import shutil
+import json
 
 PREAMBLE = """/* MEOW */
 import olympiad;
@@ -40,6 +41,11 @@ def createDiagram(dir_name, file_name, ext):
 		return -1 # I don't know how to deal with this!
 
 	orig_asy_content = ""
+	# Reset variables
+	source = ""
+	text = ""
+	pts_list = []
+	item_list = []
 	with open(fileoldasy, "r") as r:
 		pts_list = []
 		item_list = []
@@ -54,6 +60,11 @@ def createDiagram(dir_name, file_name, ext):
 			elif line.startswith('Item:'):
 				line = line[5:].strip()
 				item_list.append(line.split())
+			elif line.startswith('Text:'):
+				line = line[5:].strip()
+				text += line + '<br>'
+		text = text.strip()
+		text = json.dumps(text)
 
 	with open(filenewasy, 'w') as w:
 		print >>w, PREAMBLE
@@ -108,7 +119,8 @@ def createDiagram(dir_name, file_name, ext):
 	print >>g, '"source" : "%s",' %(source)
 	print >>g, '"filename" : "%s",' %(file_name)
 	print >>g, '"width" : "%f",' %(pxmax-pxmin)
-	print >>g, '"height" : "%f"' %(pymax-pymin)
+	print >>g, '"height" : "%f",' %(pymax-pymin)
+	print >>g, '"text" : %s' %(text) # json dump'ed, no quotes
 	print >>g, '}'
 	return 1
 

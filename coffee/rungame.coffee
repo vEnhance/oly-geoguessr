@@ -62,6 +62,7 @@ class Diagram
 
 		@source = json_array["source"]
 		@filename = json_array["filename"]
+		@text = json_array["text"]
 		@mistakes = 0
 		@found = 0
 		@length = @items.length
@@ -232,6 +233,7 @@ loadDiagramIntoUI = (diagram) ->
 	clearAll()
 	updateSidebarHard()
 	$("#head_title").html(diagram.source)
+	$("#description").html(diagram.text)
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
 	CANVAS.css "background-position", X_OFFSET + "px " + Y_OFFSET + "px"
 	if not diagram.game.isAlive() # game ended
