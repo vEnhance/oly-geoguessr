@@ -2,7 +2,7 @@
 CANVAS_HEIGHT = 600
 CANVAS_WIDTH  = 600
 SENSITIVITY = 50
-GAME_TOTAL_TIME = 1000 * 60 * 8 # in ms
+GAME_TOTAL_TIME = 1000 * 60 * 12 # in ms
 POINT_RADIUS = 5
 RING_RADIUS  = 24
 X_OFFSET = 30 # background pixel offset from top
