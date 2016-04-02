@@ -34,4 +34,5 @@ E--F--I--H--cycle 0.2 grey / black+1
   Item: D H A I
   Item: A E I
   Item: C E G
+  Text: This diagram contains four equal squares.
 */

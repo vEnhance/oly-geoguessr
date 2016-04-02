@@ -18,4 +18,5 @@ dot("$O$", O, dir(90));
   Item: A O C
   Item: B O D
   Item: A B C D
+  Text: Point $O$ is the center of a square $ABCD$.
 */

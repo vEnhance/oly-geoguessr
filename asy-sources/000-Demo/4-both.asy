@@ -19,8 +19,10 @@ dot("$G$", G, dir(0));
 draw(A--B--C--D--cycle);
 
 /*
-  Source: Two items
+  Source: Two Items
   Points: A B C D E F G
   Item: A B C D
   Item: E F G
+  Text: This diagram has two items.
+  Text: Make sure you have both of them before pressing "Finish"!
 */

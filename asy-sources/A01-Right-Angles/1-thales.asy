@@ -19,4 +19,5 @@ dot("$O$", O, dir(-B));
   Source: Thale's Theorem
   Points: A O B C
   Item: A O C
+  Text: Assume $\angle ABC = 90^{\circ}$.
 */

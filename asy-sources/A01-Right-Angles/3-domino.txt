@@ -14,4 +14,5 @@ B--C--F--E--cycle 0.2 lightgreen / black+1
   Item: A B D E
   Item: B C E F
   Item: A C D F
+  Text: This diagram contains two equal squares.
 */

@@ -15,4 +15,5 @@ Points: A B C D E F I
 Item: A E F I
 Item: B F D I
 Item: C D E I
+Text: The incircle of a triangle $ABC$ is as shown.
 */

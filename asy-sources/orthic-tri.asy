@@ -32,4 +32,5 @@ draw(C--F);
   Item: A H E F
   Item: B H F D
   Item: C H D E
+  Text: Here $\triangle DEF$ is the orthic triangle of $\triangle ABC$.
 */

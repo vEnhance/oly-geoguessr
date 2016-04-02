@@ -16,4 +16,5 @@ Source: Fact 5
 Points: A B C I E F L
 Item: A I L
 Item: A B C L
+Text: Here, $L$ is the circumcenter of $\triangle BIC$.
 */

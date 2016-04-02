@@ -14,4 +14,5 @@ draw(A--B--C--D--cycle);
   Source: Cyclic Quad
   Points: A B C D
   Item: A B C D
+  Text: This diagram contains a single cyclic quadrilateral.
 */
