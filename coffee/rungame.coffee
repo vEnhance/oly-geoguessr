@@ -18,7 +18,6 @@ game = null
 del = (arr, x) -> # no return value
 	arr.splice(arr.indexOf(x), 1) # delete p
 
-
 setJSTimeout = (ms, func) -> setTimeout func, ms
 setJSInterval = (ms, func) -> setInterval func, ms
 
@@ -26,6 +25,21 @@ sortItem = (arr) ->
 	arr.sort((p,q) -> p.i - q.i)
 hashItem = (item) ->
 	JSON.stringify( (p.toString() for p in sortItem(item)) )
+
+katexMath = (elm, text) ->
+	elm = $(elm)
+	elm.html(text)
+	if typeof window.renderMathInElement == "function"
+		render = window.renderMathInElement
+		delim = [{left: "$", right: "$", display: false}]
+		try
+			render elm.get(0), {delimiters: delim}
+			return 0
+		catch e
+			console.log(e)
+			return -1
+	else
+		throw Error("No KaTeX renderer")
 
 # }}}
 
@@ -232,8 +246,9 @@ ajaxPreloadDiagram = (filename, game, i) ->
 loadDiagramIntoUI = (diagram) ->
 	clearAll()
 	updateSidebarHard()
-	$("#head_title").html(diagram.source)
-	$("#description").html(diagram.text)
+	katexMath("#head_title", diagram.source)
+	katexMath("#description", diagram.text)
+
 	CANVAS.css "background", "url(" + toImg(diagram.filename) + ") no-repeat"
 	CANVAS.css "background-position", X_OFFSET + "px " + Y_OFFSET + "px"
 	if not diagram.game.isAlive() # game ended

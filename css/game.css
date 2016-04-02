@@ -43,7 +43,7 @@ li.answer:hover {
 	display: none;
 }
 
-#description {
+#description_box {
 	padding: 4px 4px 4px 4px;
 	color: #444444;
 	font-style: italic;

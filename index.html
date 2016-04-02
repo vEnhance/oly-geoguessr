@@ -11,9 +11,13 @@
 }
 </script>
 <script src="js/episode-index.js"></script>
-<script src="js/rungame.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 
+<script src="js/rungame.js"></script>
 </head>
 <body>
 
@@ -53,7 +57,9 @@
 		<button id="clear_button" class="ui_button" type="button" disabled>Clear</button>
 		<span id="curr_score_box"></span>
 	</div>
-	<div id="description">
+	<div id="description_box">
+		<div id="description">
+		</div>
 	</div>
 	<div id="answer_box">
 		<h3 id="answers_heading">Missed Items (click item to display)</h3>
