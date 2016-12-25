@@ -4,7 +4,7 @@ js/rungame.js : coffee/rungame.coffee
 	coffee -c -o js coffee/rungame.coffee;
 
 css/simple-53544.css :
-	wget http://www.mit.edu/~evanchen/css/simple-53544.css
+	wget http://www.mit.edu/~evanchen/css/simple-53544.css -O css/simple-53544.css
 
 js/jquery.min.js : 
 	wget https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -O js/jquery.min.js
