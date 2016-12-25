@@ -1,0 +1,24 @@
+A = dir 110
+B = dir 200
+C = dir 340
+A--B--C--cycle blue
+unitcircle 0.1 lightblue / blue
+
+P = dir 50
+X = foot P B C R270
+Y = foot P C A R225
+Z = foot P A B
+P--X red
+P--Y red
+P--Z red
+Z--A blue
+
+/*
+Source: Simson Line (1.48)
+Points: A B C P X Y Z
+Text: Lines $PX$, $PY$, $PZ$ are altitudes, and $P$ is arbitrary.
+Item: X Y Z
+Item: A P Y Z
+Item: B P Z X
+Item: C P X Y
+*/

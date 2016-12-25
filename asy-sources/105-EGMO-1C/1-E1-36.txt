@@ -1,0 +1,23 @@
+B = dir 135
+C = dir 225
+D = dir 315
+E = dir 45
+O = origin R-90
+T := (-0.3,1.4)
+A = OP O--T circumcircle B O E
+
+anglemark B A O heavycyan
+!markscalefactor *= 0.7;
+anglemark O A E heavycyan
+
+A--B--C--D--E--cycle 0.1 lightblue / blue
+C--E--B--D lightblue
+A--O red
+
+/*
+Source: 1.36
+Points: A B C D E O T
+Text: Line $AO$ bisects $\angle BAE$, and $AB \neq AE$. $BCDE$ is a square.
+Item: A B O E
+Item: B C D E
+*/

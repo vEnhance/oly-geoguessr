@@ -1,0 +1,19 @@
+A = dir 110
+B = dir 210
+C = dir 330
+A--B--C--cycle 0.1 lightcyan / lightblue
+O = dir -90
+I = incenter A B C R90
+D = foot I A B
+E = foot I A C
+incircle A B C dashed lightblue
+B--I--C lightblue
+D--O--E heavygreen
+
+/*
+Source: CGMO 2012/5 (1.50)
+Text: $O$ is the circumcenter of $\triangle BCI$. One can prove $\angle BDO = \angle CEO$.
+Points: A B C D E I O
+Item: A I O
+Item: A B C O
+*/

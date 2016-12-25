@@ -1,0 +1,34 @@
+A = dir 110
+B = dir 230
+C = dir 310
+A--B--C--cycle 0.1 lightblue / blue
+
+I = incenter A B C
+D = foot I B C
+E = foot I C A
+F = foot I A B
+
+X = midpoint B--C
+Y = midpoint C--A
+Z = midpoint A--B
+
+P = extension B I E F R70
+Q = extension C I E F R110
+
+circumcircle B P Q 0.1 lightgreen / green
+E--F blue
+
+incircle A B C dashed red
+
+/*
+Source: Right Angles on Intouch Chord (1.45)
+Points: A B C I D E F X Y Z P Q
+Text: $P$ and $Q$ lie on the circle with diameter $BC$, and $X$, $Y$, $Z$ are midpoints of sides.
+Item: A I E F
+Item: P B I
+Item: Q C I
+Item: X Q Z
+Item: X P Y
+Item: B F Q I D
+Item: C E P I D
+*/

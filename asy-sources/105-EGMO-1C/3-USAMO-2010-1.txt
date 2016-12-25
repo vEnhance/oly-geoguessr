@@ -1,0 +1,35 @@
+A = dir 180
+B = dir 0
+X = dir 140
+Y = dir 100
+Z = dir 60
+
+P = foot Y A X
+Q = foot Y B X
+R = foot Y A Z
+S = foot Y B Z
+
+T = extension P Q R S
+
+A--X--Y--Z--B orange
+unitcircle 0.1 orange / red
+
+Y--P red
+Y--Q red
+Y--R red
+Y--S red
+P--X--B brown
+P--T--S red
+S--Z--A brown
+
+/*
+Source: USAMO 2010/1 (1.49)
+Points: A T B X Y Z P Q R S
+Text: $AB$ is a diameter and $AXYZB$ is otherwise arbitrary. 
+Text: Lines $YP$, $YQ$, $YR$, $YS$ are altitudes.
+Item: A T B
+Item: P Y X Q
+Item: S Y R Z
+Item: P Y R T A
+Item: S Y Q T B
+*/

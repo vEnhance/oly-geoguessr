@@ -1,0 +1,30 @@
+A = dir 110
+B = dir 210
+C = dir 330
+M = foot B A C
+N = foot C A B
+B--M
+C--N
+A--B--C--cycle 0.1 lightcyan / lightblue
+B--M lightblue
+C--N lightblue
+W = 0.55*C+0.45*B
+H = A+B+C
+P = foot H A W R30
+X = extension P H B B+A-H
+Y = extension P H C C+A-H
+circumcircle B N W 0.1 lightgreen / heavygreen
+circumcircle C M W 0.1 lightgreen / heavygreen
+X--W--Y heavygreen
+B--X lightblue
+C--Y lightblue
+
+/*
+Source: IMO 2013/4 (1.50)
+Text: $W$ is arbitrary, and $XW$, $XY$ are diameters.
+Points: A M N H P B C X Y W
+Item: A M H N P
+Item: B N M C
+Item: X H P Y
+Item: A P W
+*/

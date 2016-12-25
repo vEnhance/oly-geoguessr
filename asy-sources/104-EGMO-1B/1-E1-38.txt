@@ -1,0 +1,26 @@
+A = dir 130
+B = dir 210
+C = dir 330
+D = dir 80
+M = dir -90
+
+A--B--C--D--cycle blue
+unitcircle 0.1 lightblue / blue
+
+I = incenter A B C
+J = incenter D B C
+
+incircle A B C dashed heavygreen
+incircle D B C dashed heavygreen
+
+A--C lightblue
+B--D lightblue
+
+/*
+Source: 1.38
+Points: A B C D M I J
+Item: B C I J
+Item: A I M
+Item: D J M
+Text: $M$ is the arc midpoint of arc $BC$.
+*/
