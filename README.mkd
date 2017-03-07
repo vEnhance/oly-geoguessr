@@ -1,5 +1,7 @@
 # Olympiad GeoGuessr (oly-geoguessr)
 
+[Link to game](http://www.mit.edu/~evanchen/guessr/index.html)
+
 ## Synopsis
 
 A **item** is defined to be any of the following:
