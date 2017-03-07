@@ -69,9 +69,3 @@ Your score for a diagram is computed as follows.
 
 Here an "error" is any conjecture graded as incorrect
 or any incorrect attempts to press the "Done" button.
-
-### TODO / Known Bugs
-
-No known bugs at the moment.
-
-To do: add in lots of diagrams.
