@@ -1,4 +1,4 @@
-# Constants {{{
+# Constants 
 CANVAS_HEIGHT = 600
 CANVAS_WIDTH  = 600
 SENSITIVITY = 50
@@ -13,8 +13,8 @@ Y_OFFSET = 10 # background pixel offset from left
 CANVAS = null
 CONTEXT = null
 game = null
-# }}}
-# Aux {{{
+
+# Aux 
 del = (arr, x) -> # no return value
 	arr.splice(arr.indexOf(x), 1) # delete p
 
@@ -41,9 +41,9 @@ katexMath = (elm, text) ->
 	else
 		throw Error("No KaTeX renderer")
 
-# }}}
 
-# Model Objects {{{
+
+# Model Objects 
 class Point
 	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
@@ -276,8 +276,8 @@ loadAnswersIntoUI = (diagram) ->
 		for i in diagram.unfound_item_indices
 			addClickableItemBullet(diagram, i, "#answers")
 		
-# }}}
-# UI Triggers {{{
+
+# UI Triggers 
 # Signals sent by model to UI, otherwise meow
 triggerUISetDiagram = () ->
 	loadDiagramIntoUI(game.currDiagram())
@@ -291,6 +291,7 @@ triggerUIStartGame = () ->
 	CONTEXT = CANVAS.get(0).getContext("2d")
 
 	$("#site").empty()
+	$("#credits").hide(500)
 	$("#site").append(CANVAS)
 	$("#check_button").click onCheckButtonClick
 	$("#clear_button").click onClearButtonClick
@@ -305,10 +306,11 @@ triggerUIEndGame = () ->
 	if !game.allDone() # user ran out of time
 		alertGameLost()
 	updateSidebarHard()
+	$("#credits").show(500)
 	loadDiagramIntoUI(game.currDiagram())
 
-# }}}
-# Canvas art and Button UI {{{
+
+# Canvas art and Button UI 
 # Low-level things
 drawCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
@@ -353,8 +355,8 @@ enableButtons = () ->
 	enableButtonIf("#prev_button", game.i != 0)
 	enableButtonIf("#quit_button", game.isAlive())
 
-# }}}
-# UI Updater {{{
+
+# UI Updater 
 updateMistakes = () ->
 	$("#mistakes").html(game.currDiagram().mistakes)
 updateProgressBullets = () ->
@@ -423,8 +425,8 @@ updateTimeLeftForever = () ->
 updateTimeLeftOnce = () ->
 	$("#time").html(getTimeString(game.getTimeLeft()))
 
-# }}}
-# Alerts {{{
+
+# Alerts 
 
 alertDiagramDone = () ->
 	title = "Diagram complete!"
@@ -490,8 +492,8 @@ alertConfirm = ({title, text, type, callback} = {}) ->
 		showCancelButton: true
 	}, callback)
 
-# }}}
-# Click handler {{{
+
+# Click handler 
 toggle = (p) ->
 	diagram = game.currDiagram()
 	if not (p in diagram.active_points)
@@ -566,8 +568,8 @@ onQuitButtonClick = (e) ->
 		type: "warning",
 		callback: () -> setJSTimeout(500, () -> game.endGame())
 
-# }}}
-# Game initialization {{{
+
+# Game initialization 
 
 initEpisodeSelect = () ->
 	epselector = $("#episode_select")
@@ -591,9 +593,9 @@ initEpisodeSelect = () ->
 	epselector.trigger("change")
 
 
-# }}}
 
-# Main function {{{
+
+# Main function 
 $ ->
 	$("[type=button]").prop("disabled", true)
 	enableButtonIf("#start_game", false) # why isn't this already done!?
@@ -619,5 +621,5 @@ $ ->
 				text: "You need to select an episode to begin"
 				type: "error"
 
-# }}}
+
 # vim: fdm=marker
