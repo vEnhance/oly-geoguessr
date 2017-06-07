@@ -15,5 +15,6 @@ Source: CGMO 2012/5 (1.50)
 Text: $O$ is the circumcenter of $\triangle BCI$. One can prove $\angle BDO = \angle CEO$.
 Points: A B C D E I O
 Item: A I O
+Item: A I D E
 Item: A B C O
 */
