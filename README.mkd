@@ -1,6 +1,6 @@
 # Olympiad GeoGuessr (oly-geoguessr)
 
-[Link to game](http://www.mit.edu/~evanchen/guessr/index.html)
+[Link to game](http://web.evanchen.cc/guessr/index.html)
 
 ## Synopsis
 
