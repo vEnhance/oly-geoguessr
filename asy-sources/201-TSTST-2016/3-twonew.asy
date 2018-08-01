@@ -32,5 +32,6 @@ draw(A--N^^B--R--E);draw(P--A^^P--G);
   Item: P T N
   Item: R G T Q N
   Item: A G R
+  Item: P A G T
   Text: In the same diagram as before, $PA$ and $PG$ are tangents to $(AEFGQ)$, and $T$ is the inverse of $R$ with respect to that circle.
 */
