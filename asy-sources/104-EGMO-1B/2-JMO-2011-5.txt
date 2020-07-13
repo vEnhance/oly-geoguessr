@@ -19,5 +19,5 @@ Source: JMO 2011/5 (1.43)
 Points: A B C D E P M
 Item: B M E
 Item: P B D M
-Text: $M$ is the midpoint of $\overline{AC}$.
+Text: $M$ is the midpoint of $\overline{AC}$ and $\overline{AC} \parallel \overline{DE}$.
 */
