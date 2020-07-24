@@ -27,6 +27,8 @@ draw(B--E^^C--F);
   Points: A B C H E F N X G
   Item: B F E C
   Item: G H N X
+  Item: G E N B
+  Item: G F N C
   Text: Here $H$ is the orthocenter of $ABC$, and $N$ is the midpoint of $BC$.
   Text: The circumcircle of $ABC$ meets the circumcircle of $AEF$ at $G \ne A$.
   Text: Finally, $X$ is the antipode of $A$ in the circumcircle.
