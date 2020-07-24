@@ -69,7 +69,7 @@ class Diagram
 			p = new Point(point_array[0], px, py, i)
 			@points[point_array[0]] = p
 		@items = for item in json_array["items"]
-			 sortItem((@points[name] for name in item))
+			sortItem((@points[name] for name in item))
 		@item_hashes = (hashItem(item) for item in @items)
 		@found_item_indices = []
 		@unfound_item_indices = [0...@items.length]
@@ -233,7 +233,7 @@ ajaxPreloadDiagram = (filename, game, i) ->
 				diagram = new Diagram(data)
 				game.diagrams[i] = diagram
 				game.doneLoadingDiagram(i)
-	).error( # chain
+	).fail( # chain
 		(jqXhr, textStatus, error) ->
 			swal({
 				title: textStatus,
