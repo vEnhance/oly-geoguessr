@@ -20,7 +20,7 @@ TMP = "/tmp/guessr/"
 def createDiagram(dir_name, file_name, ext):
 	filesrc = "asy-sources/" + dir_name + '/' + file_name + "." + ext
 	filepdf = "diagrams/" + file_name + ".pdf"
-	filesvg = "diagrams/" + file_name + ".svg"
+	filepng = "diagrams/" + file_name + ".png"
 	filetmp = TMP + file_name + ".tmp"
 	filetmpasy = TMP + file_name + ".tmpasy"
 	filenewasy = TMP + file_name + ".asy"
@@ -78,7 +78,7 @@ def createDiagram(dir_name, file_name, ext):
 		print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
 		print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
 	command = "asy -f pdf -o %s %s > %s;\nconvert %s %s" \
-			%(filepdf, filenewasy, filetmp, filepdf, filesvg)
+			%(filepdf, filenewasy, filetmp, filepdf, filepng)
 	print command
 	os.system(command)
 

@@ -222,7 +222,7 @@ dist = (p, q) ->
 	Math.pow(Math.pow(p.x-q.x, 2) + Math.pow(p.y-q.y, 2), 0.5)
 
 toImg = (filename) ->
-	"diagrams/" + filename + ".svg"
+	"diagrams/" + filename + ".png"
 toJSON = (filename) ->
 	"diagrams/" + filename + ".json"
 
