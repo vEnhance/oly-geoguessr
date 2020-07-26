@@ -1,5 +1,3 @@
-size(10cm);
-
 pair A = (0,4);
 pair B = (6,0);
 pair C = (0,-3);

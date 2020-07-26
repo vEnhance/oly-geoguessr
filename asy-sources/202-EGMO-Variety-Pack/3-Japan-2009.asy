@@ -1,5 +1,3 @@
-size(10cm);
-
 pair Q = dir(240);
 pair R = origin;
 pair O = Q+dir(Q--R)*0.6;

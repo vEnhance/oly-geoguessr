@@ -1,5 +1,3 @@
-size(10cm);
-
 pair A = dir(120);
 pair B = dir(210);
 pair C = dir(330);
