@@ -1,4 +1,4 @@
-all : js/rungame.js diagrams js/jquery.min.js css/simple-53544.css
+all : js/rungame.js diagrams js/jquery.min.js
 
 js/rungame.js : coffee/rungame.coffee
 	coffee -c -o js coffee/rungame.coffee;
