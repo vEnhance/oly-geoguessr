@@ -51,5 +51,6 @@ label("$Q_2$", Q2, dir(90));
   Item: P1 Q1 C D
   Item: P2 Q2 C D
   Item: P1 Q1 P2 Q2
+  Item: A B Q1 Q2
   Text: IMO Shortlist 2010, Problem G1
 */
