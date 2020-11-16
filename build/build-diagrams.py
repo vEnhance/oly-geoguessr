@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 import sys, os
 import re
 import glob
@@ -39,7 +39,7 @@ def createDiagram(dir_name, file_name, ext):
 		os.system("cat %s | python2 ~/dotfiles/py-scripts/tsq.py > %s" %(filesrc, filetmpasy))
 		fileoldasy = filetmpasy
 	else:
-		print "WARNING: ignoring unknown %s" %filesrc
+		print("WARNING: ignoring unknown %s" %filesrc)
 		return -1 # I don't know how to deal with this!
 
 	orig_asy_content = ""
@@ -69,17 +69,17 @@ def createDiagram(dir_name, file_name, ext):
 		text = json.dumps(text)
 
 	with open(filenewasy, 'w') as w:
-		print >>w, PREAMBLE
-		print >>w, orig_asy_content
+		print(PREAMBLE, file=w)
+		print(orig_asy_content, file=w)
 		for pt in pts_list:
-			print >>w, "write(\"Point: %s,\" + (string) %s);" %(pt, pt)
-		print >>w, "write(\"umin \" + (string) min(currentpicture, user=true));" # User coordinates
-		print >>w, "write(\"umax \" + (string) max(currentpicture, user=true));"
-		print >>w, "write(\"pmin \" + (string) min(currentpicture, user=false));" # PS coordinates
-		print >>w, "write(\"pmax \" + (string) max(currentpicture, user=false));"
+			print("write(\"Point: %s,\" + (string) %s);" %(pt, pt), file=w)
+		print("write(\"umin \" + (string) min(currentpicture, user=true));", file=w) # User coordinates
+		print("write(\"umax \" + (string) max(currentpicture, user=true));", file=w)
+		print("write(\"pmin \" + (string) min(currentpicture, user=false));", file=w) # PS coordinates
+		print("write(\"pmax \" + (string) max(currentpicture, user=false));", file=w)
 	command = "asy -f pdf -o %s %s > %s;\nconvert %s %s" \
 			%(filepdf, filenewasy, filetmp, filepdf, filepng)
-	print command
+	print(command)
 	os.system(command)
 
 	#reading tmp file from asymptote
@@ -108,22 +108,22 @@ def createDiagram(dir_name, file_name, ext):
 	g = open(filejson, 'w')
 	g.write('{\n')
 	g.write('"points" : [\n')
-	print >>g, ',\n'.join([ '["%s", %s, %s]' %(pt[0], pt[1][1:], pt[2][:-1]) for pt in pts_coor ])
-	print >>g, '],'
+	print(',\n'.join([ '["%s", %s, %s]' %(pt[0], pt[1][1:], pt[2][:-1]) for pt in pts_coor ]), file=g)
+	print('],', file=g)
 
-	print >>g, '"min" : [%s,%s],' %(min_list[0][1:], min_list[1][:-1])
-	print >>g, '"max" : [%s,%s],' %(max_list[0][1:], max_list[1][:-1])
+	print('"min" : [%s,%s],' %(min_list[0][1:], min_list[1][:-1]), file=g)
+	print('"max" : [%s,%s],' %(max_list[0][1:], max_list[1][:-1]), file=g)
 
-	print >>g, '"items" : ['
-	print >>g, ',\n'.join([ '['+','.join(['"%s"' %p for p in ls])+']' for ls in item_list ])
-	print >>g, '],'
+	print('"items" : [', file=g)
+	print(',\n'.join([ '['+','.join(['"%s"' %p for p in ls])+']' for ls in item_list ]), file=g)
+	print('],', file=g)
 
-	print >>g, '"source" : "%s",' %(source)
-	print >>g, '"filename" : "%s",' %(file_name)
-	print >>g, '"width" : "%f",' %(pxmax-pxmin)
-	print >>g, '"height" : "%f",' %(pymax-pymin)
-	print >>g, '"text" : %s' %(text) # json dump'ed, no quotes
-	print >>g, '}'
+	print('"source" : "%s",' %(source), file=g)
+	print('"filename" : "%s",' %(file_name), file=g)
+	print('"width" : "%f",' %(pxmax-pxmin), file=g)
+	print('"height" : "%f",' %(pymax-pymin), file=g)
+	print('"text" : %s' %(text), file=g) # json dump'ed, no quotes
+	print('}', file=g)
 	return 1
 
 
@@ -138,17 +138,17 @@ if __name__ == "__main__":
 		extension = file_name_full[i+1:]
 		createDiagram(dir_name, file_name, extension)
 
-		if not diagram_index.has_key(dir_name):
+		if dir_name not in diagram_index:
 			diagram_index[dir_name] = []
 		diagram_index[dir_name].append(file_name)
 
 	episodes = []
-	for dir_name, filenames in sorted(diagram_index.iteritems()):
+	for dir_name, filenames in sorted(diagram_index.items()):
 		# strip leading number, convert dashes to spaces
 		ep_name = dir_name.replace("-",": ",1).replace("-", " ")
 		episodes.append("'"+ep_name+"': " + str(sorted(filenames)))
 	
 	with open("js/episode-index.js", "w") as f:
-		print >>f, "EPISODES = {"
-		print >>f, '\t' + ',\n\t'.join(episodes)
-		print >>f, "\t};"
+		print("EPISODES = {", file=f)
+		print('\t' + ',\n\t'.join(episodes), file=f)
+		print("\t};", file=f)
