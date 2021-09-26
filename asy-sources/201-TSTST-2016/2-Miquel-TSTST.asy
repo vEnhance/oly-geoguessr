@@ -34,6 +34,8 @@ draw(C--F, dashed);
   Item: R G A
   Item: R B F G
   Item: R C E G
+  Item: R F Q C
+  Item: R B Q E
   Text: Point $Q$ is the second intersection of the $A$- median and the circumcircle of $AEF$,
   Text: and is also known as the $A$-HM point.
 */
