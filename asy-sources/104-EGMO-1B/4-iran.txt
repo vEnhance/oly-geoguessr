@@ -32,6 +32,4 @@ Item: X P Y
 Item: B F Q I D
 Item: C E P I D
 Item: D X P Q
-Item: B I F D
-Item: C I D E
 */
