@@ -12,6 +12,17 @@ pair Y = intersections(w,L,L+dir(0))[0];
 pair P = intersections(B--C,A,X)[0];
 pair Q = intersections(B--C,A,Y)[0];
 
+dot("$A$",A,dir(90));
+dot("$B$",B,dir(200));
+dot("$C$",C,dir(-20));
+dot("$M$",M,dir(-90));
+dot("$K$",K,dir(180));
+dot("$L$",L,dir(50));
+dot("$X$",X,dir(0));
+dot("$Y$",Y,dir(130));
+dot("$P$",P,dir(-90));
+dot("$Q$",Q,dir(-90));
+
 /*
 Source: ISL 2005 G6
 Points: A B C M K L X Y P Q
