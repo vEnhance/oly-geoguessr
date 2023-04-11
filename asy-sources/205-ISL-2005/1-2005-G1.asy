@@ -14,7 +14,7 @@ dot("$B$",B,dir(200));
 dot("$C$",C,dir(-40));
 
 dot("$I$",I,dir(120));
-dot("$D$",D,S);
+dot("$D$",D,dir(-90));
 dot("$E$",E,dir(70));
 
 dot("$K$",K,N);
@@ -30,4 +30,5 @@ draw(A--B--C--cycle);
     Item: D K I
     Item: L I E
     Item: A B K L
+    Text: $AB+BC=3AC$.
 */
