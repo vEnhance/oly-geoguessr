@@ -11,7 +11,7 @@ formatted appropriately, and I'll add them into the live game.
 
 The syntax for one of the asymptote files looks like this:
 
-```
+```cpp
 pair A=dir(120);
 pair B=dir(210);
 pair C=dir(330);
@@ -55,10 +55,14 @@ draw(C--F, dashed);
 
 An explanation of the file structure:
 
-* Everything before the big comment is just for drawing the picture itself.
-* The `Source` header is a human-readable description of the picture.
-* The `Points` header is a space-separated list of all the point names. They should match the names of variables used in `pair` declaration.
-* Each `Item` line is a space-separated list of either three collinear points or four concyclic points that are not already marked in the diagram (i.e. the items worth points in the game).
-* Finally, each `Text` line is a description that shows up in the game. Line breaks occur after each declaration.
+- Everything before the big comment is just for drawing the picture itself.
+- The `Source` header is a human-readable description of the picture.
+- The `Points` header is a space-separated list of all the point names.
+  They should match the names of variables used in `pair` declaration.
+- Each `Item` line is a space-separated list of either three collinear points
+  or four concyclic points that are not already marked in the diagram
+  (i.e. the items worth points in the game).
+- Finally, each `Text` line is a description that shows up in the game.
+  Line breaks occur after each declaration.
 
 And that's it! Four files like this form a level.
