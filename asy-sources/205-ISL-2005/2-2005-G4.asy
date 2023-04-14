@@ -4,33 +4,33 @@ pair C = 1.3*dir(10);
 pair B = C + dir(115);
 
 real k = 0.2;
-pair E = B + k*dir(270);
-pair F = k*dir(110);
+pair E = B + k*dir(295);
+pair F = k*dir(80);
 
 pair P = intersectionpoint(A--C,B--D);
 pair Q = intersectionpoint(B--D,E--F);
 pair R = intersectionpoint(A--C,E--F);
 
-draw(A--B--C--D--cycle);
-
-pair T = intersectionpoint(
-    bisectorpoint(A,C)--(A+C)/2,
-    bisectorpoint(B,D)--(B+D)/2
-);
-
-dot("$A$",A,dir(90));
-dot("$B$",B,dir(90));
-dot("$C$",C,dir(-30));
-dot("$D$",D,dir(-140));
-
-dot("$E$",E,dir(40));
-dot("$F$",F,dir(160));
-dot("$P$",P,dir(90));
-dot("$Q$",Q,dir(180));
-dot("$R$",R,dir(90));
-dot("$T$",T,dir(-90));
+pair T = intersectionpoints(
+    circumcircle(F,Q,D),
+    circumcircle(P,Q,R)
+)[0];
 
 draw(A--B--C--D--cycle);
+
+dot(A^^B^^C^^D^^E^^F^^P^^Q^^R^^T);
+
+label("$A$",A,dir(120));
+label("$B$",B,dir(70));
+label("$C$",C,dir(-30));
+label("$D$",D,dir(-140));
+
+label("$E$",E,dir(40));
+label("$F$",F,dir(160));
+label("$P$",P,dir(90));
+label("$Q$",Q,dir(180));
+label("$R$",R,dir(90));
+label("$T$",T,dir(-90));
 
 /*
 Source: 2005 ISL G4/IMO 2005
