@@ -9,27 +9,27 @@ pair E = foot(I,A,B);
 pair K = 2*I-D;
 pair L = 2*I-E;
 
-dot(A^^B^^C^^D^^E^^I^^K^^L);
-
-label("$A$",A,dir(90));
-label("$B$",B,dir(200));
-label("$C$",C,dir(-40));
-
-label("$I$",I,dir(120));
-label("$D$",D,dir(-90));
-label("$E$",E,dir(120));
-
-label("$K$",K,S);
-label("$L$",L,dir(90));
-
 draw(A--B--C--cycle);
+draw(incircle(A, B, C), grey);
+
+dot("$A$",A,dir(90));
+dot("$B$",B,dir(200));
+dot("$C$",C,dir(-40));
+
+dot("$I$",I,dir(120));
+dot("$D$",D,dir(-90));
+dot("$E$",E,dir(120));
+
+dot("$K$",K,S);
+dot("$L$",L,dir(90));
+
 
 /*
-    Source: 2005 ISL G1
+    Source: Shortlist 2005 G1
     Points: A B C D E I K L
     Item: D K I
     Item: L I E
-    Item: A B K L
+    Item: A C K L
     Text: $AB+BC=3AC$.
     Text: $K$ and $L$ are reflections.
 */

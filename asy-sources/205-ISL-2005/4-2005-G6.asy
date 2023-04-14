@@ -12,20 +12,20 @@ pair Y = point(w,intersections(w,L,L+dir(0))[0]);
 pair P = point(B--C,intersections(B--C,A,X)[0]);
 pair Q = point(B--C,intersections(B--C,A,Y)[0]);
 
-dot(A^^B^^C^^M^^K^^L^^X^^Y^^P^^Q);
-
 draw(A--B--C--cycle);
+draw(A--M, grey);
+draw(incircle(A, B, C));
 
-label("$A$",A,dir(90));
-label("$B$",B,dir(200));
-label("$C$",C,dir(-20));
-label("$M$",M,dir(-90));
-label("$K$",K,dir(180));
-label("$L$",L,dir(50));
-label("$X$",X,dir(-110));
-label("$Y$",Y,dir(90));
-label("$P$",P,dir(-90));
-label("$Q$",Q,dir(-90));
+dot("$A$",A,dir(90));
+dot("$B$",B,dir(200));
+dot("$C$",C,dir(-20));
+dot("$M$",M,dir(-90));
+dot("$K$",K,dir(180));
+dot("$L$",L,dir(50));
+dot("$X$",X,dir(-110));
+dot("$Y$",Y,dir(90));
+dot("$P$",P,dir(-90));
+dot("$Q$",Q,dir(-90));
 
 /*
 Source: ISL 2005 G6
