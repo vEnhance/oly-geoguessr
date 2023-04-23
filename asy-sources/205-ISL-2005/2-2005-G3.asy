@@ -1,39 +1,56 @@
-pair A = 2*dir(80);
-pair B = origin;
-pair C = 3*dir(0);
+pair excenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
+{ 
+    pair P,Q; 
+    P=rotate(-1*((angle(A-B)-angle(C-B))*90/pi+90),B)*A; 
+    Q=rotate((angle(B-C)-angle(A-C))*90/pi+90,C)*A; 
+    return extension(B,P,C,Q);
+}
 
-pair M = (B+C)/2;
-path w = incircle(A,B,C);
-pair K = intersectionpoints(A--M,w)[0];
-pair L = intersectionpoints(A--M,w)[1];
-pair X = point(w,intersections(w,K,K+dir(0))[0]);
-pair Y = point(w,intersections(w,L,L+dir(0))[0]);
+pair A = (0.8,3);
+pair D = origin;
+pair C = (4,0);
+pair B = A + C;
+pair X = extension(B,C,A,A+dir(-55));
+pair Y = extension(D,C,A,A+dir(-55));
 
-pair P = point(B--C,intersections(B--C,A,X)[0]);
-pair Q = point(B--C,intersections(B--C,A,Y)[0]);
+pair K = excenter(A,X,B);
+pair L = excenter(A,D,Y);
 
-dot(A^^B^^C^^M^^K^^L^^X^^Y^^P^^Q);
+pair S = extension(A,L,B,C);
+pair T = extension(A,K,D,C);
 
-draw(A--B--C--cycle);
+pair Lfoot = foot(L,C,D);
+pair Kfoot = foot(K,B,C);
 
-label("$A$",A,dir(90));
-label("$B$",B,dir(200));
-label("$C$",C,dir(-20));
-label("$M$",M,dir(-90));
-label("$K$",K,dir(180));
-label("$L$",L,dir(50));
-label("$X$",X,dir(-110));
-label("$Y$",Y,dir(90));
-label("$P$",P,dir(-90));
-label("$Q$",Q,dir(-90));
+draw(Circle(L,abs(L-Lfoot)));
+draw(Circle(K,abs(K-Kfoot)));
+
+draw(T--D--A--B--S);
+draw(A--2*X-A);
+draw(A--2*D-A);
+draw(A--2*B-A);
+draw(A--K);
+draw(A--S);
+
+dot(A^^B^^C^^D^^T^^S^^K^^L^^X^^Y);
+label("$A$",A,dir(120));
+label("$B$",B,dir(30));
+label("$C$",C,dir(-50));
+label("$D$",D,dir(-160));
+label("$Y$",Y,dir(70));
+label("$K$",K,E);
+label("$L$",L,W);
+label("$T$",T,dir(-120));
+label("$X$",X,dir(100));
+label("$S$",S,dir(-90));
 
 /*
-Source: ISL 2005 G6
-Points: A B C M K L X Y P Q
-Item: A K L M
-Item: A X P
-Item: A Y Q
-Item: K X L Y
+Source: Shortlist 2005 G3
+Points: A B C D K L T S X Y
+Item: A D L T
+Item: A B K S
+Item: S L C K T
 
-Text: $M$ is a midpoint.
+Text: $ABCD$ is a parallelogram.
+Text: $AX$ is an arbitrary line.
 */
