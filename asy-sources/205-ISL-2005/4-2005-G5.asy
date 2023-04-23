@@ -10,28 +10,29 @@ pair D = point(A--B,intersections(A--B,H,K)[0]);
 pair E = point(A--C,intersections(A--C,H,K)[0]);
 pair Q = point(H--M,intersections(H--M,A,I)[0]);
 
-dot(A^^B^^C^^D^^E^^M^^H^^Q);
-
-label("$A$",A,dir(90));
-label("$B$",B,dir(200));
-label("$C$",C,dir(-40));
-
-label("$M$",M,dir(-90));
-label("$H$",H,dir(100));
-label("$D$",D,dir(150));
-label("$E$",E,dir(40));
-
-label("$Q$",Q,dir(20));
-
 draw(A--B--C--cycle);
+draw(D--E, grey);
+draw(A--Q, grey);
+draw(H--M, grey);
+
+dot("$A$",A,dir(90));
+dot("$B$",B,dir(200));
+dot("$C$",C,dir(-40));
+
+dot("$M$",M,dir(-90));
+dot("$H$",H,dir(100));
+dot("$D$",D,dir(150));
+dot("$E$",E,dir(40));
+
+dot("$Q$",Q,dir(20));
+
 
 /*
-Source: ISL 2005 G5
+Source: Shortlist 2005 G5
 Points: A B C H D E Q M
-Item: H Q M
-Item: D E H
 Item: A D E Q
 
-Text: $AD=AE$. 
+Text: $AD=AE$.
 Text: $H$ is an orthocenter.
+Text: $Q$ lies on the bisector of $\angle A$.
 */
