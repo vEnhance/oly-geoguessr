@@ -29,6 +29,7 @@ dot("$L$",L,dir(90));
     Points: A B C D E I K L
     Item: D K I
     Item: L I E
+    Item: B D I E
     Item: A C K L
     Text: $AB+BC=3AC$.
     Text: $K$ and $L$ are reflections.
