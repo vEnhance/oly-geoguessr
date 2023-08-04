@@ -36,18 +36,12 @@ dot("$T$",T,dir(-90));
 /*
 Source: Shortlist 2005 G4 (IMO 2005/5)
 Points: A B C D E F P Q R T
-Item: B E C
-Item: D A F
-Item: A C P R
-Item: B D P Q
-Item: E F Q R
 Item: T A F R
 Item: T F Q D
 Item: T B E Q
 Item: T B P C
 Item: T P Q R
 Item: A P D T
-Item: B P C T
 
 Text: $BC=DA$ and $BE=DF$.
 */
