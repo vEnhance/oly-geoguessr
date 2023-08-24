@@ -1,8 +1,8 @@
 pair excenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
-{ 
-    pair P,Q; 
-    P=rotate(-1*((angle(A-B)-angle(C-B))*90/pi+90),B)*A; 
-    Q=rotate((angle(B-C)-angle(A-C))*90/pi+90,C)*A; 
+{
+    pair P,Q;
+    P=rotate(-1*((angle(A-B)-angle(C-B))*90/pi+90),B)*A;
+    Q=rotate((angle(B-C)-angle(A-C))*90/pi+90,C)*A;
     return extension(B,P,C,Q);
 }
 
@@ -22,8 +22,8 @@ pair T = extension(A,K,D,C);
 pair Lfoot = foot(L,C,D);
 pair Kfoot = foot(K,B,C);
 
-draw(Circle(L,abs(L-Lfoot)));
-draw(Circle(K,abs(K-Kfoot)));
+draw(circle(L,abs(L-Lfoot)));
+draw(circle(K,abs(K-Kfoot)));
 
 draw(T--D--A--B--S);
 draw(A--2*X-A);

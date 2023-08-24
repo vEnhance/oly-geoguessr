@@ -1,3 +1,15 @@
+// Legcay olympiad.asy command
+real markscalefactor = 0.05;
+path rightanglemark(pair A, pair B, pair C, real s=8)
+{
+    pair P,Q,R;
+    P=s*markscalefactor*unit(A-B)+B;
+    R=s*markscalefactor*unit(C-B)+B;
+    Q=P+R-B;
+    return P--Q--R;
+}
+
+
 pair C = (14,0);
 pair A = (9,12);
 pair B = (0,0);
@@ -37,7 +49,7 @@ label("$F$", F, 1.2*dir(200));
 label("$P_1$", P1, dir(0));
 label("$P_2$", P2, dir(135));
 label("$Q_1$", Q1, dir(250));
-label("$Q_2$", Q2, dir(90));		
+label("$Q_2$", Q2, dir(90));
 
 
 /*

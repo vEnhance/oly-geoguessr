@@ -1,3 +1,25 @@
+// Legacy olympiad.asy command
+real markscalefactor = 0.03;
+picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=currentpen)
+{
+    picture pict;
+    pair A,B,C,direct;
+    real t,l=arclength(g), space=spacing*markscalefactor, halftick=s*markscalefactor/2, startpt;
+    if (n>0)
+    {
+        direct=unit(dir(g,arctime(g,r*l)));
+        startpt=r*l-(n-1)/2*space;
+        for (int i=0; i<n; ++i)
+        {
+            t=startpt+i*space;
+            B=point(g,arctime(g,t))+(0,1)*halftick*direct;
+            C=B+2*(0,-1)*halftick*direct;
+            draw(pict,B--C,p);
+        }
+    }
+    return pict;
+}
+
 pair A = dir(110);
 pair B = dir(210);
 pair C = dir(330);
