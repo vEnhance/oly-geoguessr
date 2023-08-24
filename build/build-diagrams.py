@@ -2,8 +2,6 @@
 import glob
 import json
 import os
-import re
-import shutil
 import sys
 
 PREAMBLE = """/* MEOW */
