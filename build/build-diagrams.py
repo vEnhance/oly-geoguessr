@@ -35,10 +35,15 @@ def createDiagram(dir_name, file_name, ext):
 
     if ext == "asy":
         fileoldasy = filesrc
-    elif ext == "txt":
+    elif ext == "tsq":
         # I'm sorry! Evan's dotfiles are on Github, so...
         os.system(
-            "cat %s | python3 ~/dotfiles/py-scripts/tsq.py > %s" % (filesrc, filetmpasy)
+            f"cat {filesrc} | python3 ~/dotfiles/py-scripts/tsq.py > {filetmpasy}"
+        )
+        fileoldasy = filetmpasy
+    elif ext == "tsqx":
+        os.system(
+            f"cat {filesrc} | python3 ~/dotfiles/py-scripts/tsqx.py > {filetmpasy}"
         )
         fileoldasy = filetmpasy
     else:
