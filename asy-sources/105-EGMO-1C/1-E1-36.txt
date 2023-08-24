@@ -16,7 +16,7 @@ A--O red
 
 /*
 Source: 1.36
-Points: A B C D E O T
+Points: A B C D E O
 Text: Line $AO$ bisects $\angle BAE$, and $AB \neq AE$. $BCDE$ is a square.
 Item: A B O E
 Item: B C D E

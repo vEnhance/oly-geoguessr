@@ -42,6 +42,7 @@ Item: T B E Q
 Item: T B P C
 Item: T P Q R
 Item: A P D T
+Item: C E R T
 
 Text: $BC=DA$ and $BE=DF$.
 */
