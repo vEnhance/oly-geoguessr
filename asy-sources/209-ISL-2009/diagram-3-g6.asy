@@ -1,4 +1,4 @@
-﻿pair A = dir(120);
+pair A = dir(120);
 pair B_2 = dir(220);
 pair B_1 = 0.3*A+0.7*B_2;
 pair C_2 = dir(320);

@@ -1,4 +1,4 @@
-﻿pair reflect(pair P, pair A, pair B) {
+pair reflect(pair P, pair A, pair B) {
     return 2*foot(P, A, B) - P;
 }
 

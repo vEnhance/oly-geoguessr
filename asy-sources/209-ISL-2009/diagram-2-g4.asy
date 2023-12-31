@@ -1,4 +1,4 @@
-﻿pair A = dir(110);
+pair A = dir(110);
 pair B = dir(220);
 pair C = dir(340);
 pair D = dir(40);
