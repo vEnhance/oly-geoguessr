@@ -55,19 +55,19 @@ dot("$M$", M, dir(-90));
 dot("$P$", P, dir(90));
 
 /*
-  Source: ISL 2011 G3
-  Points: A B C D E F O_1 O_2 K_1 K_2 K_3 K_4 K_5 K_6 M P X Y
-  Item: X Y M P
-  Item: O_1 M O_2
-  Item: B K_1 E K_5
-  Item: C K_3 E K_5
-  Item: A K_6 F K_2
-  Item: F K_4 K_6 D
-  Item: O_1 K_2 F M
-  Item: O_1 K_1 E M
-  Item: M F K_4 O_2
-  Item: M E K_3 O_2
-  Text: $K_i$'s are the respective feet
-  Text: $M$ is the midpoint of $EF$
-  Text: $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
+    Source: ISL 2011 G3
+    Points: A B C D E F O_1 O_2 K_1 K_2 K_3 K_4 K_5 K_6 M P X Y
+    Item: X Y M P
+    Item: O_1 M O_2
+    Item: B K_1 E K_5
+    Item: C K_3 E K_5
+    Item: A K_6 F K_2
+    Item: F K_4 K_6 D
+    Item: O_1 K_2 F M
+    Item: O_1 K_1 E M
+    Item: M F K_4 O_2
+    Item: M E K_3 O_2
+    Text: $K_i$'s are the respective feet
+    Text: $M$ is the midpoint of $EF$
+    Text: $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
 */
