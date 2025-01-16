@@ -37,6 +37,7 @@ dot("$P$", P, dir(0));
     Item: B I C I_a
     Item: A I G K
     Item: K I E
+
     Text: $K=DG\cap (ABC)$
     Text: $P=DG\cap AF$
     Text: $I_a$ is the $A$-excenter
