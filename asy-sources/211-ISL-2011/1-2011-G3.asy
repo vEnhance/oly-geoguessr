@@ -67,6 +67,7 @@ dot("$P$", P, dir(90));
     Item: O_1 K_1 E M
     Item: M F K_4 O_2
     Item: M E K_3 O_2
+
     Text: $K_i$'s are the respective feet
     Text: $M$ is the midpoint of $EF$
     Text: $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
