@@ -32,13 +32,13 @@ dot("$K$", K, dir(150));
 dot("$P$", P, dir(0));
 
 /*
-    Source: ISL 2010 G4
-    Points: A B C I D E F G K P I_a
-    Item: B I C I_a
-    Item: A I G K
-    Item: K I E
-
-    Text: $K=DG\cap (ABC)$
-    Text: $P=DG\cap AF$
-    Text: $I_a$ is the $A$-excenter
+        Source: ISL 2010 G4
+        Points: A B C I D E F G K P I_a
+        Item: B I C I_a
+        Item: A I G K
+        Item: K I E
+        
+        Text: $K=DG\cap (ABC)$
+        Text: $P=DG\cap AF$
+        Text: $I_a$ is the $A$-excenter
 */
