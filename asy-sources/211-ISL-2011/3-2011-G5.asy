@@ -36,7 +36,7 @@ dot("$N$", N, dir(-90));
 
 /*
     Source: ISL 2011 G5
-    Points: A B C I D E F G P K
+    Points: A B C D E F G P K M N I
     Item: K I P
     Item: A I F E M
     Item: B I G D N
