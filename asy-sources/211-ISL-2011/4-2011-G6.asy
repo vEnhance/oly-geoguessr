@@ -35,7 +35,7 @@ dot("$M$", M, dir(-90));
 
 /*
     Source: ISL 2011 G6
-    Points: A B C D E F I K
+    Points: A B C D E F I K M O
     Item: A O E M
     Item: A C M F
 
