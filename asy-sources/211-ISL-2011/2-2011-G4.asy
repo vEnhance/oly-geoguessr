@@ -41,6 +41,7 @@ dot("$K$", K, dir(90));
     Item: A G A_0
     Item: B G B_0
     Item: C G C_0
+
     Text: $A_0$ is the midpoint of $BC$
     Text: $O$ is the circumcenter of $\triangle ABC$
     Text: $K$ is the foot from $A_0$ on $B_0C_0$
