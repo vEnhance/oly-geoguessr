@@ -16,9 +16,9 @@ pair X = 2*foot(H, E, F)-H;
 pair Y = 2*foot(H, D, F)-H;
 pair Z = 2*foot(H, D, E)-H;
 
-draw(circle(D, abs(D-H)), lightblue);
-draw(circle(E, abs(E-H)), lightblue);
-draw(circle(F, abs(F-H)), lightblue);
+draw(circle(D, abs(D-H)), deepcyan);
+draw(circle(E, abs(E-H)), deepcyan);
+draw(circle(F, abs(F-H)), deepcyan);
 draw(A--B--C--cycle);
 
 dot("$A$", A, dir(110));
