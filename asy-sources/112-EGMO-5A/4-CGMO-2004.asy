@@ -13,6 +13,8 @@ pair T = intersectionpoints(c_1, line(B, C))[0];
 pair X = foot(E, B, C);
 pair Y = foot(F, B, C);
 
+draw(E--X);
+draw(F--Y);
 draw(u_c, blue);
 draw(A--D, deepgreen);
 draw(A--P, deepgreen);
