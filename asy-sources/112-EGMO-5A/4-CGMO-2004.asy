@@ -1,3 +1,5 @@
+% there is no collinear or concyclic points to play
+
 pair A = dir(110);
 pair B = dir(210);
 pair C = dir(-30);
@@ -37,7 +39,7 @@ dot("$Y$", Y, dir(-90));
 /*
     Source: CGMO 2004 (5.15)
     Points: A B C D E F O P Q T X Y
-    Item: "NO ITEMS TO SHOW"
+    Item: 
 
     Text: $P$ be the foot and $Q=AP\cap (AEF)$, $T=BC\cap (AEF)$
 */
