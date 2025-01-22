@@ -1,4 +1,4 @@
-% there is no collinear or concyclic points to play
+/* there is no collinear, concyclic points to play */
 
 pair A = dir(110);
 pair B = dir(210);
