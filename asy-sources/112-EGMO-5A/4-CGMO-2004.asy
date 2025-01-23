@@ -39,7 +39,6 @@ dot("$Y$", Y, dir(-90));
 /*
     Source: CGMO 2004 (5.15)
     Points: A B C D E F O P Q T X Y
-    Item: 
-
+    
     Text: $P$ be the foot and $Q=AP\cap (AEF)$, $T=BC\cap (AEF)$
 */
