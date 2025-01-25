@@ -39,6 +39,6 @@ dot("$L$", L, dir(75));
     Item: I L C_p
     Item: I Z K_p
 
-    Text: $K\in B'C'$ such that $CK'\parallel AB$
+    Text: $K\in A'B'$ such that $CK'\parallel AB$
     Text: $Z$ is the foot from $I$ on $CM$
 */
