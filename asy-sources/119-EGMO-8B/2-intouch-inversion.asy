@@ -46,9 +46,9 @@ dot("$N$", N, dir(-120), lightblue);
     Item: D I B_s C_s
     Item: E I A_s C_s
     Item: F I A_s B_s
-    Item: D I G_1
-    Item: E I G_1
-    Item: F I G_1
+    Item: D G_1 A_s
+    Item: E G_1 B_s
+    Item: F G_1 C_s
 
     Text: $N$ is the nine point center of $\triangle DEF$
 */
