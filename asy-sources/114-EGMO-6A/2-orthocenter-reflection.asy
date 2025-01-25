@@ -23,7 +23,7 @@ dot("$O$", O, dir(0));
 
 /*
     Source: 6.14
-    Points: A B C H M X Y
+    Points: A B C H M X Y O
     Item: A B C X Y
     Item: A O Y
 */
