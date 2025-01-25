@@ -35,7 +35,7 @@ dot("$P$", P, dir(0));
     Source: ISL 2010 G4
     Points: A B C I D E F G K P I_a
     Item: B I C I_a
-    Item: A I G K
+    Item: A I P K
     Item: K I E
     
     Text: $K=DG\cap (ABC)$
