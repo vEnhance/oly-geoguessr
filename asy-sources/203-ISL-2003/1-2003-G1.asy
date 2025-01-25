@@ -29,5 +29,5 @@ dot("$R$", R, dir(180));
     Item: P Q R
     Item: A Q D R
     Item: C D Q P
-    Item: B R D C
+    Item: B R D P
 */
