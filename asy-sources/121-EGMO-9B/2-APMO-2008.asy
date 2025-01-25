@@ -39,7 +39,7 @@ dot("$P$", P, dir(140));
     Points: A B C D E G H L M P
     Item: L H P
     Item: B D E P
-    Item: A K P D
+    Item: A L P D
     Item: C M P E
 
     Text: $P=GM\cap (ABC)$
