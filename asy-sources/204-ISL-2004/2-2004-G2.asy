@@ -34,7 +34,7 @@ dot("$H$", H, dir(60));
     Source: ISL 2004 G2
     Points: A B C D E F G H K
     Item: B K F G
-    Item: B K E C
+    Item: B K D C
     Item: C D F G
     Item: C H F
 
