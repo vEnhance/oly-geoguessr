@@ -24,7 +24,7 @@ dot("$C'$", C_p, dir(-90));
 
 /*
     Source: Sharygin 2013 (7.44)
-    Points: A B C A_1 B_1 C_1 C_3 C_p
+    Points: A B C A_1 B_1 C_1 C_2 C_p
     Item: C A_1 B_1 C_2
     Item: A B_1 C_1 C_2
     Item: B A_1 C_1 C_2
