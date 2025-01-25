@@ -23,7 +23,7 @@ dot("$F$", F, dir(180));
 dot("$X$", X, dir(180));
 
 /*
-    Source: Cevians Induces Harmonic Bundles (9.111)
+    Source: Cevians Induces Harmonic Bundles (9.11)
     Points: A B C D E F P X
     Item: E F X
 
