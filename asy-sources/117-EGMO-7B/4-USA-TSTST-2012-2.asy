@@ -40,7 +40,7 @@ dot("$I$", I, dir(-90));
 
 /*
     Source: USA TSTST 2012 P2 (7.51)
-    Points: A B C D I M N P Q M N O_1 O_2
+    Points: A B C D I M N P Q S T O_1 O_2
     Item: P I Q
     Item: B C M N
 
