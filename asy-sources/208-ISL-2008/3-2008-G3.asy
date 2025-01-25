@@ -43,4 +43,5 @@ dot("$Q$", Q, dir(0));
 
     Text: $F\in AD$ such that $EF\parallel QD$
     Text: $G\in BC$ such that $EG\parallel QC$
+    Text: $X=AD\cap BC$
 */
