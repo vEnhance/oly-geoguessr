@@ -37,7 +37,7 @@ dot("$O$", O, dir(0));
 
 /*
     Source: APMO 2012/4 (4.52)
-    Points: A B C D E F X Y H M K A_p
+    Points: A B C D E F X Y H M K A_p O
     Item: A H E X Y
     Item: B H D Y
     Item: C H D X
@@ -48,7 +48,9 @@ dot("$O$", O, dir(0));
     Item: E H M A_p
     Item: A E D M
     Item: A O A_p
+    Item: A E K
 
     Text: $X$, $Y$ are the feet as usual.
     Text: $A'$ is the antipode of $A$
+    Text: $K=BC\cap XY$
 */
