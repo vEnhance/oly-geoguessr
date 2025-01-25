@@ -32,8 +32,8 @@ dot("$F$", F, dir(0));
     Source: ISL 2006 G2
     Points: A B C D S K L P Q E F
     Item: K L P Q S
-    Item: B C B Q
-    Item: EFPQ
+    Item: B C P Q
+    Item: E F P Q
 
     Text: $S=AD\cap BC$
     Text: $E=AP\cap DQ$, $F=BP\cap CQ$
