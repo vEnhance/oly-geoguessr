@@ -19,20 +19,20 @@ draw(circle(O_1, abs(E-O_1)), deepcyan+dotted);
 draw(circle(O_2, abs(F-O_2)), deepcyan+dotted);
 draw(arc((A+B)/2, abs((A+B)/2-A), 180, 0), deepcyan);
 
-dot("$P$", P, dir(90));
 dot("$A$", A, dir(210));
 dot("$B$", B, dir(-30));
-dot("$O$", O, dir(-90));
 dot("$D$", D, dir(0));
 dot("$E$", E, dir(180));
 dot("$F$", F, dir(60));
 dot("$K$", K, dir(130));
+dot("$O$", O, dir(-90));
+dot("$P$", P, dir(90));
 dot("$O_1$", O_1, dir(180));
 dot("$O_2$", O_2, dir(0));
 
 /*
     Source: ISL 2006 G6
-    Points: P A B E F D K O O_1 O_2
+    Points: A B D E F K O P O_1 O_2
     Item: D O_1 O_2
     Item: A O_1 K
     Item: B O_2 K
