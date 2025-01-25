@@ -42,5 +42,5 @@ dot("$N$", N, dir(-90));
     Item: B I G D N
     Item: M I N
 
-    Text: $M=AK\cap PG$, $N=BK\cap PG$
+    Text: $M=AK\cap PF$, $N=BK\cap PG$
 */
