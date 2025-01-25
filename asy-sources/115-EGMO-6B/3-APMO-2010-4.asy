@@ -36,5 +36,5 @@ dot("$X$", X, dir(0));
     Item: A B H N
     Item: H O X
 
-    Text: $M$ is the reflection of $B$ over $AC$. Similarly $N$
+    Text: $M$ is the reflection of $B$ over $CF$. Similarly $N$
 */
