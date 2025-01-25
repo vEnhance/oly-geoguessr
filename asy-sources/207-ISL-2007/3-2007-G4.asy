@@ -38,5 +38,5 @@ dot("$P$", P, dir(0));
     Item: B P D
     Item: M N P
 
-    Text: $M$, $N$, $P$ are the feet from $E$ on $CD$, $BC$, $BD$ respectively
+    Text: $M$, $N$, $P$ are the midpoints of $CF$, $CG$, $BD$ respectively
 */
