@@ -26,4 +26,6 @@ dot("$X$", X, dir(180));
     Source: Cevians Induces Harmonic Bundles (9.111)
     Points: A B C D E F P
     Item: E F X
+
+    Text: $(XD;BC)$ is harmonic
 */
