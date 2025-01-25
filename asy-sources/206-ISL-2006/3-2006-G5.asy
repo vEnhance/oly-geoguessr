@@ -22,23 +22,23 @@ draw(D--B_1);
 draw(excircle_a, deepcyan);
 draw(C_1--A--B_1);
 
+dot("$A$", A, dir(100));
+dot("$B$", B, dir(180));
+dot("$C$", C, dir(10));
+dot("$D$", D, dir(180));
+dot("$E$", E, dir(30));
 dot("$J$", J, dir(-90));
 dot("$A_1$", A_1, dir(90));
-dot("$C_1$", C_1, dir(180));
-dot("$B$", B, dir(180));
-dot("$D$", D, dir(180));
 dot("$B_1$", B_1, dir(0));
-dot("$C$", C, dir(10));
-dot("$A$", A, dir(100));
-dot("$E$", E, dir(30));
+dot("$C_1$", C_1, dir(180));
 
 /*
     Source: ISL 2006 G5
-    Points: A B C A_1 B_1 C_1 D E J
+    Points: A B C D E J A_1 B_1 C_1
     Item: A B C E
     Item: A D E B_1
     Item: D B E A_1
-    Item: A B_1 J C_1
-    Item: J A_1 B C_1
-    Item: J B_1 C A_1 C
+    Item: A J B_1 C_1
+    Item: B J A_1 C_1
+    Item: C E J A_1 B_1
 */
