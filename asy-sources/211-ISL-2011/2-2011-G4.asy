@@ -15,6 +15,12 @@ pair K = foot(A_0, B_0, C_0);
 draw(A--B--C--cycle, blue);
 draw(B_0--C_0);
 
+draw(circumcircle(B_0, C_0, D));
+draw(circumcircle(A, B, C));
+draw(A--A_0, grey);
+draw(B--B_0, grey);
+draw(C--C_0, grey);
+
 dot("$A$", A, dir(100));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
@@ -31,19 +37,17 @@ dot("$K$", K, dir(90));
 /*
     Source: ISL 2011 G4
     Points: A B C O A_0 B_0 C_0 D G X Y K
-    Item: A B X C Y
     Item: A_0 O K
     Item: X D G K Y
     Item: C A_0 B_0 O
     Item: B A_0 C_0 O
     Item: A B_0 C_0 O
     Item: A_0 B_0 C_0 D
-    Item: A G A_0
-    Item: B G B_0
-    Item: C G C_0
 
-    Text: $A_0$ is the midpoint of $BC$
-    Text: $O$ is the circumcenter of $\triangle ABC$
+    Text: $A_0 B_0 C_0$ are the midpoints of the sides
+    Text: $D$ is the foot from $A$ to $BC$
+    Text: $O$ is circumcenter of $\triangle ABC$
     Text: $K$ is the foot from $A_0$ on $B_0C_0$
-    Text: $Y$ is point such that $ABCY$ is an isosceles trapezoid
+    Text: $AY \parallel BC$
+    Text: $(X B_0 C_0)$ and $(ABC)$ are tangent
 */

@@ -70,5 +70,5 @@ dot("$P$", P, dir(90));
 
     Text: $K_i$'s are the respective feet
     Text: $M$ is the midpoint of $EF$
-    Text: $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
+    Text: The centers $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
 */

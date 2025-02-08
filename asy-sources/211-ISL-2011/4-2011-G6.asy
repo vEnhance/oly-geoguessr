@@ -39,6 +39,8 @@ dot("$M$", M, dir(-90));
     Item: A O E M
     Item: A C M F
 
+    Text: $A B = A C$ and $E B = E C$
     Text: $O$ is the circumcenter of $\triangle ABC$
     Text: $M$ is the midpoint of $BC$.
+    Text: $D$ is the midpoint of $AC$.
 */

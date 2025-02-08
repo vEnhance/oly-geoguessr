@@ -43,4 +43,5 @@ dot("$N$", N, dir(-90));
     Item: M I N
 
     Text: $M=AK\cap PF$, $N=BK\cap PG$
+    Text: $I$ is the incenter
 */
