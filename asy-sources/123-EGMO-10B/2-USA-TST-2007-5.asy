@@ -15,8 +15,7 @@ draw(C_1--B, grey);
 draw(B_1--C, grey);
 draw(C--S, grey);
 draw(A--S, grey);
-draw(B_1--B);
-draw(C_1--C);
+draw(B_1--K--C_1);
 draw(B_1--S);
 
 dot("$A$", A, dir(70));
@@ -30,18 +29,18 @@ dot("$S$", S, dir(0));
 dot("$T$", T, dir(-90));
 
 /*
-    Source: Shortlist 2009 G4 (10.22)
+    Source: USA TST 2007/5 (10.22)
     Points: A B C E B_1 C_1 K S T
     Item: A E T
     Item: A B C E K
-    Item: B_1 B K
-    Item: C_1 C K
     Item: A K B_1 C_1
     Item: A C S C_1
     Item: A B S B_1
     Item: A B T C_1
     Item: A C T B_1
     Item: B C B_1 C_1
-    
+
     Text: $K=BB_1\cap CC_1$, $E=BC_1\cap CB_1$
+    Text: $TB$ and $TC$ are tangent to $ABC$
+    Text: $B_1 T = CT_1$ and $\triangle ABC \sim \triangle AB_1C_1$
 */
