@@ -7,9 +7,9 @@ import sys
 PREAMBLE = """/* MEOW */
 import geometry;
 void filldraw(picture pic = currentpicture, conic g, pen fillpen=defaultpen, pen drawpen=defaultpen)
-  { filldraw(pic, (path) g, fillpen, drawpen); }
+    { filldraw(pic, (path) g, fillpen, drawpen); }
 void fill(picture pic = currentpicture, conic g, pen p=defaultpen)
-  { filldraw(pic, (path) g, p); }
+    { filldraw(pic, (path) g, p); }
 // some geometry
 pair foot(pair P, pair A, pair B) { return foot(triangle(A,B,P).VC); }
 pair centroid(pair A, pair B, pair C) { return (A+B+C)/3; }
@@ -21,23 +21,23 @@ pair OP(path p, path q) { return intersectionpoints(p,q)[1]; }
 path Line(pair A, pair B, real a=0.6, real b=a) { return (a*(A-B)+A)--(b*(B-A)+B); }
 // cse5 more useful functions
 picture CC() {
-  picture p=rotate(0)*currentpicture;
-  currentpicture.erase();
-  return p;
+    picture p=rotate(0)*currentpicture;
+    currentpicture.erase();
+    return p;
 }
 pair MP(Label s, pair A, pair B = plain.S, pen p = defaultpen) {
-  Label L = s;
-  L.s = "$"+s.s+"$";
-  label(L, A, B, p);
-  return A;
+    Label L = s;
+    L.s = "$"+s.s+"$";
+    label(L, A, B, p);
+    return A;
 }
 pair Drawing(Label s = "", pair A, pair B = plain.S, pen p = defaultpen) {
-  dot(MP(s, A, B, p), p);
-  return A;
+    dot(MP(s, A, B, p), p);
+    return A;
 }
 path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
-  draw(g, p, ar);
-  return g;
+    draw(g, p, ar);
+    return g;
 }
 
 
@@ -136,6 +136,12 @@ def createDiagram(dir_name, file_name, ext):
     pts_coor = []
     min_list = []
     max_list = []
+
+    pxmin: float | None = None
+    pymin: float | None = None
+    pxmax: float | None = None
+    pymax: float | None = None
+
     with open(filetmp, "r") as r:
         for line in r:
             if line.startswith("Point: "):
@@ -178,6 +184,10 @@ def createDiagram(dir_name, file_name, ext):
     )
     print("],", file=g)
 
+    assert pxmin is not None
+    assert pymin is not None
+    assert pxmax is not None
+    assert pymax is not None
     print('"source" : "%s",' % (source), file=g)
     print('"filename" : "%s",' % (file_name), file=g)
     print('"width" : "%f",' % (pxmax - pxmin), file=g)
