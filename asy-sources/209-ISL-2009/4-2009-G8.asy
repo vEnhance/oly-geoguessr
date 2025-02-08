@@ -21,7 +21,7 @@ draw(N--C--D);
 draw(incircle(A, B, M));
 draw(incircle(M, N, C));
 draw(incircle(N, D, A));
-draw(I_1--I_2--I_3--cycle);
+draw(I_1--I_2--I_3--cycle, red);
 
 dot("$A$", A, dir(A));
 dot("$B$", B, dir(B));
