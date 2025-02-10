@@ -14,22 +14,21 @@ draw(B--T--C, lightblue);
 draw(C_1--B, grey);
 draw(B_1--C, grey);
 draw(C--S, grey);
-draw(A--S, grey);
-draw(B_1--K--C_1);
+draw(B_1--K--C_1, dotted);
 draw(B_1--S);
 
 dot("$A$", A, dir(70));
 dot("$B$", B, dir(160));
 dot("$C$", C, dir(30));
-dot("$E$", E, dir(80));
-dot("$B_1$", B_1, dir(240));
-dot("$C_1$", C_1, dir(-60));
+dot("$E$", E, dir(75));
 dot("$K$", K, dir(90));
 dot("$S$", S, dir(0));
 dot("$T$", T, dir(-90));
+dot("$B_1$", B_1, dir(240));
+dot("$C_1$", C_1, dir(-60));
 
 /*
-    Source: USA TST 2007/5 (10.22)
+    Source: USA TST 2007 P5 (10.22)
     Points: A B C E B_1 C_1 K S T
     Item: A E T
     Item: A B C E K
@@ -40,7 +39,6 @@ dot("$T$", T, dir(-90));
     Item: A C T B_1
     Item: B C B_1 C_1
 
-    Text: $K=BB_1\cap CC_1$, $E=BC_1\cap CB_1$
-    Text: $TB$ and $TC$ are tangent to $ABC$
-    Text: $B_1 T = CT_1$ and $\triangle ABC \sim \triangle AB_1C_1$
+    Text: Segment $TB$, $TC$ are tangents to $(ABC)$. Point $S\in BC$ such that $AS\perp AT$. And $B_1T=C_1T$.
+    Text: $K=BB_1\cap CC_1$, $E=BC_1\cap CB_1$.
 */
