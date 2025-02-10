@@ -24,7 +24,7 @@ dot("$M$", M, dir(180));
 dot("$O$", O, dir(180));
 dot("$P$", P, dir(90));
 dot("$Q$", Q, dir(180));
-dot("$R$", R, dir(10));
+dot("$R$", R, dir(12)*1.3);
 
 /*
     Source: Miquel point of a cyclic quadrilateral (10.12)
@@ -38,5 +38,5 @@ dot("$R$", R, dir(10));
     Item: A O C M
     Item: B O D M
     
-    Text: $M$ is the miquel point of cyclic quadrilateral $ABCD$
+    Text: $M$ is the miquel point of cyclic quadrilateral $ABCD$.
 */
