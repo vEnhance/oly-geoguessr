@@ -31,6 +31,7 @@ dot("$C_1$", C_1, dir(-60));
     Source: USA TST 2007 P5 (10.22)
     Points: A B C E B_1 C_1 K S T
     Item: A E T
+    Item: A K S
     Item: A B C E K
     Item: A K B_1 C_1
     Item: A C S C_1
