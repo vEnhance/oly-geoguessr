@@ -2,7 +2,7 @@ pair A = dir(70);
 pair P = dir(35);
 pair D = dir(-100);
 circle c_1 = circle(A, P, D);
-pair M = intersectionpoints(c_1, line((A+D)/2, rotate(90, (A+D)/2)*A))[0];
+point M = intersectionpoints(c_1, line((A+D)/2, rotate(90, (A+D)/2)*A))[0];
 pair B = 2*foot(M, P, D)-D;
 pair C = 2*foot(M, P, A)-A;
 circle c_2 = circle(B, P, C);
@@ -22,10 +22,10 @@ dot("$C$", C, dir(-70));
 dot("$D$", D, dir(-110));
 dot("$E$", E, dir(30));
 dot("$F$", F, dir(180));
-dot("$M$", M, dir(0));
+dot("$M$", M, dir(10));
 dot("$P$", P, dir(200));
 dot("$Q$", Q, dir(-30));
-dot("$R$", R, dir(-110));
+dot("$R$", R, dir(-100)*1.2);
 
 /*
     Source: IMO 2005 P5 (10.23)
@@ -36,5 +36,6 @@ dot("$R$", R, dir(-110));
     Item: C E M R
     Item: B E M Q
 
-    Text: $M=(APD)\cap (BPC)$
+    Text: $BC=DA$, $BE=DF$.
+    Text: $M=(APD)\cap (BPC)$.
 */
