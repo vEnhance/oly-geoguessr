@@ -13,13 +13,13 @@ pair T_p = intersectionpoints(circle(D, K, L), line(A, B))[0];
 
 filldraw(A--B--C--cycle, opacity(0.1)+lightgreen, deepgreen);
 draw(u_c, lightblue);
-draw(A--E);
-draw(B--F);
-draw(A--G--B, grey);
+draw(A--E, blue);
+draw(B--F, blue);
+draw(A--G--B);
 draw(C--T_p, lightblue);
-draw(C--D);
-draw(B--K);
-draw(A--L);
+draw(C--D, dotted);
+draw(B--K, grey);
+draw(A--L, grey);
 
 markangle(n=1, radius=12, A, C, T_p, deepgreen);
 markangle(n=1, radius=14, T_p, C, B, deepgreen);
@@ -31,10 +31,10 @@ dot("$D$", D, dir(-90));
 dot("$E$", E, dir(30));
 dot("$F$", F, dir(120));
 dot("$G$", G, dir(90));
-dot("$K$", K, dir(-90));
-dot("$L$", L, dir(-100));
-dot("$T'$", T_p, dir(-90));
-dot("$X$", X, dir(60));
+dot("$K$", K, dir(110));
+dot("$L$", L, dir(60));
+dot("$X$", X, dir(60)*2);
+dot("$T'$", T_p, dir(-100));
 
 /*
     Source: USA TST 2013 (10.16)
@@ -47,6 +47,7 @@ dot("$X$", X, dir(60));
     Item: B D E X
     Item: K L D T_p
 
-    Text: $E=AX\cap (ABC)$, $F=BX\cap (ABC)$, $G=AF\cap BE$
-    Text: $C$-angle bisector intersects $AB$ at $T'$
+    Text: $D$ is the foot and $\angle C=90^\circ$. $BK=BC$, $AL=AC$.
+    Text: $E=AX\cap (ABC)$, $F=BX\cap (ABC)$, $G=AF\cap BE$.
+    Text: $CT'$ is the $C$-angle bisector.
 */
