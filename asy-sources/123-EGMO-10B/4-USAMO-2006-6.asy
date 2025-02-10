@@ -16,13 +16,13 @@ draw(A--P--D, deepgreen);
 draw(T--F, lightblue);
 draw(T--P);
 
-dot("$A$", A, dir(130));
+dot("$A$", A, dir(130)*1.2);
 dot("$B$", B, dir(230));
 dot("$C$", C, dir(-50));
 dot("$D$", D, dir(0));
 dot("$E$", E, dir(-30));
 dot("$F$", F, dir(-90));
-dot("$M$", M, dir(110));
+dot("$M$", M, dir(180));
 dot("$P$", P, dir(0));
 dot("$Q$", Q, dir(180));
 dot("$S$", S, dir(0));
@@ -40,6 +40,7 @@ dot("$T$", T, dir(90));
     Item: B F S M
     Item: T P S M
     Item: T D E M
-    
-    Text: $M$ is the miquel point of quadrilateral $ABCD$
+
+    Text: $\frac{AE}{ED}=\frac{BF}{FC}$, $S=EF\cap AB$, $T=EF\cap CD$.
+    Text: $M$ is the miquel point of quadrilateral $ABCD$.
 */
