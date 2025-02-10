@@ -13,9 +13,9 @@ pair H_3 = orthocenter(A, B, P);
 pair H_4 = orthocenter(C, D, P);
 
 filldraw(A--B--C--D--cycle, opacity(0.1)+lightgreen, deepgreen);
-draw(P--Q, grey);
-draw(A--C, grey);
-draw(B--D, grey);
+draw(P--Q, dotted);
+draw(A--C, dotted);
+draw(B--D, dotted);
 draw(A--P--B);
 draw(A--Q--D);
 
@@ -23,9 +23,9 @@ dot("$A$", A, dir(130));
 dot("$B$", B, dir(30));
 dot("$C$", C, dir(-60));
 dot("$D$", D, dir(240));
-dot("$K$", K, dir(160));
-dot("$L$", L, dir(30));
-dot("$M$", M, dir(-30));
+dot("$K$", K, dir(130));
+dot("$L$", L, dir(50));
+dot("$M$", M, dir(160));
 dot("$P$", P, dir(90));
 dot("$Q$", Q, dir(180));
 dot("$H_1$", H_1, dir(0));
@@ -34,11 +34,11 @@ dot("$H_3$", H_3, dir(0));
 dot("$H_4$", H_4, dir(0));
 
 /*
-    Source: Gauss-Bodenmiller theorem (10.5)
+    Source: Gauss-Bodenmiller Theorem (10.5)
     Points: A B C D K L M P Q H_1 H_2 H_3 H_4
     Item: K L M
     Item: H_1 H_2 H_3 H_4
 
-    Text: $H_1$, $H_2$, $H_3$, $H_4$ are the orthocenters of $\triangle BCQ$, $\triangle ADQ$, $\triangle ABP$, $\triangle CDP$ respectively
-    Text: $K$, $L$, $M$ are the midpoints of $PQ$, $AC$, $BD$
+    Text: $H_1$, $H_2$, $H_3$, $H_4$ are the orthocenters of $\triangle BCQ$, $\triangle ADQ$, $\triangle ABP$, $\triangle CDP$ respectively.
+    Text: $K$, $L$, $M$ are the midpoints of $PQ$, $AC$, $BD$.
 */
