@@ -14,9 +14,12 @@ pair Z = intersectionpoints(c_2, p_line2)[1];
 
 filldraw(c_1, opacity(0.1)+lightgreen, deepgreen);
 filldraw(c_2, opacity(0.1)+lightgreen, deepgreen);
-draw(P--C--A--B--X, lightblue);
-draw(P--Y, grey);
-draw(P--Z, grey);
+draw(B--X, orange);
+draw(A--C, mediumblue);
+draw(P--Y, orange);
+draw(P--Z, mediumblue);
+draw(A--B);
+draw(C--P);
 
 dot("$A$", A, dir(-30));
 dot("$B$", B, dir(210));
@@ -34,4 +37,7 @@ dot("$Z$", Z, dir(130));
     Item: Q X Y Z
     Item: C D Q X
     Item: A B Q X
+
+    Text: Complete quadrilateral $APDX$ and $Q=(BPD)\cap (APC)$.
+    Text: $BX\parallel PY$, $AC\parallel PZ$.
 */
