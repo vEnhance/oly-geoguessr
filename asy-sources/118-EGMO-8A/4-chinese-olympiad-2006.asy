@@ -14,8 +14,9 @@ pair G_s = inv*G;
 pair F_s = inv*F;
 
 draw(D--E);
-draw(A--C_s);
-draw(O--G_s);
+draw(A--B);
+draw(B--C_s, dotted);
+draw(O--G_s, dotted);
 draw(u_c, blue);
 draw(A--D--B--E--cycle);
 draw(circle(B, O, D), deepcyan);
@@ -46,8 +47,10 @@ dot("$F^*$", F_s, dir(40));
     Item: C F C_s F_s
     Item: D O E C_s
     Item: A D C_s G_s
-    
-    Text: $F^*$ is the midpoint of $BD$
-    Text: $G=(AOE)\cap (BOD)$
-    Text: $C^*$, $G^*$ are the inverse of $C$, $G$ wrt $(ABDE)$
+
+    Text: $AB$ is the diameter of cyclic quadrilateral $ABDE$ and $O$ is its center.
+    Text: $G=(AOE)\cap (BOD)$, $C=AB\cap CD$.
+    Text: $OF$ is the diameter of $(BOD)$.
+    Text: $F^*$ is the midpoint of $BD$.
+    Text: $C^*$, $G^*$ are the inverse of $C$, $G$ wrt $(ABDE)$.
 */
