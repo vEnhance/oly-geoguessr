@@ -11,8 +11,8 @@ draw(X--P--Y, lightblue);
 
 dot("$A$", A, dir(180));
 dot("$B$", B, dir(0));
-dot("$X$", X, dir(90));
-dot("$Y$", Y, dir(-90));
+dot("$X$", X, dir(70));
+dot("$Y$", Y, dir(-60));
 dot("$P$", P, dir(0));
 
 /*
@@ -20,6 +20,6 @@ dot("$P$", P, dir(0));
     Points: A B X Y P
     Item: A B P
 
-    Text: $AXBY$ is a harmonic quadrilateral
-    Text: $PX$, $PY$ are tangents
+    Text: $AXBY$ is a harmonic quadrilateral.
+    Text: $PX$, $PY$ are tangents.
 */
