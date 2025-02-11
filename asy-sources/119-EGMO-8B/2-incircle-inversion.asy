@@ -13,6 +13,9 @@ pair B_s = (D+F)/2;
 pair C_s = (D+E)/2;
 pair N = circumcenter(A_s, B_s, C_s);
 
+draw(D--A_s, dotted);
+draw(E--B_s, dotted);
+draw(F--C_s, dotted);
 draw(u_c, blue);
 draw(A--B--C--cycle);
 draw(D--E--F--cycle);
@@ -23,7 +26,7 @@ dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
 dot("$O$", O, dir(180));
-dot("$I$", I, dir(0));
+dot("$I$", I, dir(20));
 dot("$D$", D, dir(-90));
 dot("$E$", E, dir(30));
 dot("$F$", F, dir(180));
@@ -46,9 +49,10 @@ dot("$N$", N, dir(-120), lightblue);
     Item: D I B_s C_s
     Item: E I A_s C_s
     Item: F I A_s B_s
-    Item: D G_1 A_s
-    Item: E G_1 B_s
-    Item: F G_1 C_s
 
-    Text: $N$ is the nine point center of $\triangle DEF$
+    Text: $I$ is the incenter of $\triangle ABC$.
+    Text: $\triangle DEF$ is the intouch triangle of $\triangle ABC$.
+    Text: $G_1$ is the centroid of $\triangle DEF$.
+    Text: $\triangle A^*B^*C^*$ is the medial triangle of $\triangle DEF$.
+    Text: $N$ is the nine point center of $\triangle DEF$.
 */
