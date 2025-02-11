@@ -25,4 +25,7 @@ dot("$Z$", Z, dir(70));
     Source: Pascal's Theorem (7.27)
     Points: A B C D E F X Y Z
     Item: X Y Z
+
+    Text: $A$, $B$, $C$, $D$, $E$, $F$ lie on a single circle.
+    Text: $X=AB\cap DE$, $Y=BC\cap EF$, $Z=CD\cap AF$.
 */
