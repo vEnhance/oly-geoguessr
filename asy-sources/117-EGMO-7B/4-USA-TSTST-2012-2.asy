@@ -25,16 +25,16 @@ filldraw(c_1, opacity(0.2)+paleyellow, blue);
 filldraw(c_2, opacity(0.2)+paleyellow, blue);
 
 dot("$A$", A, dir(110));
-dot("$P$", P, dir(100));
+dot("$P$", P, dir(98)*1.5);
 dot("$B$", B, dir(180));
 dot("$S$", S, dir(-50));
-dot("$Q$", Q, dir(-90));
+dot("$Q$", Q, dir(-94)*1.5);
 dot("$M$", M, dir(0));
 dot("$C$", C, dir(0));
 dot("$D$", D, dir(90));
 dot("$T$", T, dir(-120));
 dot("$N$", N, dir(180));
-dot("$O_1$", O_1, dir(180));
+dot("$O_1$", O_1, dir(170));
 dot("$O_2$", O_2, dir(0));
 dot("$I$", I, dir(-90));
 
@@ -44,5 +44,8 @@ dot("$I$", I, dir(-90));
     Item: P I Q
     Item: B C M N
 
-    Text: $I=BM\cap CN$, $Q=\omega_1\cap \omega_2$
+    Text: $AC=BD$.
+    Text: $M$, $N$ are the midpoints of the minor arcs $SP$, $TP$.
+    Text: $I=BM\cap CN$, $Q=(APB)\cap (CPD)$.
+    Text: $O_1$, $O_2$ are the centers of $(APB)$, $(CPD)$.
 */
