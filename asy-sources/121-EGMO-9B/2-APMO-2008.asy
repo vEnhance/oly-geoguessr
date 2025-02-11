@@ -26,13 +26,13 @@ draw(circle(A, C, D), deepcyan);
 dot("$A$", A, dir(210));
 dot("$B$", B, dir(110));
 dot("$C$", C, dir(-30));
-dot("$D$", D, dir(85));
-dot("$E$", E, dir(110));
-dot("$G$", G, dir(90));
+dot("$D$", D, dir(85)*1.4);
+dot("$E$", E, dir(113)*1.4);
+dot("$G$", G, dir(90)*1.4);
 dot("$H$", H, dir(180));
 dot("$L$", L, dir(180));
 dot("$M$", M, dir(0));
-dot("$P$", P, dir(140));
+dot("$P$", P, dir(150));
 
 /*
     Source: APMO 2008 P3 (9.54)
@@ -42,5 +42,7 @@ dot("$P$", P, dir(140));
     Item: A L P D
     Item: C M P E
 
-    Text: $P=GM\cap (ABC)$
+    Text: $ACDE$ is cyclic.
+    Text: Tangents at $A$, $C$ intersects $DE$ at $L$, $M$.
+    Text: $G=ADc\cap (ABC)$, $P=GM\cap (ABC)$.
 */
