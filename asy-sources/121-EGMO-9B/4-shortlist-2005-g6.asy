@@ -42,7 +42,7 @@ dot("$P$", P, dir(-90));
 dot("$Q$", Q, dir(-90));
 dot("$X$", X, dir(130));
 dot("$Y$", Y, dir(-15));
-dot("$Z$", Z, dir(110));
+dot("$Z$", Z, dir(108));
 
 /*
     Source: Shortlist 2005 G6 (9.58)
@@ -53,5 +53,9 @@ dot("$Z$", Z, dir(110));
     Item: B D F I
     Item: C D E I
 
-    Text: $Z=AM\cap EF$
+    Text: $M$ is the midpoint.
+    Text: $DEF$ is the intouch triangle.
+    Text: $AM$ intersects the incircle at $K$, $L$.
+    Text: $XK\parallel YL\parallel BC$.
+    Text: $Z=AM\cap EF$.
 */
