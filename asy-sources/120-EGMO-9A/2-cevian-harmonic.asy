@@ -11,12 +11,12 @@ draw(A--B--C--cycle);
 draw(A--D, lightblue);
 draw(B--E, lightblue);
 draw(C--F, lightblue);
-draw(X--B, dashed);
+draw(X--B, dotted);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(230));
 dot("$C$", C, dir(-50));
-dot("$P$", P, dir(-10));
+dot("$P$", P, dir(-15));
 dot("$D$", D, dir(-90));
 dot("$E$", E, dir(30));
 dot("$F$", F, dir(180));
@@ -27,5 +27,5 @@ dot("$X$", X, dir(180));
     Points: A B C D E F P X
     Item: E F X
 
-    Text: $(XD;BC)$ is harmonic
+    Text: $XD;BC$ is harmonic.
 */
