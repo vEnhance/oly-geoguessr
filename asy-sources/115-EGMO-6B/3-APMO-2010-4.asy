@@ -36,5 +36,7 @@ dot("$X$", X, dir(0));
     Item: A B H N
     Item: H O X
 
-    Text: $M$ is the reflection of $B$ over $CF$. Similarly $N$
+    Text: $H$ is the orthocenter of $\triangle ABC$.
+    Text: $M$ is the reflection of $B$ over $CF$. Similarly $N$.
+    Text: $O$, $X$ are the centers of $(ABC)$, $(HMN)$.
 */
