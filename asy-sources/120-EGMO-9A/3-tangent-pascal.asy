@@ -18,7 +18,7 @@ draw(A--X, lightblue);
 draw(B--Y, lightblue);
 draw(C--Z, lightblue);
 
-dot("$A$", A, dir(110));
+dot("$A$", A, dir(100)*1.5);
 dot("$B$", B, dir(230));
 dot("$C$", C, dir(-50));
 dot("$X$", X, dir(180));
@@ -29,4 +29,6 @@ dot("$Z$", Z, dir(-90));
     Source: 9.31
     Points: A B C X Y Z
     Item: X Y Z
+
+    Text: Tangents at $A$, $B$, $C$ intersects the sides at $X$, $Y$, $Z$.
 */
