@@ -25,7 +25,7 @@ dot("$A$", A, dir(140));
 dot("$B$", B, dir(60));
 dot("$C$", C, dir(-50));
 dot("$D$", D, dir(230));
-dot("$E$", E, dir(120));
+dot("$E$", E, dir(105));
 dot("$F$", F, dir(230));
 dot("$G$", G, dir(180));
 dot("$H$", H, dir(0));
@@ -38,5 +38,8 @@ dot("$R$", R, dir(20));
     Item: A K G
     Item: G H R
 
-    Text: $K=EF\cap CH$, $R=AC\cap BD$
+    Text: Complete quadrilateral $ABCDEF$.
+    Text: $ABCD$ is cyclic.
+    Text: $G=AEF\cap (ABCD)$, $H=(CEF)\cap (ABCD)$.
+    Text: $K=EF\cap CH$, $R=AC\cap BD$.
 */
