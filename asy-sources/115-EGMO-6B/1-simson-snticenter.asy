@@ -32,5 +32,7 @@ dot("$R$", R, dir(210));
     Item: B R H_B
     Item: D R H_D
 
-    Text: $R$ is the midpoint of $CH_C$
+    Text: $ABCD$ is cyclic.
+    Text: $H_D$ is the orthocenter of $\triangle ABC$ and etc.
+    Text: $R$ is the midpoint of $CH_C$.
 */
