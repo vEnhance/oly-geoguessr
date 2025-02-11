@@ -32,5 +32,6 @@ dot("$C'$", C_p, dir(-90));
     Item: B C B_1 C_1
     Item: C_1 C_2 C_p
 
-    Text: $C'$ is the reflection of $C$ over $AB$
+    Text: $\angle AC_1B_1=\angle BC_1A_1=\angle ACB$.
+    Text: $C'$ is the reflection of $C$ over $AB$.
 */
