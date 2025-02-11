@@ -20,4 +20,6 @@ dot("$G$", G, dir(0));
     Source: Complex Euler Line (6.12)
     Points: A B C O H G
     Item: H G O
+
+    Text: $H$ is the orthocenter, $O$ is the circumcenter, $G$ is the centroid of $\triangle ABC$.
 */
