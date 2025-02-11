@@ -25,7 +25,7 @@ dot("$A$", A, dir(90));
 dot("$B$", B, dir(180));
 dot("$C$", C, dir(-90));
 dot("$D$", D, dir(0));
-dot("$E$", E, dir(15));
+dot("$E$", E, dir(60));
 dot("$W$", W, dir(140));
 dot("$X$", X, dir(-110));
 dot("$Y$", Y, dir(-80));
@@ -38,7 +38,6 @@ dot("$Z'$", Z_p, dir(20));
 /*
     Source: USAMO 1992 P2 (8.12)
     Points: A B C D E W X Y Z W_p X_p Y_p Z_p
-    Item: W X Y Z
     Item: A E W_p Z_p
     Item: B E W_p X_p
     Item: C E X_p Y_p
@@ -48,4 +47,9 @@ dot("$Z'$", Z_p, dir(20));
     Item: B C E X
     Item: C D E Y
     Item: A D E Z
+    Item: W X Y Z
+
+    Text: $ABCD$ is orthogonal.
+    Text: $W$ is the reflection of $E$ over $AB$, etc.
+    Text: $W'$ is the foot of $E$ on $AB$, etc.
 */
