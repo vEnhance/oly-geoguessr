@@ -12,7 +12,7 @@ pair R = extension(M, N, P, Q);
 
 draw(R--N);
 draw(R--P);
-draw(R--A);
+draw(R--A, dotted);
 draw(M--P);
 draw(N--Q);
 draw(u_c, blue);
@@ -23,7 +23,7 @@ dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
 dot("$O$", O, dir(0));
-dot("$H$", H, dir(-110));
+dot("$H$", H, dir(-105)*1.3);
 dot("$M$", M, dir(130));
 dot("$N$", N, dir(0));
 dot("$P$", P, dir(-60));
@@ -35,4 +35,8 @@ dot("$R$", R, dir(180));
     Points: A B C H O M N P Q R
     Item: A M N O
     Item: M N P Q
+
+    Text: $H$ is the orthocenter, $O$ is the circumcenter.
+    Text: $M$, $N$ are midpoints.
+    Text: $P=\overrightarrow{MH}\cap (ABC)$, $Q=\overrightarrow{NH}\cap (ABC)$, $R=MN\cap PQ$.
 */
