@@ -11,9 +11,9 @@ pair E = intersectionpoints(u_c, line(A, Q))[0];
 pair T = extension(B, D, C, R);
 
 draw(D--R);
-draw(C--R);
-draw(A--Q);
-draw(A--P);
+draw(C--R, lightblue);
+draw(A--Q, grey);
+draw(A--P, grey);
 draw(T--B);
 draw(u_c, blue);
 draw(A--B--D--cycle);
@@ -25,9 +25,9 @@ dot("$A$", A, dir(110));
 dot("$B$", B, dir(230));
 dot("$C$", C, dir(-130));
 dot("$D$", D, dir(10));
-dot("$E$", E, dir(-20));
+dot("$E$", E, dir(72)*1.3);
 dot("$P$", P, dir(-90));
-dot("$Q$", Q, dir(-80));
+dot("$Q$", Q, dir(-75));
 dot("$R$", R, dir(0));
 dot("$T$", T, dir(180));
 
@@ -37,5 +37,6 @@ dot("$T$", T, dir(180));
     Item: B E R
     Item: C Q R T
 
-    Text: $TA$ is tangent
+    Text: $PB$, $PD$ are tangents. Tangents at $C$ intersects $PD$, $AD$ at $Q$, $R$.
+    Text: $E$ is the second intersection of $AQ$ and $(ABD)$. $TA$ is tangent.
 */
