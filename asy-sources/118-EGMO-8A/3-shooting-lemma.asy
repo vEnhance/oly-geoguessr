@@ -27,4 +27,7 @@ dot("$O_1$", O_1, dir(10));
     Points: B C T K M O O_1
     Item: T O O_1
     Item: T K M
+
+    Text: The small circle is tangent to $BC$ at $K$ and the big circle at $T$.
+    Text: $M$ is the midpoint of the major arc $BC$.
 */
