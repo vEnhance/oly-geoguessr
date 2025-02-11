@@ -18,7 +18,7 @@ draw(c_1, lightblue);
 draw(c_2, lightblue);
 draw(A--M, deepcyan);
 draw(B--N, deepcyan);
-draw(M--J, deepgreen);
+draw(M--J, .8*red);
 
 dot("$A$", A, dir(210));
 dot("$B$", B, dir(-30));
@@ -29,7 +29,7 @@ dot("$E$", E, dir(210));
 dot("$F$", F, dir(0));
 dot("$K$", K, dir(160));
 dot("$M$", M, dir(30));
-dot("$L$", L, dir(-50));
+dot("$L$", L, dir(-80));
 dot("$N$", N, dir(180));
 dot("$J$", J, dir(-90));
 
@@ -44,5 +44,7 @@ dot("$J$", J, dir(-90));
     Item: A B E F
     Item: J K N
 
-    Text: $J=AB\cap ML$
+    Text: $H$ is the orthocenter.
+    Text: $AH$ intersects $(BC)$ at $K$, $M$. Similarly $BH$ intersects $(AC)$ at $L$, $N$.
+    Text: $D=(AC)\cap (BC)$, $J=AB\cap ML$.
 */
