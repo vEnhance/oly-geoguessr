@@ -54,7 +54,7 @@ dot("$Z$", Z, dir(108));
     Item: C D E I
 
     Text: $M$ is the midpoint.
-    Text: $DEF$ is the intouch triangle.
+    Text: $\triangle DEF$ is the intouch triangle.
     Text: $AM$ intersects the incircle at $K$, $L$.
     Text: $XK\parallel YL\parallel BC$.
     Text: $Z=AM\cap EF$.
