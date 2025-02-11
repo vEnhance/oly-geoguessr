@@ -26,7 +26,7 @@ dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
 dot("$D$", D, dir(30));
 dot("$S$", S, dir(150));
-dot("$T$", T, dir(80));
+dot("$T$", T, dir(80)*1.2);
 dot("$E$", E, dir(-60));
 dot("$F$", F, dir(-130));
 dot("$K$", K, dir(-100));
@@ -39,5 +39,7 @@ dot("$Y$", Y, dir(90));
     Item: B C S T
     Item: D S T X Y
 
-    Text: $S=AB\cap (BDE)$, $T=AC\cap (CDF)$
+    Text: $D$ is an arbitrary point inside $\triangle ABC$.
+    Text: Circles $(BSD)$, $(CTD)$ are in such as way so that $A$, $D$, $K$ are collinear.
+    Text: $X=FD\cap AB$, $Y=ED\cap AC$.
 */
