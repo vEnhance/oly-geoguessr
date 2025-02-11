@@ -11,8 +11,6 @@ pair F_4 = foot(D, A, C);
 pair A_1 = extension(F_1, F_2, F_3, F_4);
 pair H = A+B+C;
 
-
-
 draw(u_c, blue);
 draw(D--F_1);
 draw(D--C);
@@ -24,7 +22,6 @@ draw(D--F_4, dotted);
 draw(A--F_1, dotted);
 draw(A--F_2, dotted);
 draw(A--B--C--cycle);
-
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -44,6 +41,9 @@ dot("$H$", H, dir(0));
     Item: A I D
     Item: D H A_1
     Item: A D F_1 F_2 F_3 F_4
-
-    Text: $H$ is the orthocenter of $\triangle ABC$
+    
+    Text: $H$ is the orthocenter of $\triangle ABC$.
+    Text: $I$ is the incenter. $D$ is the midpoint of the arc $BC$ not containing $A$.
+    Text: $F_1$, $F_2$ are the feet from $A$ on $BD$, $DC$.
+    Text: $F_3$, $F_4$ are the feet from $D$ on $AB$, $AC$.
 */
