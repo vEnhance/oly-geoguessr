@@ -28,12 +28,12 @@ dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
 dot("$O$", O, dir(0));
-dot("$I$", I, dir(-90));
+dot("$I$", I, dir(-90)*1.3);
 dot("$D$", D, dir(-90));
 dot("$E$", E, dir(30));
 dot("$F$", F, dir(180));
 dot("$K$", K, dir(-90));
-dot("$L$", L, dir(30));
+dot("$L$", L, dir(50));
 dot("$M$", M, dir(180));
 dot("$T_A$", T_A, dir(-110));
 dot("$T_B$", T_B, dir(30));
@@ -55,5 +55,8 @@ dot("$S$", S, dir(180));
     Item: B D F I
     Item: C D E I
 
-    Text: $K$ is the midpoint of arc $BC$ not containing $A$. Similarly $L$, $M$
+    Text: $I$ is the incenter, $O$ is the circumcenter.
+    Text: $\triangle DEF$ is the intouch triangle.
+    Text: $T_A$, $T_B$, $T_C$ are the tangency points of respective mixtilinear incircles.
+    Text: $K$ is the midpoint of arc $BC$ not containing $A$. Similarly $L$, $M$.
 */
