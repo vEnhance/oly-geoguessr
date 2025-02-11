@@ -23,7 +23,7 @@ draw(gamma, .8*red);
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(200));
 dot("$C$", C, dir(-20));
-dot("$P$", P, dir(60));
+dot("$P$", P, dir(60)*1.3);
 dot("$A'$", A_p, dir(-90));
 dot("$B'$", B_p, dir(30));
 dot("$C'$", C_p, dir(-90));
@@ -32,4 +32,7 @@ dot("$C'$", C_p, dir(-90));
     Source: USAMO 2012 P5 (6.27)
     Points: A B C P A_p B_p C_p
     Item: A_p B_p C_p
+
+    Text: $AP$, $A'P$ are reflections wrt any arbitrary line (red line in the figure).
+    Text: Similarly $BP$, $B'P$ and $CP$, $C'P$ are reflections wrt that line.
 */
