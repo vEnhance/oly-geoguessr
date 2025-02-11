@@ -8,9 +8,9 @@ pair X = 2*foot(H, B, C)-H;
 pair M = (B+C)/2;
 pair Y = 2*M-H;
 
-draw(A--X);
-draw(H--Y);
-draw(A--B--C--cycle);
+draw(A--X, deepgreen);
+draw(H--Y, .8*red);
+draw(A--B--C--cycle, blue);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -22,8 +22,11 @@ dot("$Y$", Y, dir(-90));
 dot("$O$", O, dir(0));
 
 /*
-    Source: 6.14
+    Source: Reflecting the Orthocenter (6.14)
     Points: A B C H M X Y O
     Item: A B C X Y
     Item: A O Y
+
+    Text: $X$ is the reflection of orthocenter $H$ over $BC$. $Y$ is the reflection of $H$ wrt midpoint $M$.
+    Text: $O$ is the center of $(ABC)$.
 */
