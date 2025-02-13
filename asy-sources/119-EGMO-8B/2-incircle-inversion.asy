@@ -51,7 +51,6 @@ dot("$N$", N, dir(-120), lightblue);
     Item: F I A_s B_s
 
     Text: $I$ is the incenter of $\triangle ABC$.
-    Text: $\triangle DEF$ is the intouch triangle of $\triangle ABC$.
     Text: $G_1$ is the centroid of $\triangle DEF$.
     Text: $\triangle A^*B^*C^*$ is the medial triangle of $\triangle DEF$.
     Text: $N$ is the nine point center of $\triangle DEF$.
