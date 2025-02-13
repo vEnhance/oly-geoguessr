@@ -33,9 +33,7 @@ dot("$O$", O, dir(0));
     Item: E M O T
     Item: B C O T
 
-    Text: $AE$ is the $A$-angle bisector.
-    Text: $M$ is the midpoint of $BC$.
+    Text: $AE$ is the $A$-angle bisector and $M$ is the midpoint of $BC$.
     Text: $TB$, $TC$ are tangents.
     Text: $F=(DEM)\cap (ABC)$.
-    Text: $O$ is the center of $(ABC)$.
 */
