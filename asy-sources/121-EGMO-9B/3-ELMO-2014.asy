@@ -38,7 +38,6 @@ dot("$R$", R, dir(20));
     Item: A K G
     Item: G H R
 
-    Text: Complete quadrilateral $ABCDEF$.
     Text: $ABCD$ is cyclic.
     Text: $G=AEF\cap (ABCD)$, $H=(CEF)\cap (ABCD)$.
     Text: $K=EF\cap CH$, $R=AC\cap BD$.
