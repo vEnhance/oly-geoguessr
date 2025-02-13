@@ -40,7 +40,6 @@ dot("$A^*$", A_s, dir(90));
     Item: A I A_s
     Item: A E F I X
 
-    Text: $\triangle DEF$ is the contact triangle of $\triangle ABC$.
     Text: $O$ is the center of $\triangle ABC$ and $Q$ be its antipode. $I$ is the incenter of it.
     Text: $P=QI\cap EF$, $X=QI\cap (ABC)$.
     Text: $A^*$ is the midpoint of $EF$.
