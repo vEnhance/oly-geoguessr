@@ -44,7 +44,6 @@ dot("$J$", J, dir(-90));
     Item: A B E F
     Item: J K N
 
-    Text: $H$ is the orthocenter.
     Text: $AH$ intersects $(BC)$ at $K$, $M$. Similarly $BH$ intersects $(AC)$ at $L$, $N$.
     Text: $D=(AC)\cap (BC)$, $J=AB\cap ML$.
 */
