@@ -27,5 +27,5 @@ dot("$X$", X, dir(180));
     Points: A B C D E F P X
     Item: E F X
 
-    Text: $XD;BC$ is harmonic.
+    Text: $(XD;BC)$ is harmonic.
 */
