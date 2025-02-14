@@ -46,6 +46,5 @@ dot("$Q$", Q, dir(-60));
     Item: C P T Q
     Item: A I P B Q
 
-    Text: $T=FD\cap GE$
-    Text: $AQ\parallel TF$, $BQ\parallel TG$
+    Text: Same as previous problem statement. And $AQ\parallel TF$, $BQ\parallel TG$.
 */
