@@ -19,4 +19,7 @@ dot("$P$", P, dir(0));
     Source: ISL 2006 G1
     Points: A B C I P
     Item: B C I P
+
+    Text: $I$ is the incenter of $\triangle ABC$.
+    Text: Given $\angle PBA+\angle PCA = \angle PBC+\angle PCB$.
 */
