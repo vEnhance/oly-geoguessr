@@ -41,6 +41,8 @@ dot("$C_0$", C_0, dir(0));
     Item: A_1 B_1 C_0
     Item: B_1 C_1 A_0
     Item: C_1 A_1 B_0
-    
-    Text: $A_0=BB'\cap CC'$, $B_0=AA'\cap CC'$, $C_0=AA'\cap BB'$
+
+    Text: $A_1$, $B_1$, $C_1$ are midpoints of the sides.
+    Text: $P\in (ABC)$, $A'=PA_1\cap (ABC)$, etc.
+    Text: $A_0=BB'\cap CC'$, $B_0=AA'\cap CC'$, $C_0=AA'\cap BB'$.
 */
