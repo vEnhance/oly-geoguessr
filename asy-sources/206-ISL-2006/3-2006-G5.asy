@@ -41,4 +41,8 @@ dot("$C_1$", C_1, dir(180));
     Item: A J B_1 C_1
     Item: B J A_1 C_1
     Item: C E J A_1 B_1
+
+    Text: $J$ is the $A$-excenter.
+    Text: $AB$ and $A_1B_1$ are perpendicular at $D$.
+    Text: $E$ is the foot of $C_1$ on $DJ$.
 */
