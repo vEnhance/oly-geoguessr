@@ -6,31 +6,29 @@ pair N = (A+B)/2;
 pair X = N+abs(B-N)*dir(-20);
 pair Y = 2*N-X;
 pair T = intersectionpoint(M--Y, arc(X, abs(X-B), 120, 220));
-pair L = 2*M-T;
 
-draw(A--B--C--cycle, deepcyan);
+draw(B--A--C, deepcyan);
 draw(B--X--T, lightblue);
 draw(A--X--M);
 draw(A--Y--B);
+draw(B--C);
+draw(Y--M, grey);
+draw(circumcircle(A, B, M), pink);
 
 dot("$A$", A, dir(90));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
-dot("$M$", M, dir(-90));
+dot("$M$", M, dir(-100)*1.2);
 dot("$N$", N, dir(140));
 dot("$X$", X, dir(0));
 dot("$Y$", Y, dir(180));
-dot("$T$", T, dir(180));
-dot("$L$", L, dir(-30));
+dot("$T$", T, dir(220));
 
 /*
     Source: ISL 2007 G2
-    Points: A B C M X N Y T L
-    Item: A X M B Y
-    Item: Y T M L
+    Points: A B C M X N Y T
     Item: X N Y
 
-    Text: $N$ is the midpoint Of $AB$
-    Text: $Y$ is the reflection of $X$ over $N$
-    Text: $L$ is the reflection of $T$ over $M$
+    Text: $AB=AC$, $MB=MC$, $NA=NB$, $TX=BX$, $X\in (ABM)$, $\angle TMX=90^\circ$.
+    Text: $Y=TM\cap (ABM)$.
 */
