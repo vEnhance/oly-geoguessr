@@ -19,12 +19,13 @@ draw(circle(O_1, abs(E-O_1)), deepcyan+dotted);
 draw(circle(O_2, abs(F-O_2)), deepcyan+dotted);
 draw(arc((A+B)/2, abs((A+B)/2-A), 180, 0), deepcyan);
 
+
 dot("$A$", A, dir(210));
 dot("$B$", B, dir(-30));
 dot("$D$", D, dir(0));
 dot("$E$", E, dir(180));
 dot("$F$", F, dir(60));
-dot("$K$", K, dir(130));
+dot("$K$", K, dir(135));
 dot("$O$", O, dir(-90));
 dot("$P$", P, dir(90));
 dot("$O_1$", O_1, dir(180));
@@ -42,5 +43,7 @@ dot("$O_2$", O_2, dir(0));
     Item: A D F
     Item: B D E
 
-    Text: $P=AE\cap BF$, $K=PD\cap EF$
+    Text: Three circles with centers $O$, $O_1$, $O_2$ are tangent to each other.
+    Text: Common tangent line at $D$ is perpendicular to the diameter $AB$.
+    Text: $P=AE\cap BF$, $K=PD\cap EF$.
 */
