@@ -29,7 +29,7 @@ dot("$C$", C, dir(-30));
 dot("$D$", D, dir(-120));
 dot("$O$", O, dir(-90));
 dot("$M$", M, dir(-70));
-dot("$E$", E, dir(-80));
+dot("$E$", E, dir(-80)*1.2);
 dot("$F$", F, dir(110));
 dot("$G$", G, dir(180));
 dot("$N$", N, dir(110));
@@ -43,5 +43,7 @@ dot("$P$", P, dir(180));
     Item: O M G P
     Item: G N P
 
-    Text: $K=AB\cap EF$, $G=AB\cap CD$, $P=KM\cap (ABM)$
+    Text: $ABCD$ is cyclic with center $O$, $M$ is the midpoint of $CD$.
+    Text: $N\in (ABM)$ such that $\frac{AN}{BN}=\frac{AM}{BM}$.
+    Text: $K=AB\cap EF$, $G=AB\cap CD$, $P=KM\cap (ABM)$.
 */
