@@ -5,9 +5,10 @@ pair E = 3*A-2*C;
 pair M = (B+E)/2;
 pair D = extension(A, M, B, C);
 
-draw(D--C);
-draw(A--B);
-draw(E--B--C--cycle);
+draw(A--E, grey);
+draw(E--B, grey);
+draw(C--D, grey);
+filldraw(triangle(A, B, C), opacity(0.2)+pink, black);
 
 dot("$A$", A, dir(50));
 dot("$B$", B, dir(230));
@@ -21,5 +22,5 @@ dot("$M$", M, dir(180));
     Points: A B C D E M
     Item: A D M
 
-    Text: $M$ is the midpoint of $BE$
+    Text: $CD=BC$, $AE=2CA$, $AD=BE$, $MB=ME$.
 */
