@@ -8,8 +8,8 @@ line tangent1 = tangents(c_1, O)[0];
 pair I = intersectionpoints(c_1, tangent1)[0];
 pair A = 2*I-D_p;
 
-draw(A--D_p);
-draw(A--B--C--cycle);
+draw(A--D_p, grey);
+filldraw(triangle(A, B, C), opacity(0.2)+pink, black);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -22,5 +22,7 @@ dot("$I$", I, dir(30));
     Points: A B C D_p I
     Item: A B C D_p
 
-    Text: $D'$ is the reflection of $A$ over $I$
+    Text: $I$ is the incenter.
+    Text: $2BC=AB+AC$.
+    Text: $D'$ is the reflection of $A$ over $I$.
 */
