@@ -17,6 +17,7 @@ pair Q = intersectionpoints(c_2, c_3)[1];
 draw(c_2, deepcyan);
 draw(c_3, deepcyan);
 draw(A--X--B);
+draw(P--Q, dotted);
 draw(E--F, lightblue);
 draw(Q--D, lightblue);
 draw(E--G, orange);
@@ -24,7 +25,7 @@ draw(Q--C, orange);
 draw(D--E--A--P--B--E--C);
 
 dot("$A$", A, dir(140));
-dot("$E$", E, dir(170));
+dot("$E$", E, dir(170)*1.3);
 dot("$F$", F, dir(70));
 dot("$P$", P, dir(190));
 dot("$B$", B, dir(180));
@@ -40,8 +41,10 @@ dot("$Q$", Q, dir(0));
     Item: P Q E X
     Item: A P E F
     Item: P B G E
+    Item: A B C D
 
-    Text: $F\in AD$ such that $EF\parallel QD$
-    Text: $G\in BC$ such that $EG\parallel QC$
-    Text: $X=AD\cap BC$
+    Text: $ADPQ$, $BCPQ$ are cyclic.
+    Text: $\angle PAE=\angle QDE$, $\angle PBE=\angle QCE$.
+    Text: $EF\parallel QD$, $EG\parallel QC$.
+    Text: $X=AD\cap BC$.
 */
