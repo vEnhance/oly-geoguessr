@@ -15,9 +15,9 @@ pair D = intersectionpoints(u_c, line(C, P))[0];
 pair F = extension(D, M, A, B);
 circle c_2 = circle(Z, D, F);
 pair O_2 = circumcenter(D, F, Z);
-pair G = 2*O_2-F;
 
 draw(A--P);
+draw(C--P);
 draw(u_c, blue);
 draw(c_1, lightblue);
 draw(c_2, lightblue);
@@ -30,20 +30,20 @@ dot("$E$", E, dir(-50));
 dot("$M$", M, dir(-90));
 dot("$Z$", Z, dir(180));
 dot("$P$", P, dir(0));
-dot("$D$", D, dir(0));
+dot("$D$", D, dir(30));
 dot("$F$", F, dir(-90));
-dot("$G$", G, dir(90));
 dot("$O_1$", O_1, dir(0));
 dot("$O_2$", O_2, dir(-30));
 
 /*
     Source: ELMO Shortlist 2012 (4.46)
-    Points: A B C D E F G M P Z O O_1 O_2
+    Points: A B C D E F M P Z O O_1 O_2
     Item: D F M
     Item: C F Z
-    Item: C D G P
     Item: C D E F
-    Item: F G O_2
     Item: C E M O O_1
     Item: O_1 O_2 Z P
+
+    Text: Those $3$ circles with centers $O$, $O_1$, $O_2$ are tangent to each other in such a say that $C$ is the midpoint of the arc $AB$.
+    Text: $M$ is the midpoint of the minor arc $AB$.
 */
