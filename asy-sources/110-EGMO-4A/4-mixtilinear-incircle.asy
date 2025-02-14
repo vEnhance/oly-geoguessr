@@ -37,4 +37,8 @@ dot("$M_C$", M_c, dir(180));
     Item: I T S
     Item: B K I T
     Item: C L I T
+
+    Text: $T$, $K$, $L$ are the $A$-mixtilinear touchpoints on the circumcircle and sides $AB$, $AC$ respectively.
+    Text: $I$ is the incenter and $M_B$, $M_C$ are the midpoint of the minor arc $AC$, $AB$.
+    Text: $S$ is the midpoint of the major arc $BC$.
 */
