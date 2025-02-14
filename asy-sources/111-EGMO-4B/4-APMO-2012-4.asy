@@ -54,5 +54,5 @@ dot("$O$", O, dir(0));
     Text: $H$ is the orthocenter and $O$ is the center of $\triangle ABC$.
     Text: $M$ is the midpoint of $BC$.
     Text: $E$, $A'$ are the intersections of $MH$ and $(ABC)$.
-    Text: $K=BC\cap XY$, $(BC;AF)=-1$.
+    Text: $ABFC$ is harmonic.
 */
