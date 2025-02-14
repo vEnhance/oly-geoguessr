@@ -7,10 +7,10 @@ pair D = dir(-90);
 pair E = foot(I, B, D);
 pair F = foot(I, C, D);
 
-draw(A--D);
-draw(A--B--C--cycle);
-draw(B--D--C, deepgreen);
-draw(E--I--F, lightblue);
+draw(A--D, grey);
+draw(B--D--C, lightblue);
+draw(E--I--F, deepcyan);
+filldraw(triangle(A, B, C), opacity(0.2)+pink, black);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -25,6 +25,7 @@ dot("$F$", F, dir(-50));
     Points: A B C D E F I
     Item: A B C D
     Item: D E F I
-
-    Text: $DB=DC$ and $D$ lies on $AI$
+    
+    Text: $I$ is the incenter of $\triangle ABC$, $DB=DC$ and $D$ lies on $AI$.
+    Text: $E$, $F$ are the feet of $I$ on $DB$, $DC$.
 */
