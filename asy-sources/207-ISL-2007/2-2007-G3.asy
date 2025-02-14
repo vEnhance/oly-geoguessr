@@ -8,14 +8,15 @@ pair P = extension(A, C, B, D);
 circle c_1 = circle(A, D, Q);
 pair Q_p = intersectionpoints(c_1, line(P, Q))[1];
 
-draw(A--Q--D);
-draw(B--Q--C);
-draw(B--C, orange);
-draw(A--D, orange);
+draw(A--Q--D, grey);
+draw(B--Q--C, grey);
+draw(B--C, .8*red);
+draw(A--D, .8*red);
+draw(A--B);
+draw(C--D);
 draw(A--C, lightblue);
 draw(B--D, lightblue);
 draw(Q--Q_p, lightblue);
-draw(A--B--C--D--cycle);
 
 markangle(n=2, radius=10, C, Q, B, deepgreen);
 markangle(n=2, radius=10, A, Q, D, deepgreen);
@@ -33,5 +34,7 @@ dot("$Q'$", Q_p, dir(180));
     Points: A B C D P Q Q_p
     Item: A D Q Q_p
 
-    Text: $Q'$ is a point such that the homothety at $P$ sends $A$ to $C$ and $Q$ to $Q'$
+    Text: $AD\parallel BC$, $P=AC\cap BD$.
+    Text: $\angle AQD=\angle BQC$.
+    Text: $Q'$ is a point such that the homothety at $P$ sends $A$ to $C$ and $Q$ to $Q'$.
 */
