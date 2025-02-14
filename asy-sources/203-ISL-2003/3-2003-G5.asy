@@ -40,5 +40,7 @@ dot("$T$", T, dir(-60));
     Item: C P T
     Item: A B C T
 
-    Text: $T=FD\cap GE$
+    Text: $I$ is the incenter of $\triangle ABC$ with $AC=BC$.
+    Text: $P\in (AIB)$ and $PD\parallel AC$, $PE\parallel BC$.
+    Text: $T=FD\cap GE$.
 */
