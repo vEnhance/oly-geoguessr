@@ -14,9 +14,13 @@ pair Y = 2*I_a-X;
 pair K = foot(A, B, C);
 pair M = (A+K)/2;
 
-draw(A--K);
-draw(B--C);
-draw(T_1--A--T_2);
+draw(A--K, pink);
+draw(X--Y, pink);
+draw(D--E, pink);
+draw(A--I_a, grey);
+draw(A--B--C--cycle);
+draw(B--T_1, dotted);
+draw(C--T_2, dotted);
 draw(circle(I, abs(I-D)), deepcyan);
 draw(circle(I_a, abs(I_a-X)), dotted+deepcyan);
 
@@ -26,8 +30,8 @@ dot("$C$", C, dir(0));
 dot("$I$", I, dir(0));
 dot("$D$", D, dir(-90));
 dot("$E$", E, dir(90));
-dot("$X$", X, dir(-90));
-dot("$I_A$", I_a, dir(-90));
+dot("$X$", X, dir(90));
+dot("$I_A$", I_a, dir(0));
 dot("$Y$", Y, dir(-90));
 dot("$K$", K, dir(-90));
 dot("$M$", M, dir(0));
@@ -38,8 +42,9 @@ dot("$M$", M, dir(0));
     Item: A E X
     Item: M I X
     Item: M D I_a
-    Item: A I I_a
     Item: A D Y
-    Item: D E I
-    Item: X Y I_a
+    
+    Text: $I$ is the incenter, $I_a$ is $A$-excenter.
+    Text: $E$ is the antipode of $D$ wrt incircle, $Y$ is the antipose of $X$ wrt the excircle.
+    Text: $K$ is the foot of $A$ and $M$ is the midpoint of $AK$.
 */
