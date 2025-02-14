@@ -9,12 +9,12 @@ pair T = 2*B*C/(B+C);
 pair X = extension(A, T, B, C);
 pair Y = extension(A, D, O, foot(O, A, T));
 
-draw(A--D);
-draw(u_c, blue);
-draw(A--B--C--cycle);
-draw(A--E, lightblue);
-draw(X--Y, lightblue);
-draw(B--T--C, deepgreen);
+draw(A--D, grey);
+draw(u_c, lightmagenta);
+draw(A--E, deepgreen);
+draw(X--Y, deepgreen);
+draw(B--T--C, lightblue);
+filldraw(triangle(A, B, C), opacity(0.2)+pink, black);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -31,6 +31,7 @@ dot("$Y$", Y, dir(0));
     Points: A B C D E O T X Y
     Item: A T X
 
-    Text: $AB=4$, $AC=5$, $BC=6$
-    Text: $TB$ and $TC$ are tangents
+    Text: $AD\perp BC$, $YO\perp AX$, $AO\parallel XY$.
+    Text: $AB=4$, $AC=5$, $BC=6$.
+    Text: $TB$ and $TC$ are tangents.
 */
