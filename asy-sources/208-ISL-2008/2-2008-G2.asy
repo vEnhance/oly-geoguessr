@@ -32,5 +32,8 @@ dot("$K$", K, dir(-110));
     Item: C D E F
     Item: C D J K
 
-    Text: Given that $A$, $B$, $I$, $K$ is cyclic
+    Text: $ABCD$ is trapezoid.
+    Text: $\angle DAE=\angle CBF$.
+    Text: $I=CD\cap EF$, $J=AB\cap EF$, $K$ is the midpoint of $EF$.
+    Text: Given that $ABIK$ is cyclic.
 */
