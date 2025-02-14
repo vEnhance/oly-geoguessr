@@ -29,6 +29,7 @@ dot("$E$", E, dir(110));
 dot("$F$", F, dir(-60));
 dot("$G$", G, dir(-70));
 dot("$H$", H, dir(60));
+label("$d$", (D+K)/2, dir(0), .8*red);
 
 /*
     Source: ISL 2004 G2
@@ -38,5 +39,7 @@ dot("$H$", H, dir(60));
     Item: C D F G
     Item: C H F
 
-    Text: $K$ is the foot of $AB$ on $d$
+    Text: $AB$ is the diameter, $C\in (AB)$ is arbitrary, $d$ is perpendicular to $AB$.
+    Text: $D=d\cap AC$, $ED$ is tangent, $F=d\cap BE$, $G=AF\cap (AB)$.
+    Text: $H$ is the reflection of $G$ over $AB$.
 */
