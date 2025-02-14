@@ -13,9 +13,9 @@ pair X = extension(Q, F, P, E);
 circle c_1 = circle(A, F, P);
 
 draw(A--B--C--cycle);
-draw(A--D);
-draw(B--E);
-draw(C--F);
+draw(A--D, grey);
+draw(B--E, grey);
+draw(C--F, grey);
 draw(B--Q);
 draw(Q--X);
 draw(P--X);
@@ -44,5 +44,7 @@ dot("$X$", X, dir(90));
     Item: B D E A
     Item: P H F Q
 
-    Text: $X$ is the intersection of $QF$ and $PE$
+    Text: $H$ is the orthocenter.
+    Text: $(AFP)$, $(AFQ)$ are tangent to $BC$.
+    Text: $X$ is the intersection of $QF$ and $PE$.
 */
