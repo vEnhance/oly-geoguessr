@@ -45,4 +45,8 @@ dot("$Z$", Z, dir(-10));
     Item: B Y H
     Item: C Z H
     Item: A_1 A_2 B_1 B_2 C_1 C_2
+
+    Text: $H$ is the orthocenter.
+    Text: $D$, $E$, $F$ are midpoints of the sides.
+    Text: Circle with radius $DH$ intersects $BC$ at $A_1$, $A_2$. Similarly $B_1$, $B_2$, $C_1$, $C_2$.
 */
