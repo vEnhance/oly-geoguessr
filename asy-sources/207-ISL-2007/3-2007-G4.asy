@@ -12,8 +12,10 @@ pair N = (C+G)/2;
 pair P = (B+D)/2;
 
 draw(C--G);
-draw(c_2);
+draw(c_2, dotted);
 draw(c_1, blue);
+draw(A--C, grey);
+draw(B--D, grey);
 draw(E--G, deepcyan);
 draw(E--C, deepcyan);
 draw(E--F, deepcyan);
@@ -24,19 +26,19 @@ dot("$A$", A, dir(50));
 dot("$B$", B, dir(150));
 dot("$C$", C, dir(180));
 dot("$D$", D, dir(0));
-dot("$E$", E, dir(-90));
+dot("$E$", E, dir(-90)*1.3);
 dot("$F$", F, dir(90));
 dot("$G$", G, dir(220));
 dot("$M$", M, dir(-90));
 dot("$N$", N, dir(0));
-dot("$P$", P, dir(0));
+dot("$P$", P, dir(75));
 
 /*
     Source: ISL 2007 G4
     Points: A B C D E F G M N P
-    Item: A P C
-    Item: B P D
     Item: M N P
 
-    Text: $M$, $N$, $P$ are the midpoints of $CF$, $CG$, $BD$ respectively
+    Text: $ABCD$ is a parallelogram.
+    Text: $E\cap (BCD)$ such that $EG=EC=EF$.
+    Text: $M$, $N$, $P$ are the midpoints of $CF$, $CG$, $BD$ respectively.
 */
