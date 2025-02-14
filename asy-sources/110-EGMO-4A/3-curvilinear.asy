@@ -45,5 +45,4 @@ dot("$D$", D, dir(-90));
     Text: $C$ is arbitrary on the arc $AB$ containing $T$.
     Text: $I$ is the incenter of $\triangle ABC$.
     Text: $MA=MB$.
-    
 */
