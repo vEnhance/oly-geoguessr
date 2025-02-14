@@ -27,7 +27,7 @@ dot("$B'$", B_p, dir(180));
 dot("$C'$", C_p, dir(-90));
 dot("$Z$", Z, dir(0));
 dot("$K'$", K_p, dir(0));
-dot("$L$", L, dir(75));
+dot("$L$", L, dir(75)*1.3);
 
 /*
     Source: Sharygin 2013 (4.51)
@@ -39,6 +39,8 @@ dot("$L$", L, dir(75));
     Item: I L C_p
     Item: I Z K_p
 
-    Text: $K\in A'B'$ such that $CK'\parallel AB$
-    Text: $Z$ is the foot from $I$ on $CM$
+    Text: $M$ is the midpoint of $BC$.
+    Text: $I$ is the incenter and $\triangle A'B'C'$ is the contact triangle of $\triangle ABC$.
+    Text: $K\in A'B'$ such that $CK'\parallel AB$.
+    Text: $Z$ is the foot from $I$ on $CM$.
 */
