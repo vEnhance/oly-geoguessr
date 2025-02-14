@@ -40,4 +40,10 @@ dot("$D$", D, dir(-90));
     Item: K I L
     Item: C L I T
     Item: D K L O_1
+
+    Text: The two circles with centers $O$ and $O_1$ are tangent.
+    Text: $C$ is arbitrary on the arc $AB$ containing $T$.
+    Text: $I$ is the incenter of $\triangle ABC$.
+    Text: $MA=MB$.
+    
 */
