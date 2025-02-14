@@ -8,9 +8,9 @@ pair F = foot(I, A, B);
 pair M = (B+C)/2;
 pair X = extension(E, F, D, I);
 
-draw(A--B--C--cycle);
+draw(A--B--C--cycle, blue);
 draw(incircle(A, B, C), dotted+deepcyan);
-draw(D--E--F--cycle);
+draw(D--E--F--cycle, deepcyan);
 draw(D--X);
 
 dot("$A$", A, dir(110));
@@ -30,4 +30,7 @@ dot("$X$", X, dir(90));
     Item: A E F I
     Item: B D I F
     Item: C D I E
+
+    Text: $I$ is the incenter and $\triangle DEF$ is the contact triangle.
+    Text: $M$ is the midpoint of $BC$.
 */
