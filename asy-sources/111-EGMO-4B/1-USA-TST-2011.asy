@@ -15,7 +15,7 @@ draw(B--E);
 draw(C--F);
 draw(A--P, deepgreen);
 draw(Q--R_p, deepgreen);
-draw(D--E--F--cycle, orange);
+draw(D--E--F--cycle, lightblue);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -38,6 +38,8 @@ dot("$R'$", R_p, dir(-60));
     Item: B C E F
     Item: C A D F
     Item: A B D E
-    
-    Text: $R'$ is the reflection of $Q$ over $H$
+
+    Text: $H$ is the orthocenter.
+    Text: $P$, $Q$ are feet of $A$, $H$ on $EF$ respectively.
+    Text: $R'$ is the reflection of $Q$ over $H$.
 */
