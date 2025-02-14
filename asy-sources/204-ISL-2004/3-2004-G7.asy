@@ -55,6 +55,8 @@ dot("$Q$", Q, dir(0));
     Item: X D E I_1
     Item: X G H I_2
 
-    Text: $MN$ is the $A$-midline
-    Text: $R=MN\cap BI_1$, $S=MN\cap CI_2$
+    Text: The incircles of $\triangle ABX$ and $\triangle ACX$ intersect at $P$, $Q$.
+    Text: $I_1$, $I_2$ are the centers of the incircles.
+    Text: $MN$ is the $A$-midline.
+    Text: $R=MN\cap BI_1$, $S=MN\cap CI_2$.
 */
