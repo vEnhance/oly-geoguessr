@@ -15,7 +15,7 @@ pair O = (A+A_p)/2;
 
 draw(u_c, blue);
 draw(B--K--X);
-draw(E--F);
+draw(E--A_p);
 draw(A--D, lightblue);
 draw(B--X, lightblue);
 draw(C--Y, lightblue);
@@ -25,8 +25,8 @@ dot("$A$", A, dir(110));
 dot("$B$", B, dir(240));
 dot("$C$", C, dir(-60));
 dot("$D$", D, dir(-120));
-dot("$M$", M, dir(-90));
-dot("$H$", H, dir(0));
+dot("$M$", M, dir(-100));
+dot("$H$", H, dir(20));
 dot("$E$", E, dir(180));
 dot("$F$", F, dir(-90));
 dot("$X$", X, dir(30));
@@ -47,10 +47,12 @@ dot("$O$", O, dir(0));
     Item: D H E K
     Item: E H M A_p
     Item: A E D M
-    Item: A O A_p
     Item: A E K
+    Item: A O A_p
+    Item: D E F
 
-    Text: $X$, $Y$ are the feet as usual.
-    Text: $A'$ is the antipode of $A$
-    Text: $K=BC\cap XY$
+    Text: $H$ is the orthocenter and $O$ is the center of $\triangle ABC$.
+    Text: $M$ is the midpoint of $BC$.
+    Text: $E$, $A'$ are the intersections of $MH$ and $(ABC)$.
+    Text: $K=BC\cap XY$, $(BC;AF)=-1$.
 */
