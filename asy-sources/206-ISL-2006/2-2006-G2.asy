@@ -11,10 +11,12 @@ pair Q = intersectionpoints(c_1, line(K, S))[0];
 pair E = extension(A, P, D, Q);
 pair F = extension(B, P, C, Q);
 
-draw(D--C);
+draw(D--C, blue);
+draw(A--B, blue);
+draw(A--S--B);
+draw(K--L, dotted);
 draw(D--Q--C);
 draw(A--P--B);
-draw(A--S--B--cycle);
 
 dot("$A$", A, dir(180));
 dot("$B$", B, dir(0));
@@ -23,8 +25,8 @@ dot("$D$", D, dir(180));
 dot("$S$", S, dir(80));
 dot("$K$", K, dir(-90));
 dot("$L$", L, dir(80));
-dot("$P$", P, dir(70));
-dot("$Q$", Q, dir(-100));
+dot("$P$", P, dir(130));
+dot("$Q$", Q, dir(-60));
 dot("$E$", E, dir(160));
 dot("$F$", F, dir(0));
 
@@ -35,6 +37,7 @@ dot("$F$", F, dir(0));
     Item: B C P Q
     Item: E F P Q
 
-    Text: $S=AD\cap BC$
-    Text: $E=AP\cap DQ$, $F=BP\cap CQ$
+    Text: $ABCD$ is a trapezoid.
+    Text: $\frac{AK}{KB}=\frac{DL}{LC}$.
+    Text: $S=AD\cap BC$, $E=AP\cap DQ$, $F=BP\cap CQ$.
 */
