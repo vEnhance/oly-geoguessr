@@ -30,4 +30,6 @@ dot("$R$", R, dir(180));
     Item: A Q D R
     Item: C D Q P
     Item: B R D P
+
+    Text: $P$, $Q$, $R$ are the feet of $D\in (ABC)$ on the sides.
 */
