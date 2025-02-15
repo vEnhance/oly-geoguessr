@@ -12,14 +12,14 @@ pair K = 2*A*B/(A+B);
 pair M = extension(A, K, P, F);
 pair N = extension(B, K, P, G);
 
-filldraw(u_c, opacity(0.2)+lightcyan, blue);
-draw(A--B--C--cycle);
+draw(A--B--C--cycle, blue);
 draw(A--D, orange);
 draw(P--M, orange);
 draw(B--E, deepgreen);
 draw(P--N, deepgreen);
 draw(M--K--N);
 draw(D--E);
+draw(circumcircle(A, B, C), grey);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -42,6 +42,9 @@ dot("$N$", N, dir(-90));
     Item: B I G D N
     Item: M I N
 
-    Text: $M=AK\cap PF$, $N=BK\cap PG$
-    Text: $I$ is the incenter
+    Text: $I$ is the incenter and $D$, $E$ are midpoints of the arcs as usual.
+    Text: $F=DE\cap AC$, $G=DE\cap BC$.
+    Text: $AI\parallel FP$, $BI\parallel GP$.
+    Text: $KA$, $KB$ are tangents.
+    Text: $M=AK\cap PF$, $N=BK\cap PG$.
 */
