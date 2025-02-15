@@ -12,7 +12,6 @@ pair X_p = foot(E, B, C);
 pair Y_p = foot(E, C, D);
 pair Z_p = foot(E, D, A);
 
-
 draw(A--B--C--D--cycle, lightblue);
 draw(A--C, deepgreen);
 draw(B--D, deepgreen);
