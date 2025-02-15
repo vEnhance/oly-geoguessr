@@ -20,7 +20,6 @@ draw(A--B--D--cycle);
 draw(B--P--D, lightblue);
 draw(T--A, lightblue);
 
-
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(230));
 dot("$C$", C, dir(-130));
