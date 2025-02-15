@@ -16,7 +16,6 @@ draw(circle(A, B, C), blue);
 draw(circle(A, O, C), lightblue);
 draw(circle(B, O, D), lightblue);
 
-
 dot("$A$", A, dir(220));
 dot("$B$", B, dir(-50));
 dot("$C$", C, dir(90));
