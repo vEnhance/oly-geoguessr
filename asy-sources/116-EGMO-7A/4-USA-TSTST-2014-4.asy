@@ -18,7 +18,6 @@ draw(N--Q);
 draw(u_c, blue);
 filldraw(triangle(A, B, C), opacity(0.2)+paleyellow);
 
-
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
 dot("$C$", C, dir(-30));
