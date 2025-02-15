@@ -15,9 +15,9 @@ draw(A--S);
 draw(K--M);
 draw(T--S--C);
 draw(A--B--C--cycle);
-draw(C--M, deepgreen);
-draw(A--K, deepgreen);
-draw(B--L, deepgreen);
+draw(C--M, dotted+deepgreen);
+draw(A--K, dotted+deepgreen);
+draw(B--L, dotted+deepgreen);
 
 dot("$A$", A, dir(240));
 dot("$B$", B, dir(-60));
@@ -34,6 +34,8 @@ dot("$T$", T, dir(0));
     Points: A B C S P K L M T
     Item: C P T K
     Item: B M P T
-    
-    Text: $T=SP\cap KM$
+
+    Text: $P$ is any point interior of $\triangle ABC$.
+    Text: $S=CC\cap AB$, $T=SP\cap KM$.
+    Text: $SC=SP$.
 */
