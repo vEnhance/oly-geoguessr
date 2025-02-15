@@ -38,4 +38,7 @@ dot("$Q$", Q, dir(110));
     Item: A E D B
     Item: B F E C
     Item: C D F A
+
+    Text: $H$ is the orthocenter and $D$, $E$, $F$ are feet as usual.
+    Text: $P=EF\cap (ABC)$, $Q=DF\cap PB$.
 */
