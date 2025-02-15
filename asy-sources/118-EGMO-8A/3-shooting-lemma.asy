@@ -21,7 +21,6 @@ dot("$K$", K, dir(-90));
 dot("$O$", O, dir(10));
 dot("$O_1$", O_1, dir(10));
 
-
 /*
     Source: 8.15
     Points: B C T K M O O_1
