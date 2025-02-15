@@ -17,7 +17,7 @@ draw(B--D);
 draw(A--F);
 draw(B--E);
 draw(C--I);
-draw(c_1, .8*red);
+draw(c_1, .8*red+dotted);
 draw(arc(O_2, abs(O_2-E), -85, 35), deepgreen);
 draw(circumcircle(A, B, C), grey);
 draw(A--B--C--cycle, blue);
