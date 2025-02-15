@@ -22,6 +22,7 @@ draw(A--E, lightblue);
 draw(B--C, lightblue);
 draw(B--D);
 draw(A--B);
+draw(M--O);
 draw(C--D--E);
 
 dot("$A$", A, dir(180));
@@ -43,7 +44,9 @@ dot("$D'$", D_p, dir(0));
     Item: B C D D_p
     Item: D M O Y Z
     Item: A B D B_p
-    
-    Text: $B'$ is the reflection of $B$ wrt $M$
-    Text: $Y$, $Z$ are the midpoint of $BD$, $CD$ respectively
+
+    Text: $BC\parallel AE$, $AB=BC+AE$, $\angle ABC=\angle CDE$, $\angle DMO=90^\circ$.
+    Text: $O$ is the circumcenter of $\triangle BCD$, $M$ is the midpoint of $CE$.
+    Text: $B'$ is the reflection of $B$ wrt $M$.
+    Text: $Y$, $Z$ are the midpoint of $BD$, $CD$ respectively.
 */
