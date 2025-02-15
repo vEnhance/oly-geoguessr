@@ -13,7 +13,6 @@ pair I = extension(A, F, B, E);
 pair K = extension(C, I, B, D);
 pair M = (B+C)/2;
 
-
 draw(B--D);
 draw(A--F);
 draw(B--E);
