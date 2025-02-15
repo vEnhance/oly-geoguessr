@@ -37,6 +37,6 @@ dot("$R$", R, dir(12)*1.3);
     Item: C D P M
     Item: A O C M
     Item: B O D M
-    
+
     Text: $M$ is the miquel point of cyclic quadrilateral $ABCD$.
 */

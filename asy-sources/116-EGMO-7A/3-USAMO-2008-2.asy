@@ -36,7 +36,7 @@ dot("$O$", O, dir(0));
     Item: B M O P
     Item: C M N O
     Item: A E N P
-    
+
     Text: $O$ is the center of $(ABC)$. $AM$ is the $A$-median.
     Text: $P$, $N$ are the midpoints.
     Text: $DA=DB$, $EA=EC$, $F=DB\cap CE$.

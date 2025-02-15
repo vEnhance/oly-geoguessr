@@ -30,6 +30,6 @@ label("$s-c$", (C+E)/2, dir(0));
     Item: A E F I
     Item: B D F I
     Item: C D E I
-    
+
     Text: $I$ is the incenter and $\triangle DEF$ is the contact triangle of $\triangle ABC$.
 */

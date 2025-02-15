@@ -25,7 +25,7 @@ dot("$F$", F, dir(-50));
     Points: A B C D E F I
     Item: A B C D
     Item: D E F I
-    
+
     Text: $I$ is the incenter of $\triangle ABC$, $DB=DC$ and $D$ lies on $AI$.
     Text: $E$, $F$ are the feet of $I$ on $DB$, $DC$.
 */

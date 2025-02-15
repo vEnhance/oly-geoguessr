@@ -44,7 +44,7 @@ dot("$K$", K, dir(90));
     Item: B A_0 C_0 O
     Item: A B_0 C_0 O
     Item: D A_0 B_0 C_0
-    
+
     Text: $A_0$, $B_0$, $C_0$ are the midpoints of the sides.
     Text: $D$ is the foot from $A$ to $BC$.
     Text: $O$ is the circumcenter of $\triangle ABC$.

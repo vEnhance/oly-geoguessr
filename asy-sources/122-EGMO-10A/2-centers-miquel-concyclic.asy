@@ -36,7 +36,7 @@ dot("$O_4$", O_4, dir(180));
     Item: B C Q M
     Item: A B P M
     Item: C D P M
-    
+
     Text: $M$ is the miquel point of quadrilateral $ABCD$.
     Text: $O_1$, $O_2$, $O_3$, $O_4$ are the circumcenters of $\triangle BCQ$, $\triangle ADQ$, $\triangle ABP$, $\triangle CDP$ respectively.
 */

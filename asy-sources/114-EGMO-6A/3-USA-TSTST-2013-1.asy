@@ -41,7 +41,7 @@ dot("$H$", H, dir(0));
     Item: A I D
     Item: D H A_1
     Item: A D F_1 F_2 F_3 F_4
-    
+
     Text: $H$ is the orthocenter of $\triangle ABC$.
     Text: $I$ is the incenter. $D$ is the midpoint of the arc $BC$ not containing $A$.
     Text: $F_1$, $F_2$ are the feet from $A$ on $BD$, $DC$.
