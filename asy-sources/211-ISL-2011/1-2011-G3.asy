@@ -22,10 +22,10 @@ pair M = (E+F)/2;
 pair P = extension(F, K_6, E, K_5);
 
 draw(A--B--C--D--cycle);
-draw(c_1, heavycyan);
-draw(c_2, heavycyan);
-draw(c_3, blue+dotted);
-draw(c_4, blue+dotted);
+draw(c_1, blue);
+draw(c_2, blue);
+draw(c_3, .8*red+dotted);
+draw(c_4, .8*red+dotted);
 draw(E--K_1, grey);
 draw(E--K_3, grey);
 draw(E--K_5, grey);
@@ -49,8 +49,8 @@ dot("$K_3$", K_3, dir(-30));
 dot("$K_4$", K_4, dir(85));
 dot("$K_5$", K_5, dir(0));
 dot("$K_6$", K_6, dir(90));
-dot("$X$", X, dir(-90), blue);
-dot("$Y$", Y, dir(80), blue);
+dot("$X$", X, dir(-90), .8*red);
+dot("$Y$", Y, dir(80), .8*red);
 dot("$M$", M, dir(-90));
 dot("$P$", P, dir(90));
 
@@ -68,7 +68,7 @@ dot("$P$", P, dir(90));
     Item: M F K_4 O_2
     Item: M E K_3 O_2
 
-    Text: $K_i$'s are the respective feet
-    Text: $M$ is the midpoint of $EF$
-    Text: The centers $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively
+    Text: $K_i$'s are the respective feet.
+    Text: $M$ is the midpoint of $EF$.
+    Text: The centers $O_1$, $O_2$ are the midpoints of $AB$, $CD$ respectively.
 */
