@@ -14,12 +14,13 @@ pair K = foot(A_0, B_0, C_0);
 
 draw(A--B--C--cycle, blue);
 draw(B_0--C_0);
-
-draw(circumcircle(B_0, C_0, D));
-draw(circumcircle(A, B, C));
+draw(A--Y, dotted);
+draw(circumcircle(A, B, C), grey);
+draw(circumcircle(X, B_0, C_0), dotted+.8*red);
 draw(A--A_0, grey);
 draw(B--B_0, grey);
 draw(C--C_0, grey);
+draw(A--D, grey);
 
 dot("$A$", A, dir(100));
 dot("$B$", B, dir(210));
@@ -29,7 +30,7 @@ dot("$A_0$", A_0, dir(-90));
 dot("$B_0$", B_0, dir(0));
 dot("$C_0$", C_0, dir(180));
 dot("$D$", D, dir(-90));
-dot("$G$", G, dir(180));
+dot("$G$", G, dir(180)*1.3);
 dot("$X$", X, dir(-110));
 dot("$Y$", Y, dir(90));
 dot("$K$", K, dir(90));
@@ -42,12 +43,12 @@ dot("$K$", K, dir(90));
     Item: C A_0 B_0 O
     Item: B A_0 C_0 O
     Item: A B_0 C_0 O
-    Item: A_0 B_0 C_0 D
-
-    Text: $A_0 B_0 C_0$ are the midpoints of the sides
-    Text: $D$ is the foot from $A$ to $BC$
-    Text: $O$ is circumcenter of $\triangle ABC$
-    Text: $K$ is the foot from $A_0$ on $B_0C_0$
-    Text: $AY \parallel BC$
-    Text: $(X B_0 C_0)$ and $(ABC)$ are tangent
+    Item: D A_0 B_0 C_0
+    
+    Text: $A_0$, $B_0$, $C_0$ are the midpoints of the sides.
+    Text: $D$ is the foot from $A$ to $BC$.
+    Text: $O$ is the circumcenter of $\triangle ABC$.
+    Text: $K$ is the foot from $A_0$ on $B_0C_0$.
+    Text: $AY\parallel BC$.
+    Text: $(XB_0C_0)$ and $(ABC)$ are tangent.
 */
