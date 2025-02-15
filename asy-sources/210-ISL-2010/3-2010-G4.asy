@@ -15,9 +15,12 @@ pair P = extension(D, G, A, F);
 draw(u_c, blue);
 draw(A--B--C--cycle);
 draw(E--A--F, deepgreen);
-draw(A--I_a);
+draw(A--I_a, dotted);
 draw(I--F);
 draw(D--K);
+
+markangle(n=2, radius=15, E, A, C, deepgreen);
+markangle(n=2, radius=15, B, A, F, deepgreen);
 
 dot("$A$", A, dir(110));
 dot("$B$", B, dir(210));
@@ -37,8 +40,9 @@ dot("$P$", P, dir(0));
     Item: B I C I_a
     Item: A I P K
     Item: K I E
-    
-    Text: $K=DG\cap (ABC)$
-    Text: $P=DG\cap AF$
-    Text: $I_a$ is the $A$-excenter
+
+    Text: $I$ is the incenter and $I_a$ is the $A$-excenter.
+    Text: $\angle CAE=\angle BAF$.
+    Text: $G$ is the midpoint of $IF$.
+    Text: $K=DG\cap (ABC)$, $P=DG\cap AF$.
 */
