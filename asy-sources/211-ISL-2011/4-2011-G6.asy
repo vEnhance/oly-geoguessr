@@ -13,17 +13,17 @@ pair I = extension(A, F, B, E);
 pair K = extension(C, I, B, D);
 pair M = (B+C)/2;
 
-filldraw(u_c, opacity(0.2)+lightcyan, blue);
 draw(B--D);
 draw(A--F);
 draw(B--E);
 draw(C--I);
 draw(c_1, .8*red);
 draw(arc(O_2, abs(O_2-E), -85, 35), deepgreen);
-draw(A--B--C--cycle);
+draw(circumcircle(A, B, C), grey);
+draw(A--B--C--cycle, blue);
 
 dot("$A$", A, dir(70));
-dot("$B$", B, dir(240));
+dot("$B$", B, dir(240)*1.4);
 dot("$C$", C, dir(-30));
 dot("$O$", O, dir(30));
 dot("$D$", D, dir(40));
@@ -39,8 +39,8 @@ dot("$M$", M, dir(-90));
     Item: A O E M
     Item: A C M F
 
-    Text: $A B = A C$ and $E B = E C$
-    Text: $O$ is the circumcenter of $\triangle ABC$
+    Text: $AB=AC$ and $EB=EC$.
+    Text: $O$ is the circumcenter of $\triangle ABC$.
     Text: $M$ is the midpoint of $BC$.
     Text: $D$ is the midpoint of $AC$.
 */
