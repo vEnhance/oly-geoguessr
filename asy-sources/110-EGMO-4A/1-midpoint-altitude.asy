@@ -14,10 +14,10 @@ pair Y = 2*I_a-X;
 pair K = foot(A, B, C);
 pair M = (A+K)/2;
 
-draw(A--K, pink);
-draw(X--Y, pink);
-draw(D--E, pink);
-draw(A--I_a, grey);
+draw(A--K, grey);
+draw(X--Y, grey);
+draw(D--E, grey);
+draw(A--I_a, dotted);
 draw(A--B--C--cycle);
 draw(B--T_1, dotted);
 draw(C--T_2, dotted);
