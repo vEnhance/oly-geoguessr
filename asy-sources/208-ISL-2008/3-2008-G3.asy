@@ -41,6 +41,7 @@ dot("$Q$", Q, dir(0));
     Item: P Q E X
     Item: A P E F
     Item: P B G E
+    Item: A B F G
     Item: A B C D
 
     Text: $ADPQ$, $BCPQ$ are cyclic.
