@@ -28,6 +28,6 @@ dot("$P$", P, dir(0));
     Source: Radical Center of Intersecting Circles (2.9)
     Points: A B C D K L P
     Item: A B C D
-    
+
     Text: $P$ lies on $KL$. $AB$ and $CD$ are two chords passing through $P$.
 */

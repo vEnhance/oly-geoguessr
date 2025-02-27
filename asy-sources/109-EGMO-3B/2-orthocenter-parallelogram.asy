@@ -20,7 +20,7 @@ dot("$Y$", Y, dir(-90));
     Source: 3.17
     Points: A B C D X Y
     Item: B C X Y
-    
+
     Text: $ABCD$ is cyclic.
     Text: $X$, $Y$ are the orthocenters of $\triangle ABC$, $\triangle BCD$.
 */

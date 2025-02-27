@@ -41,7 +41,7 @@ dot("$Z$", Z, dir(-45));
     Item: A M P Z
     Item: D N P Z
     Item: D K N
-    
+
     Text: $X$, $Y$ are the intersections of $(AC)$ and $(BD)$.
     Text: $Z=XY\cap BC$ and $P$ be arbitrary on $XY$.
     Text: $M=PC\cap (AC)$, $N=BP\cap (BD)$, $K=AM\cap XY$.

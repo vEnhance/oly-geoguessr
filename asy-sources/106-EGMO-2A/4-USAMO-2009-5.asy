@@ -33,7 +33,7 @@ dot("$O_3$", O_3, dir(90));
     Source: USAMO 2009/1 (2.21)
     Points: P Q R S X Y Z O_1 O_2 O_3
     Item: X Y Z O_3
-    
+
     Text: $O_1$ lies on $PQ$, $O_2$ lies on $RS$.
     Text: $PQRS$ is cyclic with center $O_3$.
     Text: $Z$ is the intersection of $PQ$ and $RS$.

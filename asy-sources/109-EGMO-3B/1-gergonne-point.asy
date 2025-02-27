@@ -24,7 +24,7 @@ dot("$G$", G, dir(-90));
     Source: 3.16
     Points: A B C D E F G
     Item: A D G
-    
+
     Text: $\triangle DEF$ is the contact triangle of $\triangle ABC$.
     Text: $G$ is the intersection of $BE$ and $CF$.
 */

@@ -43,7 +43,7 @@ dot("$H_C$", H_C, dir(120));
     Item: H K L H_C
     Item: B C H M
     Item: A B H L
-    
+
     Text: $H$ is the orthocenter. $K$ lies on $(ABC)$.
     Text: $L$, $M$ are the reflections of $K$ and $H_C$, $H_A$ are the reflections of $H$ wrt $AB$, $AC$.
     Text: $E=(BLM)\cap (ABC)$.  $J=KH\cap BC$.

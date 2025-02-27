@@ -54,7 +54,7 @@ dot("$U$", U, dir(-90));
     Item: D E P Q
     Item: E F Q R
     Item: D F P R
-    
+
     Text: $I$ is the incenter of $\triangle ABC$.
     Text: $P=(AEFI)\cap (ABC)$, $Q=(BDFI)\cap (ABC)$, $R=(CDEI)\cap (ABC)$, $U=QE\cap FR$.
     Text: $K$ is the midpoint of the arc $BC$ not containing $A$. Similarly $L$, $M$.

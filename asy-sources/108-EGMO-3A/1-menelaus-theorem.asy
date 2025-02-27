@@ -21,7 +21,7 @@ dot("$Z$", Z, dir(0));
     Source: Menelaus’s Theorem (3.7)
     Points: A B C X Y Z
     Item: X Y Z
-    
+
     Text: $X$, $Y$, $Z$ lies on the sides.
     Text: $\frac{BX}{XC}\cdot\frac{CY}{YA}\cdot\frac{AZ}{ZB}=-1$.
 */

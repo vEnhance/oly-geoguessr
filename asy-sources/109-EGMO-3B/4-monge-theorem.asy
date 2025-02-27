@@ -47,7 +47,7 @@ dot("$Z$", O_13, dir(-90));
     Item: Y O_2 O_3
     Item: Z O_1 O_3
     Item: X Y Z
-    
+
     Text: Three circles with centers $O_1$, $O_2$, $O_3$.
     Text: Their pairwise common external tangents intersect at $X$, $Y$, $Z$ respectively.
 */

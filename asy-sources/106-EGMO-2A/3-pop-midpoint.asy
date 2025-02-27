@@ -21,7 +21,7 @@ dot("$P$", P, dir(10));
     Source: 2.11
     Points: A B C M P
     Item: A M P
-    
+
     Text: $(APB)$ and $(APC)$ are tangent to $BC$.
     Text: $M$ is the midpoint of $BC$.
 */

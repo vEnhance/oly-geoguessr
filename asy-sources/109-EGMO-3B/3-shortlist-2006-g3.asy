@@ -35,7 +35,7 @@ dot("$P$", P, dir(70));
     Item: A M P
     Item: A B C P
     Item: A D E P
-    
+
     Text: $\angle BAC=\angle CAD=\angle DAE$.
     Text: $\angle ABC=\angle ACD=\angle ADE$.
     Text: $P=BD\cap CE$, $MC=MD$.

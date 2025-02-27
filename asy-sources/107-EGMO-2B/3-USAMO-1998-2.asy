@@ -31,7 +31,7 @@ dot("$O$", O, dir(0));
     Source: USAMO 1998/2 (2.32)
     Points: A B C D E F M O
     Item: C D E F
-    
+
     Text: Two circles are concentric at $O$.
     Text: $AC$ is tangent at $B$ to the smaller circle.
     Text: $D$ is the midpoint of $AB$.

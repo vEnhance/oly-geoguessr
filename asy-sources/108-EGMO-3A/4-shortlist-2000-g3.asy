@@ -39,7 +39,7 @@ dot("$H_c$", H_c, dir(160));
     Item: E O H_b
     Item: F O H_c
     Item: A D U
-    
+
     Text: $H$ is the orthocenter, $O$ is the circumcenter.
     Text: $H_a$, $H_b$, $H_c$ are the reflection of $H$ wrt the sides.
     Text: $D$, $E$, $F$ are on the sides such that $OD+DH=OE+EH=OF+FH$.

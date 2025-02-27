@@ -65,7 +65,7 @@ dot("$N_9$", N_9, dir(90));
     Item: A O N P
     Item: B O M P
     Item: C O M N
-    
+
     Text: $H$ is the orthocenter, $O$ is the circumcenter of $\triangle ABC$.
     Text: $D$, $E$, $F$ are the feet. $M$, $N$, $P$ are the side midpoints. $X$, $Y$, $Z$ are the midpoints of $AH$, $BH$, $CH$.
     Text: $N_9$ is the midpoint of $OH$.
