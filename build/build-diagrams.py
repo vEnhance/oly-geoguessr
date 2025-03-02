@@ -81,11 +81,13 @@ def createDiagram(dir_name, file_name, ext):
         return -1  # I don't know how to deal with this!
 
     orig_asy_content = ""
+
     # Reset variables
-    source = ""
+    source: str | None = None
     text = ""
-    pts_list = []
-    item_list = []
+    pts_list: list[str] = []
+    item_list: list[list[str]] = []
+
     with open(fileoldasy, "r") as r:
         pts_list = []
         item_list = []
@@ -93,6 +95,7 @@ def createDiagram(dir_name, file_name, ext):
             orig_asy_content += line
             line = line.strip()
             if line.startswith("Source:"):
+                assert source is None, "duplicated source"
                 source = line[7:].strip()
             elif line.startswith("Points:"):
                 line = line[7:].strip()
@@ -105,6 +108,7 @@ def createDiagram(dir_name, file_name, ext):
                 text += line + "<br>"
         text = text.strip()
         text = json.dumps(text)
+    assert source is not None, "no source was given"
 
     with open(filenewasy, "w") as w:
         print(PREAMBLE, file=w)
