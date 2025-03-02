@@ -59,7 +59,7 @@ img {
     border-bottom: 5px solid #cccccc;
     background-color: #A00;
     /* background-image: url('http://i.minus.com/iFa7lbITnBHhq.png'); */
-    
+
     background-position: left bottom;
     background-repeat: no-repeat;
     border-width: 0px;
@@ -100,7 +100,7 @@ div .entrywrap,
 div .entrywrap-hover {
     background-color: #EDD;
     /* border				: 1px solid black; */
-    
+
     margin: 0.5em;
     overflow: auto;
     padding: 0.5em;

@@ -18,7 +18,7 @@
 .current { font-weight: bold; }
 
 #curr_score_box {
-	float: right; 
+	float: right;
 	font-size: 250%;
 }
 span.curr-score-unknown { }

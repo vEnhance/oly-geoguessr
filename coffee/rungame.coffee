@@ -1,4 +1,4 @@
-# Constants 
+# Constants
 CANVAS_HEIGHT = 600
 CANVAS_WIDTH  = 600
 SENSITIVITY = 50
@@ -14,7 +14,7 @@ CANVAS = null
 CONTEXT = null
 game = null
 
-# Aux 
+# Aux
 del = (arr, x) -> # no return value
 	arr.splice(arr.indexOf(x), 1) # delete p
 
@@ -43,14 +43,14 @@ katexMath = (elm, text) ->
 
 
 
-# Model Objects 
+# Model Objects
 class Point
 	constructor: (@name, @x, @y, @i) ->
 		# no need to do anything, lol!
 		# The @i gives a unique ordering to each item
 	toString: () ->
 		@name
-		
+
 class Diagram
 	constructor: (json_array) ->
 		umin = json_array["min"][0]
@@ -275,9 +275,9 @@ loadAnswersIntoUI = (diagram) ->
 		$("#answers_heading").css("display", "block")
 		for i in diagram.unfound_item_indices
 			addClickableItemBullet(diagram, i, "#answers")
-		
 
-# UI Triggers 
+
+# UI Triggers
 # Signals sent by model to UI, otherwise meow
 triggerUISetDiagram = () ->
 	loadDiagramIntoUI(game.currDiagram())
@@ -310,7 +310,7 @@ triggerUIEndGame = () ->
 	loadDiagramIntoUI(game.currDiagram())
 
 
-# Canvas art and Button UI 
+# Canvas art and Button UI
 # Low-level things
 drawCircle = (p, color = "blue", r) ->
 	CONTEXT.beginPath()
@@ -356,7 +356,7 @@ enableButtons = () ->
 	enableButtonIf("#quit_button", game.isAlive())
 
 
-# UI Updater 
+# UI Updater
 updateMistakes = () ->
 	$("#mistakes").html(game.currDiagram().mistakes)
 updateProgressBullets = () ->
@@ -402,7 +402,7 @@ updateSidebarSoft = (c = "blue") ->
 	updateMistakes()
 	enableButtons()
 	updateTimeLeftOnce()
-	
+
 updateSidebarHard = (c = "blue") ->
 	# Updates for clicking prev, next, or correct done
 	updateProgressBullets()
@@ -426,7 +426,7 @@ updateTimeLeftOnce = () ->
 	$("#time").html(getTimeString(game.getTimeLeft()))
 
 
-# Alerts 
+# Alerts
 
 alertDiagramDone = () ->
 	title = "Diagram complete!"
@@ -493,7 +493,7 @@ alertConfirm = ({title, text, type, callback} = {}) ->
 	}, callback)
 
 
-# Click handler 
+# Click handler
 toggle = (p) ->
 	diagram = game.currDiagram()
 	if not (p in diagram.active_points)
@@ -569,7 +569,7 @@ onQuitButtonClick = (e) ->
 		callback: () -> setJSTimeout(500, () -> game.endGame())
 
 
-# Game initialization 
+# Game initialization
 
 initEpisodeSelect = () ->
 	epselector = $("#episode_select")
@@ -595,7 +595,7 @@ initEpisodeSelect = () ->
 
 
 
-# Main function 
+# Main function
 $ ->
 	$("[type=button]").prop("disabled", true)
 	enableButtonIf("#start_game", false) # why isn't this already done!?
