@@ -32,10 +32,9 @@ dot("$O$", O, dir(0));
     Points: A B C D E F M N P O
     Item: P D O
     Item: E N O
-    Item: A N O P
+    Item: A F N O P
     Item: B M O P
     Item: C M N O
-    Item: A E N P
 
     Text: $O$ is the center of $(ABC)$. $AM$ is the $A$-median.
     Text: $P$, $N$ are the midpoints.
