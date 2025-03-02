@@ -3,8 +3,7 @@ import glob
 import json
 import os
 
-PREAMBLE = """/* MEOW */
-import geometry;
+PREAMBLE = """import geometry;
 void filldraw(picture pic = currentpicture, conic g, pen fillpen=defaultpen, pen drawpen=defaultpen)
     { filldraw(pic, (path) g, fillpen, drawpen); }
 void fill(picture pic = currentpicture, conic g, pen p=defaultpen)
@@ -43,7 +42,6 @@ path Drawing(path g, pen p = defaultpen, arrowbar ar = None) {
 size(500);
 dotfactor *= 2;
 defaultpen(fontsize(18pt));
-
 """
 
 TMP = "/tmp/guessr/"
@@ -76,7 +74,7 @@ def createDiagram(dir_name, file_name, ext):
         )
         fileoldasy = filetmpasy
     else:
-        print("WARNING: ignoring unknown %s" % filesrc)
+        print(f"WARNING: ignoring unknown {filesrc}")
         return -1  # I don't know how to deal with this!
 
     orig_asy_content = ""
@@ -109,7 +107,7 @@ def createDiagram(dir_name, file_name, ext):
         print(PREAMBLE, file=w)
         print(orig_asy_content, file=w)
         for pt in pts_list:
-            print('write("Point: %s," + (string) %s);' % (pt, pt), file=w)
+            print(f'write("Point: {pt}," + (string) {pt});', file=w)
         print(
             'write("umin " + (string) min(currentpicture, user=true));', file=w
         )  # User coordinates
@@ -155,21 +153,17 @@ def createDiagram(dir_name, file_name, ext):
     g.write("{\n")
     g.write('"points" : [\n')
     print(
-        ",\n".join(
-            ['["%s", %s, %s]' % (pt[0], pt[1][1:], pt[2][:-1]) for pt in pts_coor]
-        ),
+        ",\n".join([f'["{pt[0]}", {pt[1][1:]}, {pt[2][:-1]}]' for pt in pts_coor]),
         file=g,
     )
     print("],", file=g)
 
-    print('"min" : [%s,%s],' % (min_list[0][1:], min_list[1][:-1]), file=g)
-    print('"max" : [%s,%s],' % (max_list[0][1:], max_list[1][:-1]), file=g)
+    print(f'"min" : [{min_list[0][1:]},{min_list[1][:-1]}],', file=g)
+    print(f'"max" : [{max_list[0][1:]},{max_list[1][:-1]}],', file=g)
 
     print('"items" : [', file=g)
     print(
-        ",\n".join(
-            ["[" + ",".join(['"%s"' % p for p in ls]) + "]" for ls in item_list]
-        ),
+        ",\n".join(["[" + ",".join([f'"{p}"' for p in ls]) + "]" for ls in item_list]),
         file=g,
     )
     print("],", file=g)
@@ -178,11 +172,11 @@ def createDiagram(dir_name, file_name, ext):
     assert pymin is not None
     assert pxmax is not None
     assert pymax is not None
-    print('"source" : "%s",' % (source), file=g)
-    print('"filename" : "%s",' % (file_name), file=g)
-    print('"width" : "%f",' % (pxmax - pxmin), file=g)
-    print('"height" : "%f",' % (pymax - pymin), file=g)
-    print('"text" : %s' % (text), file=g)  # json dump'ed, no quotes
+    print(f'"source" : "{source}",', file=g)
+    print(f'"filename" : "{file_name}",', file=g)
+    print(f'"width" : "{pxmax - pxmin:f}",', file=g)
+    print(f'"height" : "{pymax - pymin:f}",', file=g)
+    print(f'"text" : {text}', file=g)  # json dump'ed, no quotes
     print("}", file=g)
     return 1
 
