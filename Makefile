@@ -3,9 +3,9 @@ all : js/rungame.js diagrams
 js/rungame.js : coffee/rungame.coffee
 	coffee -c -o js coffee/rungame.coffee;
 
-diagrams : asy-sources/* build/build-diagrams.py
+diagrams : asy-sources/* build-diagrams.py
 	mkdir -p diagrams
-	./build/build-diagrams.py
+	./build-diagrams.py
 
 clean:
 	rm -f js/rungame.js
