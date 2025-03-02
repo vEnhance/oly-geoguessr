@@ -2,6 +2,8 @@
 import glob
 import json
 import os
+import tempfile
+from pathlib import Path
 
 PREAMBLE = """import geometry;
 void filldraw(picture pic = currentpicture, conic g, pen fillpen=defaultpen, pen drawpen=defaultpen)
@@ -44,21 +46,22 @@ dotfactor *= 2;
 defaultpen(fontsize(18pt));
 """
 
-TMP = "/tmp/guessr/"
+TMPDIR = Path(tempfile.gettempdir()) / "guessr"
 
 
 def createDiagram(dir_name, file_name, ext):
-    filesrc = "asy-sources/" + dir_name + "/" + file_name + "." + ext
-    filebase = "diagrams/" + file_name
-    filetmp = TMP + file_name + ".tmp"
-    filetmpasy = TMP + file_name + ".tmpasy"
-    filenewasy = TMP + file_name + ".asy"
-    filejson = "diagrams/" + file_name + ".json"
+    filesrc = Path("asy-sources") / dir_name / (file_name + "." + ext)
+    filebase = Path("diagrams/") / file_name
+    filetmp = TMPDIR / (file_name + ".tmp")
+    filetmpasy = TMPDIR / (file_name + ".tmpasy")
+    filenewasy = TMPDIR / (file_name + ".asy")
+    filejson = Path("diagrams") / (file_name + ".json")
 
     # If already created and older, skip it
-    if os.path.isfile(filejson):
-        if os.path.getmtime(filejson) > os.path.getmtime(filesrc):
-            return 0
+    if os.path.isfile(filejson) and (
+        os.path.getmtime(filejson) > os.path.getmtime(filesrc)
+    ):
+        return 0
 
     if ext == "asy":
         fileoldasy = filesrc
@@ -183,7 +186,7 @@ def createDiagram(dir_name, file_name, ext):
 
 if __name__ == "__main__":
     diagram_index = {}
-    os.system("mkdir -p " + TMP)
+    TMPDIR.mkdir(exist_ok=True)
 
     for s in glob.iglob("asy-sources/*/*"):
         # e.g. dir_name = 001-Demo, file_name = 1-Thale
