@@ -41,6 +41,9 @@ dot("$F$", F, dir(150));
     Item: A I_b I_c
     Item: B I_a I_c
     Item: C I_a I_b
+    Item: I I_a B C
+    Item: I I_b C A
+    Item: I I_c A B
 
     Text: $I$ is the incenter and $I_A$, $I_B$, $I_C$ are the excenters of $\triangle ABC$.
     Text: Given $AP^2+PD^2=BP^2+PE^2=CP^2+PF^2$.
