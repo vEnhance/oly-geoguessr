@@ -29,7 +29,7 @@ dot("$O$", O, dir(0));
 
 /*
     Source: USAMO 2008 P2 (7.29)
-    Points: A B C D E F M N P
+    Points: A B C D E F M N P O
     Item: P D O
     Item: E N O
     Item: A N O P
