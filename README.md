@@ -1,6 +1,6 @@
 # Olympiad GeoGuessr (oly-geoguessr)
 
-[Link to game](http://web.evanchen.cc/guessr/index.html)
+[Link to game](https://web.evanchen.cc/guessr/index.html)
 
 ## Synopsis
 
@@ -15,7 +15,7 @@ These configurations are either taken from actual problems from contests like
 USAMO or IMO Shortlist, or they are very classical configurations which you
 should know anyways. In other words, the diagrams in this game are "organic".
 
-### Finding Items
+### Finding items
 
 You input a item by clicking on the corresponding points in the picture.
 (You can deselect a point by clicking it again.)
@@ -38,7 +38,7 @@ Once you have found all the items in a diagram,
 Correctly doing so will complete the entire diagram.
 Doing so incorrectly will again cause a small penalty, see below.
 
-### Game Format
+### Game format
 
 Each "episode" consists of a set of four diagrams, worth 7 marks each.
 You are given six minutes to try and identify as many items as you can.
