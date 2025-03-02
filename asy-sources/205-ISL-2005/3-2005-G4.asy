@@ -32,7 +32,6 @@ dot("$Q$",Q,dir(180));
 dot("$R$",R,dir(90));
 dot("$T$",T,dir(-90));
 
-
 /*
 Source: Shortlist 2005 G4 (IMO 2005/5)
 Points: A B C D E F P Q R T

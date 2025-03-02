@@ -2,7 +2,6 @@
 import glob
 import json
 import os
-import sys
 
 PREAMBLE = """/* MEOW */
 import geometry;
@@ -60,9 +59,7 @@ def createDiagram(dir_name, file_name, ext):
 
     # If already created and older, skip it
     if os.path.isfile(filejson):
-        if os.path.getmtime(filejson) > os.path.getmtime(filesrc) and os.path.getmtime(
-            filejson
-        ) > os.path.getmtime(sys.argv[0]):
+        if os.path.getmtime(filejson) > os.path.getmtime(filesrc):
             return 0
 
     if ext == "asy":
@@ -195,9 +192,8 @@ if __name__ == "__main__":
     os.system("mkdir -p " + TMP)
 
     for s in glob.iglob("asy-sources/*/*"):
-        junk, dir_name, file_name_full = s.split(
-            "/"
-        )  # e.g. dir_name = 001-Demo, file_name = 1-Thale
+        # e.g. dir_name = 001-Demo, file_name = 1-Thale
+        junk, dir_name, file_name_full = s.split("/")
         i = file_name_full.rfind(".")
         file_name = file_name_full[:i]  # remove .asy extension
         extension = file_name_full[i + 1 :]
