@@ -44,5 +44,5 @@ dot("$P$", P, dir(150));
 
     Text: $ACDE$ is cyclic.
     Text: Tangents at $A$, $C$ intersects $DE$ at $L$, $M$.
-    Text: $G=ADc\cap (ABC)$, $P=GM\cap (ABC)$.
+    Text: $G=AD \cap (ABC)$, $P=GM\cap (ABC)$.
 */
