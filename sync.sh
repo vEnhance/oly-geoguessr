@@ -1,5 +1,7 @@
 #!/bin/bash
 
+make
+
 # The following should NOT be -r
 gcloud storage rsync -x ".gitignore|sync.sh|Makefile" . gs://web.evanchen.cc/guessr/
 
