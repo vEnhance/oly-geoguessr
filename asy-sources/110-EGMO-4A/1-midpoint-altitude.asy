@@ -43,6 +43,7 @@ dot("$M$", M, dir(0));
     Item: M I X
     Item: M D I_a
     Item: A D Y
+    Item: B C I I_a
 
     Text: $I$ is the incenter, $I_a$ is $A$-excenter.
     Text: $E$ is the antipode of $D$ wrt incircle, $Y$ is the antipose of $X$ wrt the excircle.
