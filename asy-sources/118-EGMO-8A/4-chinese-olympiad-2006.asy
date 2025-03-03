@@ -47,6 +47,9 @@ dot("$F^*$", F_s, dir(40));
     Item: C F C_s F_s
     Item: D O E C_s
     Item: A D C_s G_s
+    Item: F G F_s G_s
+    Item: B E C G
+    Item: C G A_s D_s
 
     Text: $AB$ is the diameter of cyclic quadrilateral $ABDE$ and $O$ is its center.
     Text: $G=(AOE)\cap (BOD)$, $C=AB\cap CD$.

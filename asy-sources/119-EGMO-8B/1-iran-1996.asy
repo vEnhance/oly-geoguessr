@@ -33,6 +33,7 @@ dot("$M^*$", M_s, dir(-90));
     Item: B D K_s
     Item: C D K K_s
     Item: C D O M_s
+    Item: K K_s M M_s
 
     Text: $ABCD$ is cyclic with its diameter $AB$ and center $O$.
     Text: $K=(AOC)\cap (BOD)$.
