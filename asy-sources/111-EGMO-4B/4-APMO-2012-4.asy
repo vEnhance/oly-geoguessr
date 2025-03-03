@@ -45,11 +45,11 @@ dot("$O$", O, dir(0));
     Item: C A D Y
     Item: A B D X
     Item: D H E K
-    Item: E H M A_p
     Item: A E D M
     Item: A E K
     Item: A O A_p
     Item: D E F
+    Item: D M X Y
 
     Text: $H$ is the orthocenter and $O$ is the center of $\triangle ABC$.
     Text: $M$ is the midpoint of $BC$.

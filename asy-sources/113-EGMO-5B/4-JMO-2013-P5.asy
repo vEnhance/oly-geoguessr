@@ -26,9 +26,10 @@ dot("$C$", C, dir(20));
 dot("$Q$", Q, dir(-90)*1.2);
 
 /*
-    Source: JMO 2023 P5 (5.25)
+    Source: JMO 2013 P5 (5.25)
     Points: A B C P Q X Y Z
     Item: A P X Z
+    Item: B Z P Y
 
     Text: Quadrilateral $XABCY$ is inscribed in a circle with diameter $XY$.
     Text: $Z$ is the foot of $P$ on $XY$ and $XC\perp AZ$.

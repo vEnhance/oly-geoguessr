@@ -31,6 +31,13 @@ dot("$R$", R, dir(210));
     Item: A R H_A
     Item: B R H_B
     Item: D R H_D
+    Item: H_A H_B H_C H_D
+    Item: A B H_C H_D
+    Item: A C H_B H_D
+    Item: A D H_B H_C
+    Item: B C H_A H_D
+    Item: B D H_A H_C
+    Item: C D H_A H_B
 
     Text: $ABCD$ is cyclic.
     Text: $H_D$ is the orthocenter of $\triangle ABC$ and etc.

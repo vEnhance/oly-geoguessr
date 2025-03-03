@@ -30,6 +30,7 @@ dot("$Y$", Y, dir(0));
     Source: Harvard-MIT Math Tournament 2014 (5.13)
     Points: A B C D E O T X Y
     Item: A T X
+    Item: B O T C
 
     Text: $AD\perp BC$, $YO\perp AX$, $AO\parallel XY$.
     Text: $AB=4$, $AC=5$, $BC=6$.

@@ -43,6 +43,7 @@ dot("$O_2$", O_2, dir(-30));
     Item: C D E F
     Item: C E M O O_1
     Item: O_1 O_2 Z P
+    Item: O O_2 D
 
     Text: Those $3$ circles with centers $O$, $O_1$, $O_2$ are tangent to each other in such a say that $C$ is the midpoint of the arc $AB$.
     Text: $M$ is the midpoint of the minor arc $AB$.
