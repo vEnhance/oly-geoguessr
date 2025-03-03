@@ -26,6 +26,7 @@ dot("$N$", N, dir(15));
     Item: A D N
     Item: B C N
     Item: E M N
+    Item: A B N E
 
     Text: $\triangle ACM$, $\triangle BDM$ and $\triangle ABE$ are equilateral.
     Text: $N=(ACM)\cap (BDM)$.
