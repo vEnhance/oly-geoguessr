@@ -37,6 +37,9 @@ dot("$P$", P, dir(75));
     Source: ISL 2007 G4
     Points: A B C D E F G M N P
     Item: M N P
+    Item: C E M N
+    Item: B E N P
+    Item: D E M P
 
     Text: $ABCD$ is a parallelogram.
     Text: $E\cap (BCD)$ such that $EG=EC=EF$.
