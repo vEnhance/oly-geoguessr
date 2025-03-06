@@ -32,7 +32,7 @@ dot("$L$", L, dir(75)*1.3);
 /*
     Source: Sharygin 2013 (4.51)
     Points: A B C I L M Z A_p B_p C_p K_p
-    Item: C I A_p B_p
+    Item: C I A_p B_p Z
     Item: A I B_p C_p
     Item: B I A_p C_p
     Item: I M Z C_p
