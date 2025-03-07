@@ -40,7 +40,8 @@ dot("$T$", T, dir(90));
     Item: B F S M
     Item: T P S M
     Item: T D E M
+    Item: T C F M
 
     Text: $\frac{AE}{ED}=\frac{BF}{FC}$, $S=EF\cap AB$, $T=EF\cap CD$.
-    Text: $M$ is the miquel point of quadrilateral $ABCD$.
+    Text: $M$ is the Miquel point of quadrilateral $ABCD$.
 */
