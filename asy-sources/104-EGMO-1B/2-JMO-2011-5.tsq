@@ -7,7 +7,7 @@ M = extension B E A P R45
 C = 2*M-A R100
 
 unitcircle 0.1 lightblue / lightblue
-P--A lightblue
+P--C lightblue
 B--P--D lightblue
 D--E heavygreen
 A--E--C heavygreen
