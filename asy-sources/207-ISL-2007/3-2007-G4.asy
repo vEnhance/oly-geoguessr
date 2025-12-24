@@ -42,6 +42,6 @@ dot("$P$", P, dir(75));
     Item: D E M P
 
     Text: $ABCD$ is a parallelogram.
-    Text: $E\cap (BCD)$ such that $EG=EC=EF$.
+    Text: $E \in (BCD)$ such that $EG=EC=EF$.
     Text: $M$, $N$, $P$ are the midpoints of $CF$, $CG$, $BD$ respectively.
 */

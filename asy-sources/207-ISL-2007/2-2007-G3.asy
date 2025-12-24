@@ -33,6 +33,7 @@ dot("$Q'$", Q_p, dir(180));
     Source: ISL 2007 G3
     Points: A B C D P Q Q_p
     Item: A D Q Q_p
+    Item: B C Q Q_p
 
     Text: $AD\parallel BC$, $P=AC\cap BD$.
     Text: $\angle AQD=\angle BQC$.
