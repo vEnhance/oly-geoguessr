@@ -16,12 +16,19 @@ CP X foot X B C 0.2 lightred / red
 CP Y foot Y C A 0.2 lightred / red
 CP Z foot Z A B 0.2 lightred / red
 
-A--foot(Z,A,C)
-B--foot(Z,B,C)
-B--foot(X,B,A)
-C--foot(X,C,A)
-C--foot(Y,C,B)
-A--foot(Y,A,B)
+Z1 := foot Z A C
+Z2 := foot Z B C
+X1 := foot X B A
+X2 := foot X C A
+Y1 := foot Y C B
+Y2 := foot Y A B
+
+A--Z1
+B--Z2
+B--X1
+C--X2
+C--Y1
+A--Y2
 
 /*
 Source: Triple Excenters
