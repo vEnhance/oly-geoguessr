@@ -50,12 +50,12 @@ TMPDIR = Path(tempfile.gettempdir()) / "guessr"
 
 
 def createDiagram(dir_name, file_name, ext):
-    filesrc = Path("asy-sources") / dir_name / (file_name + "." + ext)
-    filebase = Path("diagrams/") / file_name
+    filesrc = Path("asy") / dir_name / (file_name + "." + ext)
+    filebase = Path("site/diagrams/") / file_name
     filetmp = TMPDIR / (file_name + ".tmp")
     filetmpasy = TMPDIR / (file_name + ".tmpasy")
     filenewasy = TMPDIR / (file_name + ".asy")
-    filejson = Path("diagrams") / (file_name + ".json")
+    filejson = Path("site/diagrams") / (file_name + ".json")
 
     # If already created and older, skip it
     if os.path.isfile(filejson) and (
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     diagram_index = {}
     TMPDIR.mkdir(exist_ok=True)
 
-    for s in glob.iglob("asy-sources/*/*"):
+    for s in glob.iglob("asy/*/*"):
         # e.g. dir_name = 001-Demo, file_name = 1-Thale
         junk, dir_name, file_name_full = s.split("/")
         i = file_name_full.rfind(".")
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         ep_name = dir_name.replace("-", ": ", 1).replace("-", " ")
         episodes.append("'" + ep_name + "': " + str(sorted(filenames)))
 
-    with open("js/episode-index.js", "w") as f:
+    with open("site/js/episode-index.js", "w") as f:
         print("EPISODES = {", file=f)
         print("\t" + ",\n\t".join(episodes), file=f)
         print("\t};", file=f)

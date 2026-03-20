@@ -7,7 +7,7 @@ Fortunately, this is actually easy to do,
 and I welcome contributions from anyone who wants to add them.
 All you have to do is submit four Asymptote files (in `*.asy` format),
 formatted appropriately, and I'll add them into the live game.
-[Here is an example of a user-contributed submission](https://github.com/vEnhance/oly-geoguessr/tree/master/asy-sources/201-TSTST-2016/).
+[Here is an example of a user-contributed submission](https://github.com/vEnhance/oly-geoguessr/tree/master/asy/201-TSTST-2016/).
 
 The syntax for one of the asymptote files looks like this:
 

@@ -1,16 +1,16 @@
-all : js/rungame.js diagrams
+all : site/js/rungame.js site/diagrams
 
-js/rungame.js : coffee/rungame.coffee
-	coffee -c -o js coffee/rungame.coffee;
+site/js/rungame.js : coffee/rungame.coffee
+	coffee -c -o site/js coffee/rungame.coffee;
 
-diagrams : asy-sources/* build-diagrams.py
-	mkdir -p diagrams
+site/diagrams : asy/* build-diagrams.py
+	mkdir -p site/diagrams
 	./build-diagrams.py
 
 clean:
-	rm -f js/rungame.js
-	rm -f js/episode-index.js
-	rm -f diagrams/*
-	rm -fd diagrams
-	rm -f js/jquery.min.js
-	rm -f css/simple-53544.css
+	rm -f site/js/rungame.js
+	rm -f site/js/episode-index.js
+	rm -f site/diagrams/*
+	rm -fd site/diagrams
+	rm -f site/js/jquery.min.js
+	rm -f site/css/simple-53544.css

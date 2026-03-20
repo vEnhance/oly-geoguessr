@@ -2,7 +2,7 @@
 # From http://superuser.com/a/970780/440809
 
 function execute() {
-	make js/rungame.js
+	make site/js/rungame.js
 }
 
 execute;
