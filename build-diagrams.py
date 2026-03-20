@@ -118,7 +118,7 @@ def createDiagram(dir_name, file_name, ext):
             'write("pmin " + (string) min(currentpicture, user=false));', file=w
         )  # PS coordinates
         print('write("pmax " + (string) max(currentpicture, user=false));', file=w)
-    command = f"asy -f pdf -o {filebase} {filenewasy} > {filetmp};\nmagick {filebase}.pdf {filebase}.png"
+    command = f"asy -f pdf -o {filebase} {filenewasy} > {filetmp};\nconvert {filebase}.pdf {filebase}.png"
     print(command)
     os.system(command)
 
