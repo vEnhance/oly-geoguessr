@@ -20,9 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clone dotfiles (for tsq.py / tsqx.py)
-        run: git clone --depth=1 https://github.com/vEnhance/dotfiles.git ~/dotfiles
-
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -30,6 +27,9 @@ jobs:
 
       - name: Install CoffeeScript
         run: npm install -g coffeescript
+
+      - name: Install TSQX
+        run: pip install tsqx
 
       - name: Build site
         run: make

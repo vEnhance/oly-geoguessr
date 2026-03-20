@@ -65,16 +65,8 @@ def createDiagram(dir_name, file_name, ext):
 
     if ext == "asy":
         fileoldasy = filesrc
-    elif ext == "tsq":
-        # I'm sorry! Evan's dotfiles are on Github, so...
-        os.system(
-            f"cat {filesrc} | python3 ~/dotfiles/py-scripts/tsq.py > {filetmpasy}"
-        )
-        fileoldasy = filetmpasy
-    elif ext == "tsqx":
-        os.system(
-            f"cat {filesrc} | python3 ~/dotfiles/py-scripts/tsqx.py > {filetmpasy}"
-        )
+    elif ext == "tsq" or ext == "tsqx":
+        os.system(f"tsqx {filesrc} > {filetmpasy}")
         fileoldasy = filetmpasy
     else:
         print(f"WARNING: ignoring unknown {filesrc}")
