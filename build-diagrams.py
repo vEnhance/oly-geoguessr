@@ -65,7 +65,10 @@ def createDiagram(dir_name, file_name, ext):
 
     if ext == "asy":
         fileoldasy = filesrc
-    elif ext == "tsq" or ext == "tsqx":
+    elif ext == "tsq":  # oh god this thing is like some of my students' age
+        os.system(f"python tsq.py {filesrc} > {filetmpasy}")
+        fileoldasy = filetmpasy
+    elif ext == "tsqx":
         os.system(f"tsqx {filesrc} > {filetmpasy}")
         fileoldasy = filetmpasy
     else:
