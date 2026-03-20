@@ -1,6 +1,6 @@
 # Olympiad GeoGuessr (oly-geoguessr)
 
-[Link to game](https://web.evanchen.cc/guessr/index.html)
+[Link to game](https://guessr.evanchen.cc/)
 
 ## Synopsis
 
