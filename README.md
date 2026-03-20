@@ -1,4 +1,4 @@
-# Olympiad GeoGuessr (oly-geoguessr)
+# Olympiad GeoGuessr (guessr.evanchen.cc)
 
 [Link to game](https://guessr.evanchen.cc/)
 
