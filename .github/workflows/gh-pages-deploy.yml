@@ -27,7 +27,7 @@ jobs:
           sudo apt-get install -y asymptote imagemagick texlive-base texlive-fonts-recommended
 
       - name: Install CoffeeScript
-        run: npm install -g coffeescript
+        run: npm install -g coffeescript # zizmor: ignore[adhoc-packages]
 
       - name: Install TSQX
         run: pip install tsqx
